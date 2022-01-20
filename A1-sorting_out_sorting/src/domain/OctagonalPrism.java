@@ -2,8 +2,11 @@ package domain;
 
 public class OctagonalPrism extends Prism {
 
-	public OctagonalPrism(double side) {
-		super(side);
+	public OctagonalPrism() {
+	}
+	
+	public OctagonalPrism(double height, double side) {
+		super(height, side);
 	}
 
 	@Override

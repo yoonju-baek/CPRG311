@@ -7,8 +7,8 @@ public class Cylinder extends Shape {
 	public Cylinder() {
 	}
 	
-	public Cylinder(double radius) {
-		super();
+	public Cylinder(double height, double radius) {
+		super(height);
 		this.radius = radius;
 	}
 
