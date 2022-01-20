@@ -1,5 +1,5 @@
 package domain;
 
-public class SquarePrism {
+public class SquarePrism extends Prism {
 
 }

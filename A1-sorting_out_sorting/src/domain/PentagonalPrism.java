@@ -1,5 +1,5 @@
 package domain;
 
-public class PentagonalPrism {
+public class PentagonalPrism extends Prism {
 
 }

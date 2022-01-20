@@ -1,5 +1,5 @@
 package domain;
 
-public class TriangularPrism {
+public class TriangularPrism extends Prism {
 
 }
