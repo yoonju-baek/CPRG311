@@ -7,8 +7,8 @@ public class Cone extends Shape {
 	public Cone() {
 	}
 	
-	public Cone(double radius) {
-		super();
+	public Cone(double height, double radius) {
+		super(height);
 		this.radius = radius;
 	}
 

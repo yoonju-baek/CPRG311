@@ -2,8 +2,11 @@ package domain;
 
 public class TriangularPrism extends Prism {
 
-	public TriangularPrism(double side) {
-		super(side);
+	public TriangularPrism() {
+	}
+	
+	public TriangularPrism(double height, double side) {
+		super(height, side);
 	}
 
 	@Override

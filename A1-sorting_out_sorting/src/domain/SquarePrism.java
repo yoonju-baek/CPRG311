@@ -2,8 +2,11 @@ package domain;
 
 public class SquarePrism extends Prism {
 
-	public SquarePrism(double side) {
-		super(side);
+	public SquarePrism() {
+	}
+	
+	public SquarePrism(double height, double side) {
+		super(height, side);
 	}
 
 	@Override

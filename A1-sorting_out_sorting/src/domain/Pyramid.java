@@ -4,9 +4,11 @@ public class Pyramid extends Shape {
 	
 	private double side;
 	
-
-	public Pyramid(double side) {
-		super();
+	public Pyramid() {
+	}
+	
+	public Pyramid(double height, double side) {
+		super(height);
 		this.side = side;
 	}
 
