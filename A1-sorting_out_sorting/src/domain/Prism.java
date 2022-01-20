@@ -8,5 +8,11 @@ public abstract class Prism extends Shape {
 		super();
 		this.side = side;
 	}
+	
+	public double calcVolume() {
+		return 0;
+	}
+	
+	abstract double calcBaseArea();
 
 }

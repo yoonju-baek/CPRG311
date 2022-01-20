@@ -6,11 +6,6 @@ public class TriangularPrism extends Prism {
 		super(side);
 	}
 
-	@Override
-	double calcVolume() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	@Override
 	double calcBaseArea() {
