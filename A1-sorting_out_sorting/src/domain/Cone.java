@@ -4,6 +4,14 @@ public class Cone extends Shape {
 
 	private double radius;
 
+	public Cone() {
+	}
+	
+	public Cone(double radius) {
+		super();
+		this.radius = radius;
+	}
+
 	public double getRadius() {
 		return radius;
 	}

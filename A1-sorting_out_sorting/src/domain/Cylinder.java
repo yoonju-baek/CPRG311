@@ -4,6 +4,14 @@ public class Cylinder extends Shape {
 	
 	private double radius;
 
+	public Cylinder() {
+	}
+	
+	public Cylinder(double radius) {
+		super();
+		this.radius = radius;
+	}
+
 	public double getRadius() {
 		return radius;
 	}

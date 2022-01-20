@@ -5,6 +5,11 @@ public class Pyramid extends Shape {
 	private double side;
 	
 
+	public Pyramid(double side) {
+		super();
+		this.side = side;
+	}
+
 	public double getSide() {
 		return side;
 	}
