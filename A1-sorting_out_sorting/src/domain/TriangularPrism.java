@@ -12,8 +12,7 @@ public class TriangularPrism extends Prism {
 
 	@Override
 	double calcBaseArea() {
-		// TODO Auto-generated method stub
-		return 0;
+		return (Math.pow(getSide(), 2) * Math.sqrt(3)) / 4;
 	}
 
 }
