@@ -24,6 +24,6 @@ public abstract class Prism extends Shape {
 		return 0;
 	}
 	
-	abstract double calcBaseArea();
+	public abstract double calcBaseArea();
 
 }

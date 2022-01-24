@@ -10,7 +10,7 @@ public class OctagonalPrism extends Prism {
 	}
 
 	@Override
-	double calcBaseArea() {
+	public double calcBaseArea() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
