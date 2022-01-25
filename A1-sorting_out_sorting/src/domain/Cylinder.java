@@ -21,13 +21,13 @@ public class Cylinder extends Shape {
 	}
 
 	@Override
-	double calcVolume() {
+	public double calcVolume() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	double calcBaseArea() {
+	public double calcBaseArea() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
