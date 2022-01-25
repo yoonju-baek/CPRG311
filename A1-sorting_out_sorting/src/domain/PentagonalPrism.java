@@ -11,8 +11,7 @@ public class PentagonalPrism extends Prism {
 
 	@Override
 	public double calcBaseArea() {
-		// TODO Auto-generated method stub
-		return 0;
+		return (5 * Math.pow(getSide(), 2) * Math.tan(54)) / 4;
 	}
 
 }

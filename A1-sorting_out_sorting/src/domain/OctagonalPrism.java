@@ -11,8 +11,7 @@ public class OctagonalPrism extends Prism {
 
 	@Override
 	public double calcBaseArea() {
-		// TODO Auto-generated method stub
-		return 0;
+		return 2 * (1 + Math.sqrt(2)) * Math.pow(getSide(), 2);
 	}
 
 }
