@@ -1,6 +1,7 @@
 package domain;
 
 public abstract class Shape implements Comparable<Shape>{
+	final static double PI = 3.14;
 	private double height;
 	
 	public Shape() {
