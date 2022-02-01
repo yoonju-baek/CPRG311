@@ -22,14 +22,12 @@ public class Pyramid extends Shape {
 
 	@Override
 	public double calcVolume() {
-		// TODO Auto-generated method stub
-		return 0;
+		return Math.pow(getSide(), 2) * getHeight() / 3;
 	}
 
 	@Override
 	public double calcBaseArea() {
-		// TODO Auto-generated method stub
-		return 0;
+		return Math.pow(getSide(), 2);
 	}
 	
 }
