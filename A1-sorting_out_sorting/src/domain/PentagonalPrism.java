@@ -10,7 +10,7 @@ public class PentagonalPrism extends Prism {
 	}
 
 	@Override
-	double calcBaseArea() {
+	public double calcBaseArea() {
 		return (5 * Math.pow(getSide(), 2) * Math.tan(54)) / 4;
 	}
 

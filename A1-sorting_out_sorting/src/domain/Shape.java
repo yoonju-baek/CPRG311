@@ -1,6 +1,7 @@
 package domain;
 
 public abstract class Shape implements Comparable<Shape>{
+	final static double PI = 3.14;
 	private double height;
 	
 	public Shape() {
@@ -18,8 +19,8 @@ public abstract class Shape implements Comparable<Shape>{
 		this.height = height;
 	}
 	
-	abstract double calcVolume();
-	abstract double calcBaseArea();
+	public abstract double calcVolume();
+	public abstract double calcBaseArea();
 	
 	@Override
 	public int compareTo(Shape that)

@@ -21,15 +21,13 @@ public class Cone extends Shape {
 	}
 
 	@Override
-	double calcVolume() {
-		// TODO Auto-generated method stub
-		return 0;
+	public double calcVolume() {
+		return PI * Math.pow(getRadius(), 2) * getHeight() / 3;
 	}
 
 	@Override
-	double calcBaseArea() {
-		// TODO Auto-generated method stub
-		return 0;
+	public double calcBaseArea() {
+		return PI * Math.pow(getRadius(), 2);
 	}
 	
 	

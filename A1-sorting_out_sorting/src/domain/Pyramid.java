@@ -21,15 +21,13 @@ public class Pyramid extends Shape {
 	}
 
 	@Override
-	double calcVolume() {
-		// TODO Auto-generated method stub
-		return 0;
+	public double calcVolume() {
+		return Math.pow(getSide(), 2) * getHeight() / 3;
 	}
 
 	@Override
-	double calcBaseArea() {
-		// TODO Auto-generated method stub
-		return 0;
+	public double calcBaseArea() {
+		return Math.pow(getSide(), 2);
 	}
 	
 }
