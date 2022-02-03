@@ -12,17 +12,30 @@ public class Sorting {
 	public static <T> void selectionSort(Comparable<T>[] array) {
 		// distinguish the sorted area and the unsorted area
 		for (int i = 0; i < (array.length - 1); i++) {
+<<<<<<< Updated upstream
 			int minIndex = i;
 
 			// find minimum value in the unsorted values
 			for (int j = 1; j < array.length; j++) {
 				if (array[minIndex].compareTo((T) array[j]) == 1) {
 					minIndex = j;
+=======
+			int maxIndex = i;
+
+			// find minimum value in the unsorted values
+			for (int j = 1; j < array.length; j++) {
+				if (array[maxIndex].compareTo((T) array[j]) == -1) {
+					maxIndex = j;
+>>>>>>> Stashed changes
 				}
 
 			}
 			// call method to swap minimum value with the first unsorted value
+<<<<<<< Updated upstream
 			swapElements(array, i, minIndex);				
+=======
+			swapElements(array, i, maxIndex);				
+>>>>>>> Stashed changes
 		}
 
 	}
@@ -37,6 +50,7 @@ public class Sorting {
 	public static <T> void selectionSort(Comparable<T>[] array, Comparator<? super T> comp) {
 		// distinguish the sorted area and the unsorted area
 		for (int i = 0; i < (array.length - 1); i++) {
+<<<<<<< Updated upstream
 			int minIndex = i;
 
 			// find minimum value in the unsorted values
@@ -47,6 +61,18 @@ public class Sorting {
 			}
 			// call method to swap minimum value with the first unsorted value
 			swapElements(array, i, minIndex);	
+=======
+			int maxIndex = i;
+
+			// find minimum value in the unsorted values
+			for (int j = 1; j < array.length; j++) {
+				if (comp.compare((T) array[maxIndex], (T) array[j]) == -1) {
+					maxIndex = j;
+				}
+			}
+			// call method to swap minimum value with the first unsorted value
+			swapElements(array, i, maxIndex);	
+>>>>>>> Stashed changes
 		}
 
 	}
@@ -59,6 +85,7 @@ public class Sorting {
 	public static <T> void quickSort(Comparable<T>[] array) {
 		quickSort(array, 0, array.length - 1);
 	}
+<<<<<<< Updated upstream
 
 	/**
 	 * 
@@ -80,6 +107,29 @@ public class Sorting {
 				partStart++;
 			}
 			while (array[pivot].compareTo((T) array[partEnd]) < 1) {
+=======
+
+	/**
+	 * 
+	 * @param <T>
+	 * @param array
+	 * @param startIndex
+	 * @param endIndex
+	 */
+	@SuppressWarnings("unchecked")
+	public static <T> void quickSort(Comparable<T>[] array, int startIndex, int endIndex) {
+		int partStart = startIndex;
+		int partEnd = endIndex;
+		// select a value at the middle of the array as a pivot
+		int pivot = (partStart + partEnd) / 2;
+
+		// move both counters to the opposite side during meet the condition
+		while (partStart < partEnd) {
+			while (array[pivot].compareTo((T) array[partStart]) <= 0) {
+				partStart++;
+			}
+			while (array[pivot].compareTo((T) array[partEnd]) >= 0) {
+>>>>>>> Stashed changes
 				partEnd++;
 			}
 			// call a method to swap the value of the left counter with the value of the right counter
@@ -87,8 +137,13 @@ public class Sorting {
 		}
 
 		// call method itself to sort the part of the left side of the array 
+<<<<<<< Updated upstream
 		if (startIndex < partStart -1) {
 			quickSort(array, startIndex, partStart -1);
+=======
+		if (startIndex < (partStart -1)) {
+			quickSort(array, startIndex, (partStart -1));
+>>>>>>> Stashed changes
 		}
 		// call method itself to sort the part of the right side of the array
 		if (endIndex > partStart) {
@@ -115,8 +170,38 @@ public class Sorting {
 	 * @param startIndex
 	 * @param endIndex
 	 */
+<<<<<<< Updated upstream
 	public static <T> void quickSort(Comparable<T>[] array, Comparator<? super T> comp,  int startIndex, int endIndex) {
 
+=======
+	@SuppressWarnings("unchecked")
+	public static <T> void quickSort(Comparable<T>[] array, Comparator<? super T> comp,  int startIndex, int endIndex) {
+		int partStart = startIndex;
+		int partEnd = endIndex;
+		// select a value at the middle of the array as a pivot
+		int pivot = (partStart + partEnd) / 2;
+
+		// move both counters to the opposite side during meet the condition
+		while (partStart < partEnd) {
+			while (comp.compare((T) array[pivot], (T) array[partStart]) <= 0) {
+				partStart++;
+			}
+			while (comp.compare((T) array[pivot], (T) array[partEnd]) >= 0) {
+				partEnd++;
+			}
+			// call a method to swap the value of the left counter with the value of the right counter
+			swapElements(array, partStart, partEnd);
+		}
+
+		// call method itself to sort the part of the left side of the array 
+		if (startIndex < (partStart -1)) {
+			quickSort(array, comp, startIndex, (partStart -1));
+		}
+		// call method itself to sort the part of the right side of the array
+		if (endIndex > partStart) {
+			quickSort(array, comp, partStart, endIndex);
+		}
+>>>>>>> Stashed changes
 	}
 
 	/**
