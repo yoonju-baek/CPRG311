@@ -25,3 +25,5 @@ hs_err_pid*
 demo01-ComplexityAnalysis/
 demo02-SortingAlgorithms/
 demo03-Reflection/
+Algorithms/
+demo04-ADT_TDD/
