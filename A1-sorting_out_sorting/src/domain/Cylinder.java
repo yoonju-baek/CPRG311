@@ -22,14 +22,12 @@ public class Cylinder extends Shape {
 
 	@Override
 	public double calcVolume() {
-		// TODO Auto-generated method stub
-		return 0;
+		return PI * Math.pow(getRadius(), 2) * getHeight();
 	}
 
 	@Override
 	public double calcBaseArea() {
-		// TODO Auto-generated method stub
-		return 0;
+		return PI * Math.pow(getRadius(), 2);
 	}
 
 }
