@@ -15,7 +15,7 @@ public class Sorting {
 			int maxIndex = i;
 
 			// find minimum value in the unsorted values
-			for (int j = 1; j < array.length; j++) {
+			for (int j = i+1; j < array.length; j++) {
 				if (array[maxIndex].compareTo((T) array[j]) == -1) {
 					maxIndex = j;
 				}
@@ -24,7 +24,6 @@ public class Sorting {
 			// call method to swap minimum value with the first unsorted value
 			swapElements(array, i, maxIndex);				
 		}
-
 	}
 
 	/**
@@ -40,7 +39,7 @@ public class Sorting {
 			int maxIndex = i;
 
 			// find minimum value in the unsorted values
-			for (int j = 1; j < array.length; j++) {
+			for (int j = i+1; j < array.length; j++) {
 				if (comp.compare((T) array[maxIndex], (T) array[j]) == -1) {
 					maxIndex = j;
 				}
@@ -68,7 +67,7 @@ public class Sorting {
 	 * @param endIndex
 	 */
 	@SuppressWarnings("unchecked")
-	public static <T> void quickSort(Comparable<T>[] array, int startIndex, int endIndex) {
+	private static <T> void quickSort(Comparable<T>[] array, int startIndex, int endIndex) {
 		int partStart = startIndex;
 		int partEnd = endIndex;
 		// select a value at the middle of the array as a pivot
@@ -116,7 +115,7 @@ public class Sorting {
 	 * @param endIndex
 	 */
 	@SuppressWarnings("unchecked")
-	public static <T> void quickSort(Comparable<T>[] array, Comparator<? super T> comp,  int startIndex, int endIndex) {
+	private static <T> void quickSort(Comparable<T>[] array, Comparator<? super T> comp,  int startIndex, int endIndex) {
 		int partStart = startIndex;
 		int partEnd = endIndex;
 		// select a value at the middle of the array as a pivot
@@ -144,6 +143,67 @@ public class Sorting {
 		}
 	}
 
+
+	public static <T extends Comparable<? super T>> void insertionSort(T[] arr) {
+		for(int i=1; i < arr.length; i++) {
+			T key = arr[i];
+			int j = i-1;
+			
+			while(j >= 0 && arr[j].compareTo(key) < 0 ) {
+				arr[j+1] = arr[j];
+				j--;
+			}
+			arr[j+1] = key;
+		}
+	}
+	
+	public static <T> void insertionSort(T[] arr, Comparator<? super T> comp) {
+		for(int i=1; i < arr.length; i++) {
+			T key = arr[i];
+			int j = i-1;
+			
+			while(j >= 0 && comp.compare(arr[j], key) < 0 ) {
+				arr[j+1] = arr[j];
+				j--;
+			}
+			arr[j+1] = key;
+		}
+	}
+	
+	public static <T extends Comparable<? super T>> void shellSort(T[] arr) {
+		int numbers = arr.length;
+		
+		for(int gap=numbers/2; gap>0; gap=gap/2) {
+			for(int i=gap; i<numbers; i++) {
+				T insertVal = arr[i];
+				
+				int j;
+				for(j=i-gap; j>=0 && arr[j].compareTo(insertVal) < 0; j=j-gap) {
+					arr[j+gap] = arr[j];
+				}
+				
+				arr[j+gap] = insertVal;
+			}
+		}
+	}
+	
+	public static <T> void shellSort(T[] arr, Comparator<? super T> comp) {
+		int numbers = arr.length;
+		
+		for(int gap=numbers/2; gap>0; gap=gap/2) {
+			for(int i=gap; i<numbers; i++) {
+				T insertVal = arr[i];
+				
+				int j;
+				for(j=i-gap; j>=0 && comp.compare(arr[j], insertVal) < 0; j=j-gap) {
+					arr[j+gap] = arr[j];
+				}
+				
+				arr[j+gap] = insertVal;
+			}
+		}
+	}
+	
 	/**
 	 * 
 	 * @param <T>
@@ -151,9 +211,9 @@ public class Sorting {
 	 * @param i
 	 * @param j
 	 */
-	private static <T> void swapElements( Comparable<T>[] array, int i, int j )
+	private static <T> void swapElements(T[] array, int i, int j )
 	{
-		Comparable<T> temp = array[i];
+		T temp = array[i];
 		array[i] = array[j];
 		array[j] = temp;
 	}
