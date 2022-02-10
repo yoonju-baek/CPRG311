@@ -9,10 +9,15 @@ public class SquarePrism extends Prism {
 		super(height, side);
 	}
 
-
 	@Override
 	public double calcBaseArea() {
 		return Math.pow(getSide(), 2);
+	}
+	
+	public String toString() {
+		return "SquarePrism [Height=" + getHeight()
+						+ ", BaseArea="	+ String.format("%.3f", calcBaseArea()) 
+						+ ", Volume=" + String.format("%.3f", calcVolume()) + "]";
 	}
 
 }

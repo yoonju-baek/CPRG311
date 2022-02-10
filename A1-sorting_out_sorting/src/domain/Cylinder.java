@@ -30,4 +30,9 @@ public class Cylinder extends Shape {
 		return PI * Math.pow(getRadius(), 2);
 	}
 
+	public String toString() {
+		return "Cylinder [Height=" + getHeight()
+						+ ", BaseArea="	+ String.format("%.3f", calcBaseArea()) 
+						+ ", Volume=" + String.format("%.3f", calcVolume()) + "]";
+	}
 }
