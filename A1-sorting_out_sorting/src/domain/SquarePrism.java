@@ -27,7 +27,6 @@ public class SquarePrism extends Prism {
 		super(height, side);
 	}
 
-
 	/**
 	 * Calculate base area of SquarePrism
 	 * @return base area of SquarePrism
@@ -35,6 +34,12 @@ public class SquarePrism extends Prism {
 	@Override
 	public double calcBaseArea() {
 		return Math.pow(getSide(), 2);
+	}
+	
+	public String toString() {
+		return "SquarePrism [Height=" + getHeight()
+						+ ", BaseArea="	+ String.format("%.3f", calcBaseArea()) 
+						+ ", Volume=" + String.format("%.3f", calcVolume()) + "]";
 	}
 
 }

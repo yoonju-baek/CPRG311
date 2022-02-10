@@ -36,4 +36,9 @@ public class PentagonalPrism extends Prism {
 		return (5 * Math.pow(getSide(), 2) * Math.tan(54)) / 4;
 	}
 
+	public String toString() {
+		return "PentagonalPrism [Height=" + getHeight()
+							+ ", BaseArea="	+ String.format("%.3f", calcBaseArea()) 
+							+ ", Volume=" + String.format("%.3f", calcVolume()) + "]";
+	}
 }
