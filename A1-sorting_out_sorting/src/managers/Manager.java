@@ -10,7 +10,16 @@ import java.util.StringTokenizer;
 
 import domain.Shape;
 
-
+/**
+ * This class compares height, base area, and volume to sort various shapes.
+ * 
+ * @author Dongyeon Kim
+ * @author Seungjin Moon
+ * @author Yoonju Baek
+ * 
+ * @version Feb 07 2022
+ *
+ */
 public class Manager {
 
 	//Attributes
@@ -19,14 +28,25 @@ public class Manager {
 	private String target;
 	private String sorting;
 	
+	/**
+	 * Create Manager object.
+	 */
 	public Manager() {
 	}
 	
+	/**
+	 * Create Manager object.
+	 * @param options options include the compare type, the sort type and the file name
+	 */
 	public Manager(String[] options) {
 		checkSortingOption(options);
 		fillShapeArray();
 	}
 	
+	/**
+	 * Determines the options for comparing and sorting from the file
+	 * @param options options include the compare type, the sort type and the file name
+	 */
 	private void checkSortingOption(String[] options) {
 		int i=0;
 
@@ -56,6 +76,9 @@ public class Manager {
 
 	}
 	
+	/**
+	 * Method to load shape date from the file and fill to array
+	 */
 	private void fillShapeArray()
 	{
 		try

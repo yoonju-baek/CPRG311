@@ -2,6 +2,16 @@ package utilities;
 
 import java.util.Comparator;
 
+/**
+ * This class is a collection of sorting algorithms.
+ * 
+ * @author Dongyeon Kim
+ * @author Seungjin Moon
+ * @author Yoonju Baek
+ * 
+ * @version Feb 07 2022
+ *
+ */
 public class Sorting {
 	/**
 	 * 
@@ -144,6 +154,11 @@ public class Sorting {
 	}
 
 
+	/**
+	 * 
+	 * @param <T>
+	 * @param arr
+	 */
 	public static <T extends Comparable<? super T>> void insertionSort(T[] arr) {
 		for(int i=1; i < arr.length; i++) {
 			T key = arr[i];
@@ -157,6 +172,12 @@ public class Sorting {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param <T>
+	 * @param arr
+	 * @param comp
+	 */
 	public static <T> void insertionSort(T[] arr, Comparator<? super T> comp) {
 		for(int i=1; i < arr.length; i++) {
 			T key = arr[i];
@@ -170,6 +191,11 @@ public class Sorting {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param <T>
+	 * @param arr
+	 */
 	public static <T extends Comparable<? super T>> void shellSort(T[] arr) {
 		int numbers = arr.length;
 		
@@ -187,6 +213,12 @@ public class Sorting {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param <T>
+	 * @param arr
+	 * @param comp
+	 */
 	public static <T> void shellSort(T[] arr, Comparator<? super T> comp) {
 		int numbers = arr.length;
 		
