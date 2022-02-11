@@ -20,13 +20,12 @@ import utilities.*;
 public class Manager {
 
 	//Attributes
-	//Currently used hard-coded options to read file path, target type, and sorting type for test
-	//remove hard coding after complete all works
 	private Shape[]	shapeArray;
-	private String filename = "polyfor5.txt";
-	private String target = "a";
-	private String sorting ="s";
-	
+	private String filename;
+	private String target;
+	private String sorting;
+
+	private String targetStr;
 	/**
 	 * Create Manager object.
 	 */
@@ -38,11 +37,8 @@ public class Manager {
 	 * @param options options include the compare type, the sort type and the file name
 	 */
 	public Manager(String[] options) {
-		//Currently used hard-coded options
-		//enable a method for checking sorting option after complete all works
-		//checkSortingOption(options);
+		checkSortingOption(options);
 		fillShapeArray();
-		executeSorting();
 	}
 
 	
@@ -53,17 +49,21 @@ public class Manager {
 	private void checkSortingOption(String[] options) {
 		int i=0;
 
-		while(i < options.length) {
-			System.out.println(options[i]);
-			
+		while(i < options.length) {			
 			String param = options[i].substring(0, 2).toLowerCase();
-			System.out.println("Param: " + param);
 			switch (param) {
 				case "-f":
 					filename = options[i].substring(2);
 					break;
 				case "-t":
 					target = options[i].substring(2);
+					if (target.equals("h")) {
+						targetStr = "Height";
+					} else if (target.equals("a")) {
+						targetStr = "BaseArea";
+					} else if (target.equals("v")) {
+						targetStr = "Volume";
+					}
 					break;
 				case "-s":
 					sorting = options[i].substring(2);
@@ -164,7 +164,7 @@ public class Manager {
 	/**
 	 * Execute sorting based on options user input
 	 */
-	private void executeSorting() {
+	public void executeSorting() {
 		//instantiate for compare value based on base area and volume
 		BaseAreaCompare ba = new BaseAreaCompare();			
 		VolumeCompare vc = new VolumeCompare();
@@ -176,7 +176,6 @@ public class Manager {
 
 		//execute a specific sorting according to the option user input
 		switch (sorting) {
-			/* remove comment after complete bubble sort
 			case "b":
 				sortingType = "Bubble Sort";
 				if (target.equals("h")) {
@@ -187,7 +186,6 @@ public class Manager {
 					Sorting.bubbleSort(shapeArray, vc);
 				}
 				break;
-			 */
 			case "s":
 				sortingType = "Selection Sort";
 				if (target.equals("h")) {
@@ -208,7 +206,6 @@ public class Manager {
 					Sorting.insertionSort(shapeArray, vc);
 				}
 				break;
-			/* remove comment after complete merge sort
 			case "m":
 				sortingType = "Merge Sort";
 				if (target.equals("h")) {
@@ -219,7 +216,6 @@ public class Manager {
 					Sorting.mergeSort(shapeArray, vc);
 				}
 				break;
-			 */
 			case "q":
 				sortingType = "Quick Sort";
 				if (target.equals("h")) {
@@ -246,7 +242,7 @@ public class Manager {
 		}
 		//get end time and calculate elapsed time to process sorting 
 		long endTime = System.currentTimeMillis();
-		System.out.println(String.format("Elapsed time to process %s: %dms", sortingType, (endTime - startTime)));
+		System.out.println(String.format("Elapsed time to process %s(%s): %dms", sortingType, targetStr, (endTime - startTime)));
 		System.out.println();
 		
 		//call a method for printing
@@ -260,7 +256,7 @@ public class Manager {
 	private void printSortedValue() {
 		for (int i = 0; i < shapeArray.length; i++) {
 			if (i == 0 || i == (shapeArray.length - 1) || i % 1000 == 999) {
-				System.out.println("No " + i + ": " + shapeArray[i].toString());
+				System.out.println("No. " + String.format("%8d: %s", i, shapeArray[i].toString()));
 			}
 		}
 	}

@@ -13,19 +13,43 @@ import java.util.Comparator;
  *
  */
 public class Sorting {
+	
 	/**
 	 * 
 	 * @param <T>
 	 * @param array
-	 * @param first
-	 * @param last
 	 */
-	@SuppressWarnings("unchecked")
-	public static <T> void bubbleSort(Comparable<T>[] array, int first, int last) {
-		//
+	public static <T extends Comparable<? super T>> void bubbleSort(T[] array) {
+		///////// check what value of first and last////////////
+		int first = 0;
+		int last = array.length;
+		//////////////////////////
+		
 	    for (int i = first + 1; i <= last; i++) {
 	    	for (int j = 0; j <= last - i; j++) {
-	    		if (array[j].compareTo((T) array[j + 1]) > 0) {
+	    		if (array[j].compareTo((T) array[j + 1]) < 0) {
+	            // swap
+		        swapElements(array, j, last);
+	            }
+    		}
+	    }
+	}
+		
+	/**
+	 * 
+	 * @param <T>
+	 * @param array
+	 * @param comp
+	 */
+	public static <T> void bubbleSort(T[] array, Comparator<? super T> comp) {
+		///////// check what value of first and last////////////
+		int first = 0;
+		int last = array.length;
+		//////////////////////////
+
+	    for (int i = first + 1; i <= last; i++) {
+	    	for (int j = 0; j <= last - i; j++) {
+	    		if (comp.compare(array[j], array[j + 1]) < 0) {
 	            // swap
 		        swapElements(array, j, last);
 	            }
@@ -37,25 +61,39 @@ public class Sorting {
 	 * 
 	 * @param <T>
 	 * @param array
-	 * @param first
-	 * @param last
 	 */
 	// Wrapper method for the real algorithm
 	// T is the generic type which will be instantiated at runtime
 	// Elementas are required to be comparable
-	public static <T extends Comparable<T>> void sort(T[] array) {
-	mergesort(array, 0, array.length - 1);
+	public static <T extends Comparable<T>> void mergeSort(T[] array) {
+		mergeSort(array, 0, array.length - 1);
 	}
 	
+	/**
+	 * 
+	 * @param <T>
+	 * @param array
+	 * @param first
+	 * @param last
+	 */
 	// Recursive mergeSort method, following the pseudocode
-	private static <T extends Comparable<T>> void mergesort (T[] array, int first, int last) {
-	if (last - first < 1) return;
-	int middle = (first + last) / 2;
-	mergesort(array, first, middle);
-	mergesort(array, middle + 1, last);
-	merge(array, first, middle, last);
+	private static <T extends Comparable<T>> void mergeSort (T[] array, int first, int last) {
+		if (last - first < 1) return;
+		
+		int middle = (first + last) / 2;
+		mergeSort(array, first, middle);
+		mergeSort(array, middle + 1, last);
+		merge(array, first, middle, last);
 	}
 	
+	/**
+	 * 
+	 * @param <T>
+	 * @param array
+	 * @param first
+	 * @param middle
+	 * @param last
+	 */
 	// Merge method
 	// Here we need to allocate a new array, but Java does not allow allocating arrays of a generic type
 	// As a work-around we allocate an array of type Object[] the use type casting
@@ -70,7 +108,76 @@ public class Sorting {
 		int k = 0;
 	
 		while (i <= middle && j <= last) {
-			if (array[i].compareTo(array[j])<=0)
+			if (array[i].compareTo(array[j])>=0)
+				temp[k] = array[i++];
+		    else
+		    	temp[k] = array[j++];
+		    k++;
+		}
+		if (i <= middle && j > last) {
+			while (i <= middle) 
+				temp[k++] = array[i++];
+		} else {
+		    while (j <= last)
+		    	temp[k++] = array[j++];
+		}
+		for (k = 0; k < temp.length; k++) {
+			array[k + first] = (T)(temp[k]); // this is the line that would generate the warning 
+		}
+	}
+	
+	/**
+	 * 
+	 * @param <T>
+	 * @param array
+	 * @param comp
+	 */
+	public static <T> void mergeSort(T[] array, Comparator<? super T> comp) {
+		mergeSort(array, comp, 0, array.length - 1);
+	}
+	
+	/**
+	 * 
+	 * @param <T>
+	 * @param array
+	 * @param comp
+	 * @param first
+	 * @param last
+	 */
+	// Recursive mergeSort method, following the pseudocode
+	private static <T> void mergeSort (T[] array, Comparator<? super T> comp, int first, int last) {
+		if (last - first < 1) return;
+		
+		int middle = (first + last) / 2;
+		mergeSort(array, comp, first, middle);
+		mergeSort(array, comp, middle + 1, last);
+		merge(array, comp, first, middle, last);
+	}
+	
+	/**
+	 * 
+	 * @param <T>
+	 * @param array
+	 * @param comp
+	 * @param first
+	 * @param middle
+	 * @param last
+	 */
+	// Merge method
+	// Here we need to allocate a new array, but Java does not allow allocating arrays of a generic type
+	// As a work-around we allocate an array of type Object[] the use type casting
+	// This would usually generate a warning, which is suppressed
+	@SuppressWarnings("unchecked")
+	private static <T> void merge(T[] array, Comparator<? super T> comp, int first, int middle, int last) {
+	
+		Object[] temp = new Object[last - first + 1]; 
+		
+		int i = first;
+		int j = middle + 1;
+		int k = 0;
+	
+		while (i <= middle && j <= last) {
+			if (comp.compare(array[i],array[j])>=0)
 				temp[k] = array[i++];
 		    else
 		    	temp[k] = array[j++];
@@ -94,7 +201,7 @@ public class Sorting {
 	 * @param array
 	 */
 	@SuppressWarnings("unchecked")
-	public static <T> void selectionSort(Comparable<T>[] array) {
+	public static <T extends Comparable<? super T>> void selectionSort(T[] array) {
 		// distinguish the sorted area and the unsorted area
 		for (int i = 0; i < (array.length - 1); i++) {
 			int maxIndex = i;
@@ -118,7 +225,7 @@ public class Sorting {
 	 * @param comp
 	 */
 	@SuppressWarnings("unchecked")
-	public static <T> void selectionSort(Comparable<T>[] array, Comparator<? super T> comp) {
+	public static <T> void selectionSort(T[] array, Comparator<? super T> comp) {
 		// distinguish the sorted area and the unsorted area
 		for (int i = 0; i < (array.length - 1); i++) {
 			int maxIndex = i;
@@ -140,7 +247,7 @@ public class Sorting {
 	 * @param <T>
 	 * @param array
 	 */
-	public static <T> void quickSort(Comparable<T>[] array) {
+	public static <T extends Comparable<? super T>> void quickSort(T[] array) {
 		quickSort(array, 0, array.length - 1);
 	}
 
@@ -151,7 +258,7 @@ public class Sorting {
 	 * @param startIndex
 	 * @param endIndex
 	 */
-	private static <T> void quickSort(Comparable<T>[] array, int startIndex, int endIndex) {
+	private static <T extends Comparable<? super T>> void quickSort(T[] array, int startIndex, int endIndex) {
 		// find an index after sorting array by splitting two parts of arrays
 		// the left side consists of items that are greater than pivot value
 		// the right side consists of items that are less than pivot value
@@ -177,7 +284,7 @@ public class Sorting {
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	private static <T> Integer partition(Comparable<T>[] array, int partStart, int partEnd) {
+	private static <T extends Comparable<? super T>> int partition(T[] array, int partStart, int partEnd) {
 		// choose an index at the middle of the array as a pivot
 		int pivot = (partStart + partEnd) / 2;
 
@@ -212,7 +319,7 @@ public class Sorting {
 	 * @param array
 	 * @param comp
 	 */
-	public static <T> void quickSort(Comparable<T>[] array, Comparator<? super T> comp) {
+	public static <T> void quickSort(T[] array, Comparator<? super T> comp) {
 		quickSort(array, comp, 0, array.length - 1);
 	}
 
@@ -224,7 +331,7 @@ public class Sorting {
 	 * @param startIndex
 	 * @param endIndex
 	 */
-	private static <T> void quickSort(Comparable<T>[] array, Comparator<? super T> comp,  int startIndex, int endIndex) {
+	private static <T> void quickSort(T[] array, Comparator<? super T> comp,  int startIndex, int endIndex) {
 		// find an index after sorting array by splitting two parts of arrays
 		// the left side consists of items that are greater than pivot value
 		// the right side consists of items that are less than pivot value
@@ -251,7 +358,7 @@ public class Sorting {
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	private static <T> Integer partition(Comparable<T>[] array, Comparator<? super T> comp, int partStart, int partEnd) {		
+	private static <T> Integer partition(T[] array, Comparator<? super T> comp, int partStart, int partEnd) {		
 		// choose an index at the middle of the array as a pivot
 		int pivot = (partStart + partEnd) / 2;
 
@@ -286,6 +393,7 @@ public class Sorting {
 	 * @param <T>
 	 * @param arr
 	 */
+	@SuppressWarnings("unchecked")
 	public static <T extends Comparable<? super T>> void insertionSort(T[] arr) {
 		for(int i=1; i < arr.length; i++) {
 			T key = arr[i];
@@ -305,6 +413,7 @@ public class Sorting {
 	 * @param arr
 	 * @param comp
 	 */
+	@SuppressWarnings("unchecked")
 	public static <T> void insertionSort(T[] arr, Comparator<? super T> comp) {
 		for(int i=1; i < arr.length; i++) {
 			T key = arr[i];
@@ -323,6 +432,7 @@ public class Sorting {
 	 * @param <T>
 	 * @param arr
 	 */
+	@SuppressWarnings("unchecked")
 	public static <T extends Comparable<? super T>> void shellSort(T[] arr) {
 		int numbers = arr.length;
 		
@@ -346,6 +456,7 @@ public class Sorting {
 	 * @param arr
 	 * @param comp
 	 */
+	@SuppressWarnings("unchecked")
 	public static <T> void shellSort(T[] arr, Comparator<? super T> comp) {
 		int numbers = arr.length;
 		
