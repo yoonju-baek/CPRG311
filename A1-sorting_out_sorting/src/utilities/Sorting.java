@@ -17,6 +17,81 @@ public class Sorting {
 	 * 
 	 * @param <T>
 	 * @param array
+	 * @param first
+	 * @param last
+	 */
+	@SuppressWarnings("unchecked")
+	public static <T> void bubbleSort(Comparable<T>[] array, int first, int last) {
+		//
+	    for (int i = first + 1; i <= last; i++) {
+	    	for (int j = 0; j <= last - i; j++) {
+	    		if (array[j].compareTo((T) array[j + 1]) > 0) {
+	            // swap
+		        swapElements(array, j, last);
+	            }
+    		}
+	    }
+	}
+	
+	/**
+	 * 
+	 * @param <T>
+	 * @param array
+	 * @param first
+	 * @param last
+	 */
+	// Wrapper method for the real algorithm
+	// T is the generic type which will be instantiated at runtime
+	// Elementas are required to be comparable
+	public static <T extends Comparable<T>> void sort(T[] array) {
+	mergesort(array, 0, array.length - 1);
+	}
+	
+	// Recursive mergeSort method, following the pseudocode
+	private static <T extends Comparable<T>> void mergesort (T[] array, int first, int last) {
+	if (last - first < 1) return;
+	int middle = (first + last) / 2;
+	mergesort(array, first, middle);
+	mergesort(array, middle + 1, last);
+	merge(array, first, middle, last);
+	}
+	
+	// Merge method
+	// Here we need to allocate a new array, but Java does not allow allocating arrays of a generic type
+	// As a work-around we allocate an array of type Object[] the use type casting
+	// This would usually generate a warning, which is suppressed
+	@SuppressWarnings("unchecked")
+	private static <T extends Comparable<T>> void merge(T[] array, int first, int middle, int last) {
+	
+		Object[] temp = new Object[last - first + 1]; 
+		
+		int i = first;
+		int j = middle + 1;
+		int k = 0;
+	
+		while (i <= middle && j <= last) {
+			if (array[i].compareTo(array[j])<=0)
+				temp[k] = array[i++];
+		    else
+		    	temp[k] = array[j++];
+		    k++;
+		}
+		if (i <= middle && j > last) {
+			while (i <= middle) 
+				temp[k++] = array[i++];
+		} else {
+		    while (j <= last)
+		    	temp[k++] = array[j++];
+		}
+		for (k = 0; k < temp.length; k++) {
+			array[k + first] = (T)(temp[k]); // this is the line that would generate the warning 
+		}
+	}
+	
+	/**
+	 * 
+	 * @param <T>
+	 * @param array
 	 */
 	@SuppressWarnings("unchecked")
 	public static <T> void selectionSort(Comparable<T>[] array) {
