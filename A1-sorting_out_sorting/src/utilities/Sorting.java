@@ -20,16 +20,12 @@ public class Sorting {
 	 * @param array
 	 */
 	public static <T extends Comparable<? super T>> void bubbleSort(T[] array) {
-		///////// check what value of first and last////////////
-		int first = 0;
-		int last = array.length;
-		//////////////////////////
 		
-	    for (int i = first + 1; i <= last; i++) {
-	    	for (int j = 0; j <= last - i; j++) {
+	    for (int i = 1; i < array.length; i++) {
+	    	for (int j = 0; j < array.length - i; j++) {
 	    		if (array[j].compareTo((T) array[j + 1]) < 0) {
 	            // swap
-		        swapElements(array, j, last);
+		        swapElements(array, j, j + 1);
 	            }
     		}
 	    }
@@ -42,21 +38,16 @@ public class Sorting {
 	 * @param comp
 	 */
 	public static <T> void bubbleSort(T[] array, Comparator<? super T> comp) {
-		///////// check what value of first and last////////////
-		int first = 0;
-		int last = array.length;
-		//////////////////////////
 
-	    for (int i = first + 1; i <= last; i++) {
-	    	for (int j = 0; j <= last - i; j++) {
+		for (int i = 1; i < array.length; i++) {
+	    	for (int j = 0; j < array.length - i; j++) {
 	    		if (comp.compare(array[j], array[j + 1]) < 0) {
 	            // swap
-		        swapElements(array, j, last);
+    			swapElements(array, j, j + 1);
 	            }
     		}
 	    }
 	}
-	
 	/**
 	 * 
 	 * @param <T>
