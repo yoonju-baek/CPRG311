@@ -15,89 +15,72 @@ import java.util.Comparator;
 public class Sorting {
 	
 	/**
-	 * 
-	 * @param <T>
-	 * @param array
+	 * The method is bubble sort in descending order.
+	 * @param <T> the class of the objects in the array
+	 * @param array the array to be sorted
 	 */
 	public static <T extends Comparable<? super T>> void bubbleSort(T[] array) {
-		///////// check what value of first and last////////////
-		int first = 0;
-		int last = array.length;
-		//////////////////////////
-		
-	    for (int i = first + 1; i <= last; i++) {
-	    	for (int j = 0; j <= last - i; j++) {
-	    		if (array[j].compareTo((T) array[j + 1]) < 0) {
+		for (int i = 1; i < array.length; i++) {
+			for (int j = 0; j < array.length - i; j++) {
+				if (array[j].compareTo((T) array[j + 1]) < 0) {
 	            // swap
-		        swapElements(array, j, last);
+		        swapElements(array, j, j + 1);
 	            }
     		}
 	    }
 	}
 		
 	/**
-	 * 
-	 * @param <T>
-	 * @param array
-	 * @param comp
+	 * The method is bubble sort in descending order.
+	 * @param <T> the class of the objects in the array
+	 * @param array the array to be sorted
+	 * @param comp the comparator to determine the order of the array
 	 */
 	public static <T> void bubbleSort(T[] array, Comparator<? super T> comp) {
-		///////// check what value of first and last////////////
-		int first = 0;
-		int last = array.length;
-		//////////////////////////
-
-	    for (int i = first + 1; i <= last; i++) {
-	    	for (int j = 0; j <= last - i; j++) {
+		for (int i = 1; i < array.length; i++) {
+	    	for (int j = 0; j < array.length - i; j++) {
 	    		if (comp.compare(array[j], array[j + 1]) < 0) {
 	            // swap
-		        swapElements(array, j, last);
+    			swapElements(array, j, j + 1);
 	            }
     		}
 	    }
 	}
 	
 	/**
-	 * 
-	 * @param <T>
-	 * @param array
+	 * The method is merge sort in descending order.
+	 * @param <T> the class of the objects in the array
+	 * @param array the array to be sorted
 	 */
-	// Wrapper method for the real algorithm
-	// T is the generic type which will be instantiated at runtime
-	// Elementas are required to be comparable
 	public static <T extends Comparable<T>> void mergeSort(T[] array) {
 		mergeSort(array, 0, array.length - 1);
 	}
 	
 	/**
-	 * 
-	 * @param <T>
-	 * @param array
-	 * @param first
-	 * @param last
+	 * The method is recursive merge sort in descending order.
+	 * @param <T> the class of the objects in the array
+	 * @param array the array to be sorted
+	 * @param first the index of the first element of the array
+	 * @param last the index of the last element of the array
 	 */
-	// Recursive mergeSort method, following the pseudocode
 	private static <T extends Comparable<T>> void mergeSort (T[] array, int first, int last) {
 		if (last - first < 1) return;
 		
 		int middle = (first + last) / 2;
+		
 		mergeSort(array, first, middle);
 		mergeSort(array, middle + 1, last);
 		merge(array, first, middle, last);
 	}
 	
 	/**
-	 * 
-	 * @param <T>
-	 * @param array
-	 * @param first
-	 * @param middle
-	 * @param last
+	 * The method is to merge all separated arrays.
+	 * @param <T> the class of the objects in the array
+	 * @param array the array to be sorted
+	 * @param first the index of the first element of the array
+	 * @param middle the index of the middle element of the array
+	 * @param last the index of the last element of the array
 	 */
-	// Merge method
-	// Here we need to allocate a new array, but Java does not allow allocating arrays of a generic type
-	// As a work-around we allocate an array of type Object[] the use type casting
-	// This would usually generate a warning, which is suppressed
 	@SuppressWarnings("unchecked")
 	private static <T extends Comparable<T>> void merge(T[] array, int first, int middle, int last) {
 	
@@ -127,46 +110,42 @@ public class Sorting {
 	}
 	
 	/**
-	 * 
-	 * @param <T>
-	 * @param array
-	 * @param comp
+	 * The method is merge sort in descending order.
+	 * @param <T> the class of the objects in the array
+	 * @param array the array to be sorted
+	 * @param comp the comparator to determine the order of the array
 	 */
 	public static <T> void mergeSort(T[] array, Comparator<? super T> comp) {
 		mergeSort(array, comp, 0, array.length - 1);
 	}
 	
 	/**
-	 * 
-	 * @param <T>
-	 * @param array
-	 * @param comp
-	 * @param first
-	 * @param last
+	 * The method is recursive merge sort in descending order.
+	 * @param <T> the class of the objects in the array
+	 * @param array the array to be sorted
+	 * @param comp the comparator to determine the order of the array
+	 * @param first the index of the first element of the array
+	 * @param last the index of the last element of the array
 	 */
-	// Recursive mergeSort method, following the pseudocode
 	private static <T> void mergeSort (T[] array, Comparator<? super T> comp, int first, int last) {
 		if (last - first < 1) return;
 		
 		int middle = (first + last) / 2;
+		
 		mergeSort(array, comp, first, middle);
 		mergeSort(array, comp, middle + 1, last);
 		merge(array, comp, first, middle, last);
 	}
 	
 	/**
-	 * 
-	 * @param <T>
-	 * @param array
-	 * @param comp
-	 * @param first
-	 * @param middle
-	 * @param last
+	 * The method is to merge all separated arrays.
+	 * @param <T> the class of the objects in the array
+	 * @param array the array to be sorted
+	 * @param comp the comparator to determine the order of the array
+	 * @param first the index of the first element of the array
+	 * @param middle the index of the middle element of the array
+	 * @param last the index of the last element of the array
 	 */
-	// Merge method
-	// Here we need to allocate a new array, but Java does not allow allocating arrays of a generic type
-	// As a work-around we allocate an array of type Object[] the use type casting
-	// This would usually generate a warning, which is suppressed
 	@SuppressWarnings("unchecked")
 	private static <T> void merge(T[] array, Comparator<? super T> comp, int first, int middle, int last) {
 	
@@ -196,9 +175,9 @@ public class Sorting {
 	}
 	
 	/**
-	 * 
-	 * @param <T>
-	 * @param array
+	 * The method is selection sort in descending order.
+	 * @param <T> the class of the objects in the array
+	 * @param array the array to be sorted
 	 */
 	@SuppressWarnings("unchecked")
 	public static <T extends Comparable<? super T>> void selectionSort(T[] array) {
@@ -219,10 +198,10 @@ public class Sorting {
 	}
 
 	/**
-	 * 
-	 * @param <T>
-	 * @param array
-	 * @param comp
+	 * The method is selection sort in descending order.
+	 * @param <T> the class of the objects in the array
+	 * @param array the array to be sorted
+	 * @param comp the comparator to determine the order of the array
 	 */
 	@SuppressWarnings("unchecked")
 	public static <T> void selectionSort(T[] array, Comparator<? super T> comp) {
@@ -243,20 +222,20 @@ public class Sorting {
 	}
 
 	/**
-	 * 
-	 * @param <T>
-	 * @param array
+	 * The method is quick sort in descending order.
+	 * @param <T> the class of the objects in the array
+	 * @param array the array to be sorted
 	 */
 	public static <T extends Comparable<? super T>> void quickSort(T[] array) {
 		quickSort(array, 0, array.length - 1);
 	}
 
 	/**
-	 * 
-	 * @param <T>
-	 * @param array
-	 * @param startIndex
-	 * @param endIndex
+	 * The method is recursive quick sort in descending order.
+	 * @param <T> the class of the objects in the array
+	 * @param array the array to be sorted
+	 * @param startIndex starting index of the array to be sorted
+	 * @param endIndex ending index of the array to be sorted
 	 */
 	private static <T extends Comparable<? super T>> void quickSort(T[] array, int startIndex, int endIndex) {
 		// find an index after sorting array by splitting two parts of arrays
@@ -277,11 +256,11 @@ public class Sorting {
 	
 	/**
 	 * 
-	 * @param <T>
-	 * @param array
-	 * @param partStart
-	 * @param partEnd
-	 * @return
+	 * @param <T> the class of the objects in the array
+	 * @param array the array to be sorted
+	 * @param partStart starting index of the array to be sorted
+	 * @param partEnd ending index of the array to be sorted
+	 * @return the final sorted position of the pivot
 	 */
 	@SuppressWarnings("unchecked")
 	private static <T extends Comparable<? super T>> int partition(T[] array, int partStart, int partEnd) {
@@ -314,22 +293,22 @@ public class Sorting {
 	}
 
 	/** 
-	 * 
-	 * @param <T>
-	 * @param array
-	 * @param comp
+	 * The method is quick sort in descending order.
+	 * @param <T> the class of the objects in the array
+	 * @param array the array to be sorted
+	 * @param comp the comparator to determine the order of the array
 	 */
 	public static <T> void quickSort(T[] array, Comparator<? super T> comp) {
 		quickSort(array, comp, 0, array.length - 1);
 	}
 
 	/**
-	 * 
-	 * @param <T>
-	 * @param array
-	 * @param comp
-	 * @param startIndex
-	 * @param endIndex
+	 * The method is recursive quick sort in descending order.
+	 * @param <T> the class of the objects in the array
+	 * @param array the array to be sorted 
+	 * @param comp the comparator to determine the order of the array
+	 * @param startIndex starting index of the array to be sorted
+	 * @param endIndex ending index of the array to be sorted
 	 */
 	private static <T> void quickSort(T[] array, Comparator<? super T> comp,  int startIndex, int endIndex) {
 		// find an index after sorting array by splitting two parts of arrays
@@ -350,15 +329,15 @@ public class Sorting {
 	
 	/**
 	 * 
-	 * @param <T>
-	 * @param array
-	 * @param comp
-	 * @param partStart
-	 * @param partEnd
-	 * @return
+	 * @param <T> the class of the objects in the array
+	 * @param array the array to be sorted
+	 * @param comp the comparator to determine the order of the array
+	 * @param partStart starting index of the array to be sorted
+	 * @param partEnd ending index of the array to be sorted
+	 * @return the final sorted position of the pivot
 	 */
 	@SuppressWarnings("unchecked")
-	private static <T> Integer partition(T[] array, Comparator<? super T> comp, int partStart, int partEnd) {		
+	private static <T> int partition(T[] array, Comparator<? super T> comp, int partStart, int partEnd) {		
 		// choose an index at the middle of the array as a pivot
 		int pivot = (partStart + partEnd) / 2;
 
@@ -389,97 +368,97 @@ public class Sorting {
 
 
 	/**
-	 * 
-	 * @param <T>
-	 * @param arr
+	 * The method is insertion sort in descending order.
+	 * @param <T> the class of the objects in the array
+	 * @param array the array to be sorted
 	 */
 	@SuppressWarnings("unchecked")
-	public static <T extends Comparable<? super T>> void insertionSort(T[] arr) {
-		for(int i=1; i < arr.length; i++) {
-			T key = arr[i];
+	public static <T extends Comparable<? super T>> void insertionSort(T[] array) {
+		for(int i=1; i < array.length; i++) {
+			T key = array[i];
 			int j = i-1;
 			
-			while(j >= 0 && arr[j].compareTo(key) < 0 ) {
-				arr[j+1] = arr[j];
+			while(j >= 0 && array[j].compareTo(key) < 0 ) {
+				array[j+1] = array[j];
 				j--;
 			}
-			arr[j+1] = key;
+			array[j+1] = key;
 		}
 	}
 	
 	/**
-	 * 
-	 * @param <T>
-	 * @param arr
-	 * @param comp
+	 * The method is insertion sort in descending order.
+	 * @param <T> the class of the objects in the array
+	 * @param array the array to be sorted
+	 * @param comp the comparator to determine the order of the array
 	 */
 	@SuppressWarnings("unchecked")
-	public static <T> void insertionSort(T[] arr, Comparator<? super T> comp) {
-		for(int i=1; i < arr.length; i++) {
-			T key = arr[i];
+	public static <T> void insertionSort(T[] array, Comparator<? super T> comp) {
+		for(int i=1; i < array.length; i++) {
+			T key = array[i];
 			int j = i-1;
 			
-			while(j >= 0 && comp.compare(arr[j], key) < 0 ) {
-				arr[j+1] = arr[j];
+			while(j >= 0 && comp.compare(array[j], key) < 0 ) {
+				array[j+1] = array[j];
 				j--;
 			}
-			arr[j+1] = key;
+			array[j+1] = key;
 		}
 	}
 	
 	/**
-	 * 
-	 * @param <T>
-	 * @param arr
+	 * The method is shell sort in descending order.
+	 * @param <T> the class of the objects in the array
+	 * @param array the array to be sorted
 	 */
 	@SuppressWarnings("unchecked")
-	public static <T extends Comparable<? super T>> void shellSort(T[] arr) {
-		int numbers = arr.length;
+	public static <T extends Comparable<? super T>> void shellSort(T[] array) {
+		int numbers = array.length;
 		
 		for(int gap=numbers/2; gap>0; gap=gap/2) {
 			for(int i=gap; i<numbers; i++) {
-				T insertVal = arr[i];
+				T insertVal = array[i];
 				
 				int j;
-				for(j=i-gap; j>=0 && arr[j].compareTo(insertVal) < 0; j=j-gap) {
-					arr[j+gap] = arr[j];
+				for(j=i-gap; j>=0 && array[j].compareTo(insertVal) < 0; j=j-gap) {
+					array[j+gap] = array[j];
 				}
 				
-				arr[j+gap] = insertVal;
+				array[j+gap] = insertVal;
 			}
 		}
 	}
 	
 	/**
-	 * 
-	 * @param <T>
-	 * @param arr
-	 * @param comp
+	 * The method is shell sort in descending order. 
+	 * @param <T> the class of the objects in the array
+	 * @param array the array to be sorted
+	 * @param comp the comparator to determine the order of the array
 	 */
 	@SuppressWarnings("unchecked")
-	public static <T> void shellSort(T[] arr, Comparator<? super T> comp) {
-		int numbers = arr.length;
+	public static <T> void shellSort(T[] array, Comparator<? super T> comp) {
+		int numbers = array.length;
 		
 		for(int gap=numbers/2; gap>0; gap=gap/2) {
 			for(int i=gap; i<numbers; i++) {
-				T insertVal = arr[i];
+				T insertVal = array[i];
 				
 				int j;
-				for(j=i-gap; j>=0 && comp.compare(arr[j], insertVal) < 0; j=j-gap) {
-					arr[j+gap] = arr[j];
+				for(j=i-gap; j>=0 && comp.compare(array[j], insertVal) < 0; j=j-gap) {
+					array[j+gap] = array[j];
 				}
 				
-				arr[j+gap] = insertVal;
+				array[j+gap] = insertVal;
 			}
 		}
 	}
 	
 	/**
-	 * 
-	 * @param <T>
-	 * @param array
-	 * @param i
-	 * @param j
+	 * The method is to swap two elements
+	 * @param <T> the class of the objects in the array
+	 * @param array the array to be swapped
+	 * @param i the index of the element to be swapped
+	 * @param j the index of the other element to be swapped
 	 */
 	private static <T> void swapElements(T[] array, int i, int j )
 	{

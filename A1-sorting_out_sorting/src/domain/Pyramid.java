@@ -65,6 +65,6 @@ public class Pyramid extends Shape {
 	}
 	
 	public String toString() {
-		return String.format("%-16s [Height=%10.3f, BaseArea=%15.3f, Volume=%20.3f]", "Pyramid", getHeight(), calcBaseArea(), calcVolume());
+		return String.format("%-16s [Height=%10.3f, Side=%10.3f, BaseArea=%15.3f, Volume=%20.3f]", "Pyramid", getHeight(), getSide(), calcBaseArea(), calcVolume());
 	}
 }
