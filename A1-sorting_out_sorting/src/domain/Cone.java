@@ -65,6 +65,6 @@ public class Cone extends Shape {
 	}
 	
 	public String toString() {
-		return String.format("%-16s [Height=%10.3f, BaseArea=%15.3f, Volume=%20.3f]", "Cone", getHeight(), calcBaseArea(), calcVolume());
+		return String.format("%-16s [Height=%10.3f, Raid=%10.3f, BaseArea=%15.3f, Volume=%20.3f]", "Cone", getHeight(), getRadius(), calcBaseArea(), calcVolume());
 	}
 }
