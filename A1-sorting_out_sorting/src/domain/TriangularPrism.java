@@ -38,6 +38,6 @@ public class TriangularPrism extends Prism {
 	}
 
 	public String toString() {
-		return String.format("%-16s [Height=%10.3f, BaseArea=%15.3f, Volume=%20.3f]", "TriangularPrism", getHeight(), calcBaseArea(), calcVolume());
+		return String.format("%-16s [Height=%10.3f, Side=%10.3f, BaseArea=%15.3f, Volume=%20.3f]", "TriangularPrism", getHeight(), getSide(), calcBaseArea(), calcVolume());
 	}
 }

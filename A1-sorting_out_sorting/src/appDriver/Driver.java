@@ -20,8 +20,7 @@ public class Driver {
 	 */
 	public static void main(String[] args) {
 		
-		Manager mng = new Manager(args);
-		mng.executeSorting();
+		new Manager(args);
 		
 	}
 }

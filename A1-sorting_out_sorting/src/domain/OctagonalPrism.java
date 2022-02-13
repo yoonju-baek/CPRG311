@@ -36,6 +36,6 @@ public class OctagonalPrism extends Prism {
 	}
 
 	public String toString() {
-		return String.format("%-16s [Height=%10.3f, BaseArea=%15.3f, Volume=%20.3f]", "OctagonalPrism", getHeight(), calcBaseArea(), calcVolume());
+		return String.format("%-16s [Height=%10.3f, Side=%10.3f, BaseArea=%15.3f, Volume=%20.3f]", "OctagonalPrism", getHeight(), getSide(), calcBaseArea(), calcVolume());
 	}
 }
