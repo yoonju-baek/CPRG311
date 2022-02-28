@@ -64,7 +64,7 @@ public class Manager {
 			switch (param) {
 				case "-f":
 					filename = options[i].substring(2);
-					if(filename.contains("\\")) {
+					if(filename.contains("\\") || filename.contains("/")) {
 						filename = filename.replaceAll("\"", "");
 					}
 					else {

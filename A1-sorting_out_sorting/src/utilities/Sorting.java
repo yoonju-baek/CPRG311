@@ -105,7 +105,7 @@ public class Sorting {
 		    	temp[k++] = array[j++];
 		}
 		for (k = 0; k < temp.length; k++) {
-			array[k + first] = (T)(temp[k]); // this is the line that would generate the warning 
+			array[k + first] = (T)(temp[k]);
 		}
 	}
 	
@@ -170,7 +170,7 @@ public class Sorting {
 		    	temp[k++] = array[j++];
 		}
 		for (k = 0; k < temp.length; k++) {
-			array[k + first] = (T)(temp[k]); // this is the line that would generate the warning 
+			array[k + first] = (T)(temp[k]);
 		}
 	}
 	
@@ -179,7 +179,6 @@ public class Sorting {
 	 * @param <T> the class of the objects in the array
 	 * @param array the array to be sorted
 	 */
-	@SuppressWarnings("unchecked")
 	public static <T extends Comparable<? super T>> void selectionSort(T[] array) {
 		// distinguish the sorted area and the unsorted area
 		for (int i = 0; i < (array.length - 1); i++) {
@@ -203,7 +202,6 @@ public class Sorting {
 	 * @param array the array to be sorted
 	 * @param comp the comparator to determine the order of the array
 	 */
-	@SuppressWarnings("unchecked")
 	public static <T> void selectionSort(T[] array, Comparator<? super T> comp) {
 		// distinguish the sorted area and the unsorted area
 		for (int i = 0; i < (array.length - 1); i++) {
@@ -262,7 +260,6 @@ public class Sorting {
 	 * @param partEnd ending index of the array to be sorted
 	 * @return the final sorted position of the pivot
 	 */
-	@SuppressWarnings("unchecked")
 	private static <T extends Comparable<? super T>> int partition(T[] array, int partStart, int partEnd) {
 		// choose an index at the middle of the array as a pivot
 		int pivot = (partStart + partEnd) / 2;
@@ -336,7 +333,6 @@ public class Sorting {
 	 * @param partEnd ending index of the array to be sorted
 	 * @return the final sorted position of the pivot
 	 */
-	@SuppressWarnings("unchecked")
 	private static <T> int partition(T[] array, Comparator<? super T> comp, int partStart, int partEnd) {		
 		// choose an index at the middle of the array as a pivot
 		int pivot = (partStart + partEnd) / 2;
@@ -372,7 +368,6 @@ public class Sorting {
 	 * @param <T> the class of the objects in the array
 	 * @param array the array to be sorted
 	 */
-	@SuppressWarnings("unchecked")
 	public static <T extends Comparable<? super T>> void insertionSort(T[] array) {
 		for(int i=1; i < array.length; i++) {
 			T key = array[i];
@@ -392,7 +387,6 @@ public class Sorting {
 	 * @param array the array to be sorted
 	 * @param comp the comparator to determine the order of the array
 	 */
-	@SuppressWarnings("unchecked")
 	public static <T> void insertionSort(T[] array, Comparator<? super T> comp) {
 		for(int i=1; i < array.length; i++) {
 			T key = array[i];
@@ -411,7 +405,6 @@ public class Sorting {
 	 * @param <T> the class of the objects in the array
 	 * @param array the array to be sorted
 	 */
-	@SuppressWarnings("unchecked")
 	public static <T extends Comparable<? super T>> void shellSort(T[] array) {
 		int numbers = array.length;
 		
@@ -435,7 +428,6 @@ public class Sorting {
 	 * @param array the array to be sorted
 	 * @param comp the comparator to determine the order of the array
 	 */
-	@SuppressWarnings("unchecked")
 	public static <T> void shellSort(T[] array, Comparator<? super T> comp) {
 		int numbers = array.length;
 		
