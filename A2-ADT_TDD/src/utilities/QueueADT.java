@@ -1,5 +1,7 @@
 package utilities;
 
+import java.util.NoSuchElementException;
+
 /**
  * <p>
  * The <code>QueueADT</code> interface is designed to be used as a linear 
@@ -43,9 +45,9 @@ public interface QueueADT<E> {
 	 * 					is removed and returned.
 	 * 
 	 * @return the first element from the queue.
-	 *+==========> exception??? about empty??
+	 * @throws NoSuchElementException If the queue has no more elements.
 	 */
-	public E dequeue();
+	public E dequeue() throws NoSuchElementException;
 	
 	/**
 	 * Looks at the first element from the queue.
@@ -56,9 +58,9 @@ public interface QueueADT<E> {
 	 * 					is returned without removing.
 	 * 
 	 * @return the first element from the queue.
-	 * +==========> exception??? about empty??
+	 * @throws NoSuchElementException If the queue has no more elements.
 	 */
-	public E peek();
+	public E peek() throws NoSuchElementException;
 	
 	/**
 	 * The size method will return the number of elements contained
