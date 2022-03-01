@@ -1,5 +1,7 @@
 package utilities;
 
+import java.util.EmptyStackException;
+
 /**
  * <p>
  * The <code>StackADT</code> interface is designed to be used as a linear 
@@ -43,9 +45,9 @@ public interface StackADT<E> {
 	 * 					is removed and returned.
 	 * 
 	 * @return the element at the top of the stack.
-	 *+==========> exception??? about empty??
+	 * @throws EmptyStackException If the stack has no more elements.
 	 */
-	public E pop();
+	public E pop() throws EmptyStackException;
 	
 	/**
 	 * Looks at the element of the top of a stack.
@@ -56,9 +58,9 @@ public interface StackADT<E> {
 	 * 					is returned without removing.
 	 * 
 	 * @return the element at the top of the stack.
-	 * +==========> exception??? about empty??
+	 * @throws EmptyStackException If the stack has no more elements.
 	 */
-	public E peek();
+	public E peek() throws EmptyStackException;
 	
 	/**
 	 * The size method will return the number of elements contained
