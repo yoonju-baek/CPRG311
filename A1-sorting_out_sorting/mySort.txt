@@ -1,0 +1,74 @@
+Shell Sort algorithm
+
+1. The summary of shell sort algorithm
+  - It is an algorithm that complements insertion sort by a method proposed by 'Donald L. Shell'.
+  - The idea comes from the insertion sort is very fast within somewhat sorted.
+  - The biggest problem of insertion sort: When elements are inserted, move only to a neighbouring position.
+  - Unlike insertion sort, shell sort does not sort the entire list at once.
+
+
+2. The concept of a shell sort algorithm
+  a. The list to be sorted is classified according to certain criteria.
+    - Extract each i-th element of the list to be sorted and make a partial list. At this time, i is called a 'gap'.
+    - Initial value of the gap: (size of the list to be sorted)/2
+    - The number of generated partial lists is the same as the gap.
+  b. Sort each partial list using the way of insertion sort.
+  d. When all the sub-lists are sorted, make the entire list into fewer sub-lists containing and repeat the algorithm.
+    - For each rotation, reduce the gap(i) by half. That is, the number of values belonging to one partial list increases every time each rotation is repeated.
+  e. Repeat the above process until the number of partial lists reaches 1.
+    - Repeat until the gap(i) reaches 1.
+
+
+3. Complexity Analysis with Pseudocode(descending order)
+Set n to array.length
+	1 assignment
+for(int gap=n/2; gap>0; gap=gap/2)
+	Start: 1 assignment, 1 arithmetic, 1 comparison
+	Each iteration:  
+	     Divide gap by 2 - arithmetic + assignment   --> floor(log n) +1
+     for(int i=gap; i<n; i++)
+	         Start: 1 assignment, 1 comparison
+	         Each iteration: 1 increment(arthmetic + assignment), 1 comparison   --> n(floor(log n) +1)
+	Set insertValue to array[i]
+	            1 assignment
+            for(int j=i-gap; j>=0; && insertValue>array[j]; j=j-gap)
+	            Start: 1 assignment, 1 arithmetic, 2 comparison
+	            Each iteration: gap decrease(1 assignment, 1 arithmetic)   --> n(floor(log n) +1)^2
+                  Set array[j+gap] = array[j]
+		             1 assignment
+             Set array[j+gap] to insertValue
+                        1 assignment
+
+f(n) = 2n(floor(logn)^2) + 14n(floor(logn)) + 2(floor(logn) + 11n + 6
+Time Complexity : O(n(logn)^2)
+Space Complexity: O(1)
+
+
+3. Example operations of descending shell sort algorithm
+array = 10  20  3  6  19  8  22  1  7  15   --> size: 10
+                                                    
+1 cycle: 
+gap is 10/2 = 5. sort sub-list(each row) 
+10                   8                                                   10                     8
+     20                  22                             sort                22                    20
+          3                    1                        ====>                  3                     1
+              6                    7                                             7                     6
+                  19                  15                                           19                    15
+----------------------------------------------------------------------------------------------------------
+the result of 1 cycle: 10  22  3  7  19  8  20  1  6  15
+
+2 cycle:
+gap is 5/2 = 2. sort sub-list(each row) 
+10        3       19       20      6                 sort             20        19        10       6       3
+   22       7        8          1     15            ====>                22        15        8       7       1
+----------------------------------------------------------------------------------------------------------
+the result of 2 cycle: 20  22  19  15  10  8  6  7  3  1
+
+3 cycle:
+gap is 2/2 = 1. sort sub-list(each row) 
+                                       sort
+20  22  19  15  10  8  6  7  3  1      ====>    22  20  19  15  10  8  7  6  3  1
+----------------------------------------------------------------------------------------------------------
+the result of 3 cycle: 22  20  19  15  10  8  7  6  3  1
+
+**complet descending sorting: 22  20  19  15  10  8  7  6  3  1
