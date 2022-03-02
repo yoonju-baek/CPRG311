@@ -27,7 +27,7 @@ public interface QueueADT<E> {
 	 * 
 	 * Postcondition: A valid element is added at the end of the queue.
 	 * 
-	 * @param toAdd The element to be pushed.
+	 * @param toAdd The element to be added.
 	 * @return <code>true</code> if the element is added at the end of the queue successfully;
 	 			<code>false</code> otherwise.
 	 * @throws NullPointerException if the specified element is <code>null</code>
