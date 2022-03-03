@@ -23,7 +23,7 @@ public interface StackADT<E> {
 	/**
 	 * Adds the specified element to the top of a stack.
 	 * 
-	 * Precondition: A valid element exists.
+	 * Precondition: A valid stack exists and a valid element(toPush) is provided.
 	 * 
 	 * Postcondition: A valid element is pushed onto the top of a stack.
 	 * 
@@ -39,7 +39,7 @@ public interface StackADT<E> {
 	/**
 	 * Removes and returns the element from the top of a stack.
 	 * 
-	 * Precondition: The stack isn't empty.
+	 * Precondition: The valid stack exists.
 	 * 
 	 * Postcondition: if the stack isn't empty, the element from the top of stack
 	 * 					is removed and returned.
@@ -52,7 +52,7 @@ public interface StackADT<E> {
 	/**
 	 * Looks at the element of the top of a stack.
 	 * 
-	 * Precondition: The stack isn't empty.
+	 * Precondition: The valid stack exists.
 	 * 
 	 * Postcondition: if the stack isn't empty, the element from the top of stack
 	 * 					is returned without removing.
@@ -66,7 +66,7 @@ public interface StackADT<E> {
 	 * The size method will return the number of elements contained
 	 * in the stack.
 	 * 
-	 * Precondition: The stack object exists.
+	 * Precondition: The valid stack exists.
 	 * 
 	 * Postcondition: The number of elements is returned.
 	 * 
@@ -77,7 +77,7 @@ public interface StackADT<E> {
 	/**
 	 * Checks if the stack is empty.
 	 * 
-	 * Precondition: The stack object exists.
+	 * Precondition: The valid stack exists.
 	 * 
 	 * Postcondition: returns true if this stack is empty; false otherwise.
 	 * 
@@ -88,7 +88,7 @@ public interface StackADT<E> {
 	/**
 	 * Removes all of the elements from the stack.
 	 * 
-	 * Precondition: The stack object exists.
+	 * Precondition: The valid stack exists.
 	 * 
 	 * Postcondition: The stack is empty.
 	 */
@@ -97,7 +97,7 @@ public interface StackADT<E> {
 	/**
 	 * Checks if this stack and that stack contain equal elements in the same order.
 	 * 
-	 * Precondition: <code>that</code> stack object is exists.
+	 * Precondition: The valid stack exists and <code>that</code> stack is provided.
 	 * 
 	 * Postcondition: returns <code>true</code> if this stack and that stack contain equal elements in the same order;
 	 * 					<code>false</code> otherwise.
@@ -105,9 +105,8 @@ public interface StackADT<E> {
 	 * @param that the stack object to be compared.
 	 * @return <code>true</code> if this stack and that stack contain equal elements in the same order;
 	 			<code>false</code> otherwise.
-	 * @throws NullPointerException if the <code>that</code> stack object is <code>null</code>
-	 * 			and the stack implementation does not support comparing 
-	 * 			two objects.
+	 * @throws NullPointerException if the <code>that</code> stack object is <code>null</code>.
+	 * 			
 	 */
 	public boolean equals(StackADT<E> that) throws NullPointerException;
 	
@@ -116,15 +115,13 @@ public interface StackADT<E> {
 	 * the top is at position 1, the next one is position2, etc.
 	 * there are not a zero-based position.
 	 * 
-	 * Precondition: A valid element exists.
+	 * Precondition: The valid stack exists and a valid element(obj) is provided.
 	 * 
 	 * Postcondition: returns the position of the specified element.
 	 * 
 	 * @param obj The element whose presence in the stack.
 	 * @return The position of the specified element.
-	 * @throws NullPointerException if the specified element is <code>null</code>
-	 * 			and the stack implementation does not support searching 
-	 * 			<code>null</code> elements.
+	 * @throws NullPointerException if the specified element is <code>null</code>.
 	 */
 	public int search(E obj) throws NullPointerException;
 	
@@ -133,7 +130,7 @@ public interface StackADT<E> {
 	 * the top is at position 1, the next one is position2, etc.
 	 * there are not a zero-based position.
 	 * 
-	 * Precondition: A valid element exists.
+	 * Precondition: The valid stack exists and a valid element(obj) is provided.
 	 * 
 	 * Postcondition: returns <code>true</code> if this element exists in the stack;
 	 * 					<code>false</code> otherwise.
@@ -141,9 +138,7 @@ public interface StackADT<E> {
 	 * @param obj The element whose presence in the stack.
 	 * @return <code>true</code> if this element exists in the stack;
 	 * 			<code>false</code> otherwise.
-	 * @throws NullPointerException if the specified element is <code>null</code>
-	 * 			and the stack implementation does not support searching 
-	 * 			<code>null</code> elements.
+	 * @throws NullPointerException if the specified element is <code>null</code>.
 	 */
 	public boolean contains(E obj) throws NullPointerException;
 	
@@ -155,38 +150,38 @@ public interface StackADT<E> {
 	 * and the remaining elements in the array remain initialized.
 	 * The top of the stack corresponds to the first element of the array.
 	 * 
-	 * Precondition: A valid array object exists.
+	 * Precondition: The valid stack exists and a valid array(copy) is provided.
 	 * 
 	 * Postcondition: the elements in the stack is copied to another array that has already been created 
-	 * in proper sequence and the array is returned.
+	 * 					in proper sequence(top-down order) and the array is returned. The array to be stored if it is big enough; 
+	 * 					otherwise, a new array of the same runtime type is allocated for this purpose.
 	 * 
-	 * @param copy the array to be stored, if it is big enough; otherwise, a new array of the
-	 * 			same runtime type is allocated for this purpose.
+	 * @param copy the array to be stored.
 	 * @return An array containing the elements of the stack.
 	 * @throws NullPointerException If the specified array is <code>null</code>.
 	 */
 	public E[] toArray(E[] copy) throws NullPointerException;
 	
 	/**
-	 * All of the elements in the stack is transformed to an array in proper sequence 
+	 * All of the elements in the stack is transformed to an array in proper sequence(top-down order) 
 	 * and returns an array containing all of the elements in the stack.
 	 * The size of the array is assigned exactly as many elements in the stack.
 	 * The top of the stack corresponds to the first element of the array.
 	 * 
-	 * Precondition: The stack object exists.
+	 * Precondition: The valid stack exists.
 	 * 
-	 * Postcondition: All of the elements in the stack is transformed to an array in proper sequence and Returned it.
+	 * Postcondition: All of the elements in the stack is transformed to an array in proper sequence(top-down order) and returned it.
 	 * 
-	 * @return An array containing all of the elements in the stack in proper sequence.
+	 * @return An array containing all of the elements in the stack in proper sequence(top-down order).
 	 */
 	public Object[] toArray();
 	
 	/**
 	 * Returns an iterator over the elements in the stack.
 	 * 
-	 * Precondition: A valid stack object exists.
+	 * Precondition: The valid stack exists.
 	 * 
-	 * Postcondition: An iterator over the elements in the stack is returned.
+	 * Postcondition: An iterator over the elements in the stack is returned in proper sequence(top-down order).
 	 * 
 	 * @return An iterator over the elements in the stack.
 	 */

@@ -23,7 +23,7 @@ public interface QueueADT<E> {
 	/**
 	 *  Adds the specified element at the end of the queue.
 	 *  
-	 * Precondition: A valid element exists.
+	 * Precondition: The valid queue exists and a valid element(toAdd) is provided.
 	 * 
 	 * Postcondition: A valid element is added at the end of the queue.
 	 * 
@@ -39,7 +39,7 @@ public interface QueueADT<E> {
 	/**
 	 * Removes and returns the first element from the queue.
 	 * 
-	 * Precondition: The queue isn't empty.
+	 * Precondition: The valid queue exists.
 	 * 
 	 * Postcondition: if the queue isn't empty, the first element from the queue
 	 * 					is removed and returned.
@@ -52,7 +52,7 @@ public interface QueueADT<E> {
 	/**
 	 * Looks at the first element from the queue.
 	 * 
-	 * Precondition: The queue isn't empty.
+	 * Precondition: The valid queue exists.
 	 * 
 	 * Postcondition: if the queue isn't empty, the first element from the queue
 	 * 					is returned without removing.
@@ -66,7 +66,7 @@ public interface QueueADT<E> {
 	 * The size method will return the number of elements contained
 	 * in the queue.
 	 * 
-	 * Precondition: The queue object exists.
+	 * Precondition: The valid queue exists.
 	 * 
 	 * Postcondition: The number of elements is returned.
 	 * 
@@ -77,7 +77,7 @@ public interface QueueADT<E> {
 	/**
 	 * Checks if the queue is empty.
 	 * 
-	 * Precondition: The queue object exists.
+	 * Precondition: The valid queue exists.
 	 * 
 	 * Postcondition: returns true if this queue is empty; false otherwise.
 	 * 
@@ -88,7 +88,7 @@ public interface QueueADT<E> {
 	/**
 	 * Checks if this queue and that queue contain equal elements in the same order.
 	 * 
-	 * Precondition: <code>that</code> queue object is exists.
+	 * Precondition: The valid queue exists and <code>that</code> queue is provided.
 	 * 
 	 * Postcondition: returns <code>true</code> if this queue and that queue contain equal elements in the same order;
 	 * 					<code>false</code> otherwise.
@@ -97,15 +97,13 @@ public interface QueueADT<E> {
 	 * @return <code>true</code> if this queue and that queue contain equal elements in the same order;
 	 			<code>false</code> otherwise.
 	 * @throws NullPointerException if the <code>that</code> queue object is <code>null</code>
-	 * 			and the queue implementation does not support comparing 
-	 * 			two objects.
 	 */
 	public boolean equals(QueueADT<E> that) throws NullPointerException;
 		
 	/**
 	 * Removes all of the elements from the queue.
 	 * 
-	 * Precondition: The queue object exists.
+	 * Precondition: The valid queue exists.
 	 * 
 	 * Postcondition: The queue is empty.
 	 */
@@ -119,7 +117,7 @@ public interface QueueADT<E> {
 	 * and the remaining elements in the array remain initialized.
 	 * The head of the queue corresponds to the first element of the array.
 	 * 
-	 * Precondition: A valid array object exists.
+	 * Precondition: The valid queue exists and a valid array(copy) is provided.
 	 * 
 	 * Postcondition: the elements in the queue is copied to another array that has already been created 
 	 * in proper sequence and the array is returned.
@@ -137,7 +135,7 @@ public interface QueueADT<E> {
 	 * The size of the array is assigned exactly as many elements in the queue.
 	 * The head of the queue corresponds to the first element of the array.
 	 * 
-	 * Precondition: The queue object exists.
+	 * Precondition: The valid queue exists.
 	 * 
 	 * Postcondition: All of the elements in the queue is transformed to an array in proper sequence and Returned it.
 	 * 
@@ -148,7 +146,7 @@ public interface QueueADT<E> {
 	/**
 	 * Returns an iterator over the elements in the queue.
 	 * 
-	 * Precondition: A valid queue object exists.
+	 * Precondition: The valid queue exists.
 	 * 
 	 * Postcondition: An iterator over the elements in the queue is returned.
 	 * 
