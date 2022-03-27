@@ -37,19 +37,24 @@ public class MyArrayList<E> implements ListADT<E> {
 		if(index < 0 || index > size) {
 			throw new IndexOutOfBoundsException();
 		}
-		
 		if(toAdd == null) {
 			throw new NullPointerException();
 		}
-		
 		// check for capacity
 		if(size == array.length) {
-			//TODO create a new array(bigger than the original) x2 of original array
-			// use a loop to copy everything from the original array into the new array
-			//get array to reference the new array
+		//TODO create a new array(bigger than the original) x2 of original array
+		// use a loop to copy everything from the original array into the new array
+		//get array to reference the new array
+			int[] n = new int[array.length * 2];
+			
+			for (int i = 0; i < array.length; i++) {
+				  n[i] = array[i] * 2;
+			}		
 		}
 		
 		// TODO insert toAdd into index position (requires a loop to shift everything from index forward)
+		array[size] = toAdd;
+		size++;
 		
 		return true;
 	}
@@ -60,13 +65,21 @@ public class MyArrayList<E> implements ListADT<E> {
 			throw new NullPointerException();
 		}
 		// check for capacity
-		if(size == array.length) {
-			//TODO create a new array(bigger than the original) x2 of original array
-			// use a loop to copy everything from the original array into the new array
-			//get array to reference the new array
-		}
 		
-		array[size] = toAdd;
+		int[] list = new int[size];
+		int size = 0;
+		
+		if(size == array.length) {
+		//TODO create a new array(bigger than the original) x2 of original array
+		// use a loop to copy everything from the original array into the new array
+		//get array to reference the new array
+			int[] temp = new int [array.length * 2];
+			
+			for (int i = 0; i < array.length; i++)
+		    temp[i] = (int) array[i];
+			array = temp;
+		}
+		array [size] = toAdd;
 		size++;
 		
 		return true;
@@ -89,31 +102,55 @@ public class MyArrayList<E> implements ListADT<E> {
 
 	@Override
 	public E remove(int index) throws IndexOutOfBoundsException {
-		// TODO Auto-generated method stub
+		if(index < 0 || index >= size) {
+			throw new IndexOutOfBoundsException();
+		}
+		
+		
 		return null;
 	}
 
 	@Override
 	public E remove(E toRemove) throws NullPointerException {
-		// TODO Auto-generated method stub
+		if(toRemove == null) {
+			throw new NullPointerException();
+		}
+		
+		if(isEmpty()) {
+			return null;
+		}
+		
+		
 		return null;
 	}
 
 	@Override
 	public E set(int index, E toChange) throws NullPointerException, IndexOutOfBoundsException {
 		// TODO Auto-generated method stub
-		return null;
-	}
+		if (index < 0 || index > size - 1) {
+			throw new IndexOutOfBoundsException();
+		}
+		if (toChange == null) {
+			throw new NullPointerException();
+		}
+
+		return toChange;
+	}   
+	
 
 	@Override
 	public boolean isEmpty() {
 		// TODO Auto-generated method stub
-		return false;
+		return (array == null);
 	}
 
 	@Override
 	public boolean contains(E toFind) throws NullPointerException {
 		// TODO Auto-generated method stub
+		if(toFind == null) {
+			throw new NullPointerException();
+		}
+		
 		return false;
 	}
 
