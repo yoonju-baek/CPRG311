@@ -3,25 +3,21 @@ package utilities;
 import java.io.Serializable;
 
 public class MyDLLNode<E> implements Serializable {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	
 	private E element;
 	private MyDLLNode<E> prev, next;
-
+	
 	public MyDLLNode() {
 		
 	}
 	
 	public MyDLLNode(E element) {
-		super();
 		this.element = element;
 	}
 	
 	public MyDLLNode(E element, MyDLLNode<E> prev, MyDLLNode<E> next) {
-		super();
 		this.element = element;
 		this.prev = prev;
 		this.next = next;
