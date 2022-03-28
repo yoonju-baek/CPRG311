@@ -407,7 +407,8 @@ class MyStackTests {
 		assertTrue(iterator.hasNext());
 		
 		while(iterator.hasNext()) {
-			assertEquals(stack.pop(), iterator.next());
+			assertEquals(stack.peek(), iterator.next());
+			stack.pop();
 		}
 		assertThrows(NoSuchElementException.class, () -> {
 			iterator.next();
