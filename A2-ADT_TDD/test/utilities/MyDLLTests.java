@@ -44,7 +44,7 @@ class MyDLLTests {
 	 * Test method for {@link utilities.MyDLL#size()}.
 	 */
 	@Test
-	void testSizeNotEmpty() {
+	void testSizeNonEmpty() {
 		dllList.add("A");
 		dllList.add("B");
 		dllList.add("C");
@@ -84,7 +84,7 @@ class MyDLLTests {
 	 * Test method for {@link utilities.MyDLL#add(int, java.lang.Object)}.
 	 */
 	@Test
-	void testAddIntENotEmptyAppend() {
+	void testAddIntENonEmptyAppend() {
 		dllList.add("A");
 		boolean added = dllList.add(1, "B");
 		
@@ -97,7 +97,7 @@ class MyDLLTests {
 	 * Test method for {@link utilities.MyDLL#add(int, java.lang.Object)}.
 	 */
 	@Test
-	void testAddIntENotEmptyPrepend() {
+	void testAddIntENonEmptyPrepend() {
 		dllList.add("B");
 		boolean added = dllList.add(0, "A");
 		
@@ -110,7 +110,7 @@ class MyDLLTests {
 	 * Test method for {@link utilities.MyDLL#add(int, java.lang.Object)}.
 	 */
 	@Test
-	void testAddIntENotEmptyInsert() {
+	void testAddIntENonEmptyInsert() {
 		dllList.add("A");
 		dllList.add("C");
 		boolean added = dllList.add(1, "B");
@@ -176,7 +176,7 @@ class MyDLLTests {
 	 * Test method for {@link utilities.MyDLL#add(java.lang.Object)}.
 	 */
 	@Test
-	void testAddENotEmpty() {
+	void testAddENonEmpty() {
 		dllList.add("A");
 		boolean added = dllList.add("B");
 		
@@ -208,7 +208,7 @@ class MyDLLTests {
 		newList.add("E");
 		newList.add("F");
 		
-		boolean added = dllList.addAll((ListADT<? extends String>) newList);
+		boolean added = dllList.addAll(newList);
 		
 		assertTrue(added);
 		assertEquals(3, dllList.size());
@@ -221,7 +221,7 @@ class MyDLLTests {
 	 * Test method for {@link utilities.MyDLL#addAll(utilities.ListADT)}.
 	 */
 	@Test
-	void testAddAllNotEmpty() {
+	void testAddAllNonEmpty() {
 		dllList.add("A");
 		dllList.add("B");
 		dllList.add("C");
@@ -231,10 +231,13 @@ class MyDLLTests {
 		newList.add("E");
 		newList.add("F");
 		
-		boolean added = dllList.addAll((ListADT<? extends String>) newList);
+		boolean added = dllList.addAll(newList);
 		
 		assertTrue(added);
 		assertEquals(6, dllList.size());
+		assertEquals("A", dllList.get(0));
+		assertEquals("B", dllList.get(1));
+		assertEquals("C", dllList.get(2));
 		assertEquals("D", dllList.get(3));
 		assertEquals("E", dllList.get(4));
 		assertEquals("F", dllList.get(5));
@@ -270,7 +273,7 @@ class MyDLLTests {
 	 * Test method for {@link utilities.MyDLL#get(int)}.
 	 */
 	@Test
-	void testGetNotEmpty() {
+	void testGetNonEmpty() {
 		dllList.add("A");
 		dllList.add("B");
 		dllList.add("C");
@@ -344,8 +347,9 @@ class MyDLLTests {
 		
 		String deleted = dllList.remove(0);
 		
-		assertEquals(2, dllList.size());
 		assertEquals("A", deleted);
+		assertEquals(2, dllList.size());
+		assertEquals("B", dllList.get(0));
 	}
 	
 	/**
@@ -359,8 +363,9 @@ class MyDLLTests {
 		
 		String deleted = dllList.remove(2);
 		
-		assertEquals(2, dllList.size());
 		assertEquals("C", deleted);
+		assertEquals(2, dllList.size());
+		assertEquals("B", dllList.get(1));
 	}
 	
 	/**
@@ -374,8 +379,9 @@ class MyDLLTests {
 		
 		String deleted = dllList.remove(1);
 		
-		assertEquals(2, dllList.size());
 		assertEquals("B", deleted);
+		assertEquals(2, dllList.size());
+		assertEquals("C", dllList.get(1));
 	}
 	
 	/**
@@ -413,7 +419,7 @@ class MyDLLTests {
 		String deleted = dllList.remove("A");
 		
 		assertEquals(0, dllList.size());
-		assertEquals(null, deleted);
+		assertNull(deleted);
 	}
 	
 	/**
@@ -440,9 +446,9 @@ class MyDLLTests {
 		
 		String deleted = dllList.remove("A");
 		
+		assertEquals("A", deleted);
 		assertEquals(2, dllList.size());
 		assertEquals("B", dllList.get(0));
-		assertEquals("A", deleted);
 	}
 	
 	/**
@@ -456,9 +462,9 @@ class MyDLLTests {
 		
 		String deleted = dllList.remove("C");
 		
+		assertEquals("C", deleted);
 		assertEquals(2, dllList.size());
 		assertEquals("B", dllList.get(1));
-		assertEquals("C", deleted);
 	}
 	
 	/**
@@ -472,16 +478,16 @@ class MyDLLTests {
 		
 		String deleted = dllList.remove("B");
 		
+		assertEquals("B", deleted);
 		assertEquals(2, dllList.size());
 		assertEquals("C", dllList.get(1));
-		assertEquals("B", deleted);
 	}
 	
 	/**
 	 * Test method for {@link utilities.MyDLL#remove(java.lang.Object)}.
 	 */
 	@Test
-	void testRemoveENodeIfHasDuplicatedNode() {
+	void testRemoveEWhenHasDuplicatedNode() {
 		dllList.add("A");
 		dllList.add("B");
 		dllList.add("C");
@@ -490,12 +496,12 @@ class MyDLLTests {
 		
 		String deleted = dllList.remove("B");
 		
+		assertEquals("B", deleted);
 		assertEquals(4, dllList.size());
 		assertEquals("A", dllList.get(0));
 		assertEquals("C", dllList.get(1));
 		assertEquals("B", dllList.get(2));
 		assertEquals("D", dllList.get(3));
-		assertEquals("B", deleted);
 	}
 	
 	/**
@@ -510,7 +516,7 @@ class MyDLLTests {
 		String deleted = dllList.remove("D");
 		
 		assertEquals(3, dllList.size());
-		assertEquals(null, deleted);
+		assertNull(deleted);
 	}
 	
 	/**
@@ -635,6 +641,18 @@ class MyDLLTests {
 	void testIsEmpty() {
 		assertTrue(dllList.isEmpty());
 		assertEquals(0, dllList.size());
+	}
+	
+	/**
+	 * Test method for {@link utilities.MyDLL#isEmpty()}.
+	 */
+	@Test
+	void testIsEmptyNonEmpty() {
+		dllList.add("A");
+		dllList.add("B");
+		
+		assertFalse(dllList.isEmpty());
+		assertEquals(2, dllList.size());
 	}
 
 	/**
@@ -793,7 +811,7 @@ class MyDLLTests {
 	 * Test method for {@link utilities.MyDLL#iterator()}.
 	 */
 	@Test
-	void testIteratorNotEmpty() {
+	void testIteratorNonEmpty() {
 		dllList.add("A");
 		dllList.add("B");
 		dllList.add("C");
