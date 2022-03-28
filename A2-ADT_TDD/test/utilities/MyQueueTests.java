@@ -224,7 +224,8 @@ class MyQueueTests {
 		assertTrue(iterator.hasNext());
 		
 		while(iterator.hasNext()) {
-			assertEquals(queue.dequeue(), iterator.next());
+			assertEquals(queue.peek(), iterator.next());
+			queue.dequeue();
 		}
 		assertThrows(NoSuchElementException.class, () -> {
 			iterator.next();
