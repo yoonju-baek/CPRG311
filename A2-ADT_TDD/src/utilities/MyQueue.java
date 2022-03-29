@@ -132,7 +132,7 @@ public class MyQueue<E> implements QueueADT<E> {
 	 * Returns an array containing all of the elements in this list in proper sequence;
 	 * the runtime type of the returned array is that of the specified array
 	 * 
-	 * @param toHold - the array into which the elements of this queue are to be
+	 * @param holder - the array into which the elements of this queue are to be
 	 *            	   stored, if it is big enough; otherwise, a new array of the
 	 *            	   same runtime type is allocated for this purpose
 	 * @return an array containing the elements of this queue

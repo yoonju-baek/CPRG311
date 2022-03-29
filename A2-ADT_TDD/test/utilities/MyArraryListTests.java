@@ -8,10 +8,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /**
- * 
- */
-
-/**
  * These are the JUnit tests for every method in the MyArrayList class. 
  * There are multiple tests for each method to ensure that the implementation is completed. 
  * 
@@ -27,7 +23,7 @@ class MyArraryListTests {
 	ListADT<String> list;
 
 	/**
-     * @BeforeClass This will run the method once to instantiate, before starting tests. 
+     * This will run the method once to instantiate, before starting tests. 
 	 * @throws java.lang.Exception
 	 */
 	@BeforeEach
@@ -36,7 +32,7 @@ class MyArraryListTests {
 	}
 
 	/**
-	 * @AfterClass This will run the method once to clear instantiation, after finished all tests.  
+	 * This will run the method once to clear instantiation, after finished all tests.  
 	 * @throws java.lang.Exception
 	 */
 	@AfterEach

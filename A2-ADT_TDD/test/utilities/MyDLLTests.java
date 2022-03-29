@@ -24,7 +24,7 @@ class MyDLLTests {
 	ListADT<String> dllList;
 
 	/**
-	 * @BeforeClass This will run the method once to instantiate, before starting tests. 
+	 * This will run the method once to instantiate, before starting tests. 
 	 * @throws java.lang.Exception
 	 */
 	@BeforeEach
@@ -33,7 +33,7 @@ class MyDLLTests {
 	}
 
 	/**
-	 * @AfterClass This will run the method once to clear instantiation, after finished all tests.  
+	 * This will run the method once to clear instantiation, after finished all tests.  
 	 * @throws java.lang.Exception
 	 */
 	@AfterEach
