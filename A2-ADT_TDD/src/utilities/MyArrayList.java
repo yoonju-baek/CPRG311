@@ -4,8 +4,14 @@ import java.lang.reflect.Array;
 import java.util.NoSuchElementException;
 
 /**
- * @author mbibe
- *
+ * Utility class for an array list
+ * 
+ * @author Dongyeon Kim
+ * @author Seungjin Moon
+ * @author Yoonju Baek
+ * 
+ * @version Mar 28 2022
+ * @param <E> The type of element this iterator returns
  */
 public class MyArrayList<E> implements ListADT<E> {
 
@@ -20,12 +26,22 @@ public class MyArrayList<E> implements ListADT<E> {
 	public MyArrayList() {
 		array = (E[]) new Object[10];
 	}
-
+	
+	/**
+	 * The size method will return the current element count contained 
+	 * in the list.
+	 * 
+	 * @return The current element count
+	 */
 	@Override
 	public int size() {
 		return size;
 	}
-
+	
+	/**
+	 * Removes all of the elements from this list. This list will be empty after
+	 * this call returns.
+	 */
 	@Override
 	public void clear() {
 		for(int i=0; i < size; i++) {
@@ -35,6 +51,17 @@ public class MyArrayList<E> implements ListADT<E> {
 		size = 0;
 	}
 
+	/**
+	 * Inserts the specified element at the specified position in this list.
+	 * Shifts the element currently at that position (if any) and,
+	 * any subsequent elements to the right (adds one to their indices).
+	 * 
+	 * @param index
+	 * @param toAdd
+	 * @return true if the element is added successfully
+	 * @throws NullPointerException if the specified element is null
+	 * @throws IndexOutOfBoundsException if the index is out of range
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean add(int index, E toAdd) throws NullPointerException, IndexOutOfBoundsException {
@@ -48,9 +75,9 @@ public class MyArrayList<E> implements ListADT<E> {
 		
 		// check for capacity
 		if(size == array.length) {
-			//TODO create a new array(bigger than the original) x2 of original array
+			//create a new array(bigger than the original) x2 of original array
 			E[] newArray = (E[]) new Object[array.length * 2];
-			// use a loop to copy everything from the original array into the new array
+			//use a loop to copy everything from the original array into the new array
 			for (int i=0; i < array.length; i++) {
 				newArray[i] = array[i];
 			}
@@ -58,7 +85,7 @@ public class MyArrayList<E> implements ListADT<E> {
 			array = newArray;
 		}
 		
-		// TODO insert toAdd into index position (requires a loop to shift everything from index forward)
+		// insert toAdd into index position
 		for(int j=size-1; j >= index; j--) {
 			array[j+1] = array[j];
 		}
@@ -68,7 +95,14 @@ public class MyArrayList<E> implements ListADT<E> {
 		
 		return true;
 	}
-
+	/**
+	 * Appends the specified element to the end of this list
+	 * 
+	 * @param toAdd
+	 * @return true if element is appended successfully
+	 * @throws NullPointerException if the specified element is null
+	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public boolean add(E toAdd) throws NullPointerException {
 		if(toAdd == null) {
@@ -76,7 +110,7 @@ public class MyArrayList<E> implements ListADT<E> {
 		}
 		// check for capacity
 		if(size == array.length) {
-			//TODO create a new array(bigger than the original) x2 of original array
+			//create a new array(bigger than the original) x2 of original array
 			E[] newArray = (E[]) new Object[array.length * 2];
 			// use a loop to copy everything from the original array into the new array
 			for (int i=0; i < array.length; i++) {
@@ -91,14 +125,21 @@ public class MyArrayList<E> implements ListADT<E> {
 		
 		return true;
 	}
-
+	
+	/**
+	 * Appends all of the elements to the end of the list
+	 * 
+	 * @param toAdd
+	 * @return true if the operation is successful
+	 * @throws NullPointerException if the specified element is null
+	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public boolean addAll(ListADT<? extends E> toAdd) throws NullPointerException {
 		if(toAdd == null ) {
 			throw new NullPointerException();
 		}
 		
-		// before adding, check if there are space in the array.
 		// check for capacity
 		if(size == array.length) {
 			E[] newArray = (E[]) new Object[array.length + toAdd.size()];
@@ -119,7 +160,14 @@ public class MyArrayList<E> implements ListADT<E> {
 		
 		return true;
 	}
-
+	
+	/**
+	 * Returns the element at the specified position in this list
+	 * 
+	 * @param index
+	 * @return The element at the specified position in this list
+	 * @throws IndexOutOfBoundsException if the index is out of range
+	 */
 	@Override
 	public E get(int index) throws IndexOutOfBoundsException {
 		if(index < 0 || index >= size) {
@@ -128,7 +176,14 @@ public class MyArrayList<E> implements ListADT<E> {
 		
 		return array[index];
 	}
-
+	
+	/**
+	 * Removes the element at the specified position in this list
+	 * 
+	 * @param index
+	 * @return The removed element
+	 * @throws IndexOutOfBoundsException if the index is out of range
+	 */
 	@Override
 	public E remove(int index) throws IndexOutOfBoundsException {
 		if(index < 0 || index >= size) {
@@ -145,6 +200,13 @@ public class MyArrayList<E> implements ListADT<E> {
 		return deleted;
 	}
 
+	/**
+	 * Removes the first occurrence in this list of the specified element
+	 * @param toRemove
+	 * @return The element which is being removed or
+	 *         null if the list does not contain the element
+	 * @throws NullPointerException if the specified element is null
+	 */
 	@Override
 	public E remove(E toRemove) throws NullPointerException {
 		if(toRemove == null) {
@@ -169,6 +231,16 @@ public class MyArrayList<E> implements ListADT<E> {
 		return deleted;
 	}
 
+	/**
+	 * Replaces the element at the specified position in the list
+	 * with the specified element
+	 * 
+	 * @param index
+	 * @param toChange
+	 * @return The element previously at the specified position.
+	 * @throws NullPointerException if the specified element is null
+	 * @throws IndexOutOfBoundsException if the index is out of range
+	 */
 	@Override
 	public E set(int index, E toChange) throws NullPointerException, IndexOutOfBoundsException {
 		if(index < 0 || index >= size) {
@@ -185,12 +257,24 @@ public class MyArrayList<E> implements ListADT<E> {
 		
 		return changed;
 	}
-
+	
+	/**
+	 * Returns true if this list contains no elements
+	 * 
+	 * @return true if the list contains no elements
+	 */
 	@Override
 	public boolean isEmpty() {
 		return (size == 0);
 	}
-
+	
+	/**
+	 * Returns true if this list contains the specified element
+	 * 
+	 * @param toFind
+	 * @return true if this list contains the specified element
+	 * @throws NullPointerException if the specified element is null
+	 */
 	@Override
 	public boolean contains(E toFind) throws NullPointerException {
 		if(toFind == null) {
@@ -205,7 +289,13 @@ public class MyArrayList<E> implements ListADT<E> {
 		
 		return false;
 	}
-
+	
+	/**
+	 * Returns an array containing all of the elements in this list in proper sequence
+	 * @param toHold
+	 * @return An array containing the elements of this list.
+	 * @throws NullPointerException if the specified element is null
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public E[] toArray(E[] toHold) throws NullPointerException {
@@ -217,7 +307,12 @@ public class MyArrayList<E> implements ListADT<E> {
 		
 		return toHold;
 	}
-
+	
+	/**
+	 * Returns an array containing all of the elements in this list in proper sequence
+	 * 
+	 * @return An array containing all of the elements in this list in proper sequence
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public Object[] toArray() {
@@ -228,7 +323,12 @@ public class MyArrayList<E> implements ListADT<E> {
 		
 		return toHold;
 	}
-
+	
+	/**
+	 * Returns an iterator over the elements in this list, in proper sequence.
+	 * 
+	 * @return An iterator over the elements in this list, in proper sequence.
+	 */
 	@Override
 	public Iterator<E> iterator() {
 		return new ArrayBasedIterator();
@@ -240,16 +340,30 @@ public class MyArrayList<E> implements ListADT<E> {
 		private int pos;
 		private E[] copy;
 		
+		@SuppressWarnings("unchecked")
 		public ArrayBasedIterator() {
 			copy = (E[]) new Object[size];
 			System.arraycopy(array, 0, copy, 0, size);
 		}
-		
+		/**
+		 * Returns true if the iteration has more elements
+		 * (Returns true if next() would return an element 
+		 * rather than throwing an exception)
+		 * 
+		 * @return true if the iterator has more elements
+		 */
 		@Override
 		public boolean hasNext() {
 			return pos < size;
 		}
-
+		
+		/**
+		 * Returns the next element in the iteration
+		 * 
+		 * @return The next element in the iteration
+		 * @throws NoSuchElementException
+		 * 			If the iteration has no more elements
+		 */
 		@Override
 		public E next() throws NoSuchElementException {
 			if(pos >= size) {

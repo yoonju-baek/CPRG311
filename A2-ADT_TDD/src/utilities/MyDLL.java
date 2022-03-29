@@ -3,10 +3,18 @@ package utilities;
 import java.lang.reflect.Array;
 import java.util.NoSuchElementException;
 
+/**
+ * Utility class for doubly linked list
+ * 
+ * @author Dongyeon Kim
+ * @author Seungjin Moon
+ * @author Yoonju Baek
+ * 
+ * @version Mar 28 2022
+ * @param <E> The type of element this iterator returns
+ */
 public class MyDLL<E> implements ListADT<E> {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	
 	private MyDLLNode<E> head, tail;
@@ -21,18 +29,38 @@ public class MyDLL<E> implements ListADT<E> {
 		this.head = head;
 		this.tail = tail;
 	}
-	
+	/**
+	 * The size method will return the current element count contained 
+	 * in the list.
+	 * 
+	 * @return The current element count
+	 */
 	@Override
 	public int size() {
 		return size;
 	}
 	
+	/**
+	 * Removes all of the elements from this list. This list will be empty after
+	 * this call returns.
+	 */
 	@Override
 	public void clear() {
 		head = tail = null;
 		size = 0;
 	}
 	
+	/**
+	 * Inserts the specified element at the specified position in this list.
+	 * Shifts the element currently at that position (if any) and,
+	 * any subsequent elements to the right (adds one to their indices).
+	 * 
+	 * @param index
+	 * @param toAdd
+	 * @return true if the element is added successfully
+	 * @throws NullPointerException if the specified element is null
+	 * @throws IndexOutOfBoundsException if the index is out of range
+	 */
 	@Override
 	public boolean add(int index, E toAdd) throws NullPointerException, IndexOutOfBoundsException {
 		if(index < 0 || index > size) {
@@ -75,7 +103,14 @@ public class MyDLL<E> implements ListADT<E> {
 		
 		return true;
 	}
-
+	
+	/**
+	 * Appends the specified element to the end of this list
+	 * 
+	 * @param toAdd
+	 * @return true if element is appended successfully
+	 * @throws NullPointerException if the specified element is null
+	 */
 	@Override
 	public boolean add(E toAdd) throws NullPointerException {
 		if(toAdd == null) {
@@ -96,7 +131,14 @@ public class MyDLL<E> implements ListADT<E> {
 		
 		return true;
 	}
-
+	
+	/**
+	 * Appends all of the elements to the end of the list
+	 * 
+	 * @param toAdd
+	 * @return true if the operation is successful
+	 * @throws NullPointerException if the specified element is null
+	 */
 	@Override
 	public boolean addAll(ListADT<? extends E> toAdd) throws NullPointerException {
 		if(toAdd == null) {
@@ -125,7 +167,14 @@ public class MyDLL<E> implements ListADT<E> {
 		
 		return true;
 	}
-
+	
+	/**
+	 * Returns the element at the specified position in this list
+	 * 
+	 * @param index
+	 * @return The element at the specified position in this list
+	 * @throws IndexOutOfBoundsException if the index is out of range
+	 */
 	@Override
 	public E get(int index) throws IndexOutOfBoundsException {
 		if(index < 0 || index >= size) {
@@ -139,7 +188,14 @@ public class MyDLL<E> implements ListADT<E> {
 		}
 		return curr.getElement();
 	}
-
+	
+	/**
+	 * Removes the element at the specified position in this list
+	 * 
+	 * @param index
+	 * @return The removed element
+	 * @throws IndexOutOfBoundsException if the index is out of range
+	 */
 	@Override
 	public E remove(int index) throws IndexOutOfBoundsException {
 		if(index < 0 || index >= size) {
@@ -179,6 +235,13 @@ public class MyDLL<E> implements ListADT<E> {
 		return deleted;
 	}
 
+	/**
+	 * Removes the first occurrence in this list of the specified element
+	 * @param toRemove
+	 * @return The element which is being removed or
+	 *         null if the list does not contain the element
+	 * @throws NullPointerException if the specified element is null
+	 */
 	@Override
 	public E remove(E toRemove) throws NullPointerException {
 		if(toRemove == null) {
@@ -227,6 +290,16 @@ public class MyDLL<E> implements ListADT<E> {
 		return deleted;
 	}
 
+	/**
+	 * Replaces the element at the specified position in the list
+	 * with the specified element
+	 * 
+	 * @param index
+	 * @param toChange
+	 * @return The element previously at the specified position.
+	 * @throws NullPointerException if the specified element is null
+	 * @throws IndexOutOfBoundsException if the index is out of range
+	 */
 	@Override
 	public E set(int index, E toChange) throws NullPointerException, IndexOutOfBoundsException {
 		if(index < 0 || index >= size) {
@@ -249,11 +322,23 @@ public class MyDLL<E> implements ListADT<E> {
 		return preValue;
 	}
 
+	/**
+	 * Returns true if this list contains no elements
+	 * 
+	 * @return true if the list contains no elements
+	 */
 	@Override
 	public boolean isEmpty() {
 		return (head == null);
 	}
 
+	/**
+	 * Returns true if this list contains the specified element
+	 * 
+	 * @param toFind
+	 * @return true if this list contains the specified element
+	 * @throws NullPointerException if the specified element is null
+	 */
 	@Override
 	public boolean contains(E toFind) throws NullPointerException {
 		boolean result = false;
@@ -273,7 +358,13 @@ public class MyDLL<E> implements ListADT<E> {
 		
 		return result;
 	}
-
+	
+	/**
+	 * Returns an array containing all of the elements in this list in proper sequence
+	 * @param toHold
+	 * @return An array containing the elements of this list.
+	 * @throws NullPointerException if the specified element is null
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public E[] toArray(E[] toHold) throws NullPointerException {
@@ -294,6 +385,11 @@ public class MyDLL<E> implements ListADT<E> {
 		return toHold;
 	}
 
+	/**
+	 * Returns an array containing all of the elements in this list in proper sequence
+	 * 
+	 * @return An array containing all of the elements in this list in proper sequence
+	 */
 	@Override
 	public Object[] toArray() {
 		Object[] newArray = new Object[size()];
@@ -306,6 +402,11 @@ public class MyDLL<E> implements ListADT<E> {
 		return newArray;
 	}
 	
+	/**
+	 * Returns an iterator over the elements in this list, in proper sequence.
+	 * 
+	 * @return An iterator over the elements in this list, in proper sequence.
+	 */
 	@Override
 	public Iterator<E> iterator() {
 		return new LinkedListIterator();
@@ -320,6 +421,13 @@ public class MyDLL<E> implements ListADT<E> {
 			pos = null;
 		}
 		
+		/**
+		 * Returns true if the iteration has more elements
+		 * (Returns true if next() would return an element 
+		 * rather than throwing an exception)
+		 * 
+		 * @return true if the iterator has more elements
+		 */
 		@Override
 		public boolean hasNext() {			
 			if(pos == null) {
@@ -330,7 +438,13 @@ public class MyDLL<E> implements ListADT<E> {
 			}
 			
 		}
-
+		
+		/**
+		 * Returns the next element in the iteration
+		 * 
+		 * @return The next element in the iteration
+		 * @throws NoSuchElementException if the iteration has no more elements
+		 */
 		@Override
 		public E next() throws NoSuchElementException {
 			if (!hasNext()) throw new NoSuchElementException();

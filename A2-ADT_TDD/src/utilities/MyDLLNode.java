@@ -2,6 +2,16 @@ package utilities;
 
 import java.io.Serializable;
 
+/**
+ * A generic doubly linked list 
+ * 
+ * @author Dongyeon Kim
+ * @author Seungjin Moon
+ * @author Yoonju Baek
+ * 
+ * @version Mar 28 2022
+ * @param <E> The type of element this iterator returns
+ */
 public class MyDLLNode<E> implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -22,11 +32,17 @@ public class MyDLLNode<E> implements Serializable {
 		this.prev = prev;
 		this.next = next;
 	}
-
+	
+    /**
+     * Returns the stored element at this position
+     *
+     * @return the stored element
+     */
 	public E getElement() {
 		return element;
 	}
 
+    // Setter methods
 	public void setElement(E element) {
 		this.element = element;
 	}
