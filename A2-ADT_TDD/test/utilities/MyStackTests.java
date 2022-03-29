@@ -10,7 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /**
- * These are the JUnit tests for every method in the MyQueue class. 
+ * These are the JUnit tests for every method in the MyStack class. 
  * There are multiple tests for each method to ensure that the implementation is completed. 
  * 
  * @author Dongyeon Kim
@@ -56,7 +56,7 @@ class MyStackTests {
 	}
 	
 	/**
-	 * Check if an element is added at the top of the queue successfully, and the size and the added element are correct
+	 * Check if an element is added at the top of the stack successfully, and the size and the added element are correct
 	 * when adding an element to the non-empty stack.
 	 * Test method for {@link utilities.MyStack#push(java.lang.Object)}.
 	 */
@@ -86,7 +86,7 @@ class MyStackTests {
 	}
 
 	/**
-	 * Check if the size and the removed element are correct, and the second element is changed the position to the top of the queue 
+	 * Check if the size and the removed element are correct, and the second element is changed the position to the top of the stack 
 	 * when removing an element from the top of the stack.
 	 * Test method for {@link utilities.MyStack#pop()}.
 	 */
@@ -120,7 +120,7 @@ class MyStackTests {
 	
 	/**
 	 * Test method for {@link utilities.MyStack#pop()}.
-	 * Check if "EmptyQueueException" is thrown when removing an element from the empty stack
+	 * Check if "EmptyStackException" is thrown when removing an element from the empty stack
 	 */
 	@Test
 	void testPopEmptyStackException() {
@@ -165,7 +165,7 @@ class MyStackTests {
 	
 	/**
 	 * Test method for {@link utilities.MyStack#peek()}.
-	 * Check if the "EmptyQueueException" is thrown when retrieving an element from the empty stack
+	 * Check if the "EmptyStackException" is thrown when retrieving an element from the empty stack
 	 */
 	@Test
 	void testPeekEmptyStackException() {

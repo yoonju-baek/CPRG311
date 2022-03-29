@@ -411,7 +411,7 @@ class MyQueueTests {
 	
 	/**
 	 * Test method for {@link utilities.MyQueue#isFull()}.
-	 * Check if the array is full
+	 * Check if the queue is full
 	 */
 	@Test
 	void testIsFull() {

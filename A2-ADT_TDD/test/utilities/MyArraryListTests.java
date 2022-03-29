@@ -8,10 +8,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /**
- * 
- */
-
-/**
  * These are the JUnit tests for every method in the MyArrayList class. 
  * There are multiple tests for each method to ensure that the implementation is completed. 
  * 
