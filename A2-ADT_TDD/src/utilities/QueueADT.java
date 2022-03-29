@@ -24,7 +24,7 @@ public interface QueueADT<E> extends Serializable
 	 * queue.  This method will not allow <code>null</code> values
 	 * to be added to the Queue.
 	 * 
-	 * @param toAdd the item to be added to the Queue.
+	 * @param toAdd - the item to be added to the Queue
 	 * @throws NullPointerException raised when a <code>null</code> object
 	 * is placed in the Queue.
 	 */

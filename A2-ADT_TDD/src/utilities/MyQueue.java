@@ -94,7 +94,7 @@ public class MyQueue<E> implements QueueADT<E> {
 	 * Used to compare two Queue ADT's
 	 * (To be equal two queues must contain equal items appearing in the same order)
 	 * 
-	 * @param that the Queue ADT to be compared to this queue
+	 * @param that - the Queue ADT to be compared to this queue
 	 * @return true if the queues are equal.
 	 */
 	@Override
@@ -132,7 +132,9 @@ public class MyQueue<E> implements QueueADT<E> {
 	 * Returns an array containing all of the elements in this list in proper sequence;
 	 * the runtime type of the returned array is that of the specified array
 	 * 
-	 * @param toHold
+	 * @param toHold - the array into which the elements of this queue are to be
+	 *            	   stored, if it is big enough; otherwise, a new array of the
+	 *            	   same runtime type is allocated for this purpose
 	 * @return an array containing the elements of this queue
 	 * @throws NullPointerException if the specified array is null
 	 */

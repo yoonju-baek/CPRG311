@@ -3,14 +3,13 @@ package utilities;
 import java.io.Serializable;
 
 /**
- * A generic doubly linked list 
+ * Represents a MyDLLNode.
  * 
  * @author Dongyeon Kim
  * @author Seungjin Moon
  * @author Yoonju Baek
  * 
  * @version Mar 28 2022
- * @param <E> The type of element this iterator returns
  */
 public class MyDLLNode<E> implements Serializable {
 
@@ -19,46 +18,85 @@ public class MyDLLNode<E> implements Serializable {
 	private E element;
 	private MyDLLNode<E> prev, next;
 	
+	/**
+	 * Initializes a MyDLLNode object.
+	 */
 	public MyDLLNode() {
 		
 	}
 	
+	/**
+	 * Initializes a MyDLLNode object.
+	 * 
+	 * @param element the element to be stored
+	 */
 	public MyDLLNode(E element) {
 		this.element = element;
 	}
 	
+	/**
+	 * Initializes a MyDLLNode object.
+	 * 
+	 * @param element the element to be stored
+	 * @param prev the link to the previous node
+	 * @param next the link to the next node
+	 */
 	public MyDLLNode(E element, MyDLLNode<E> prev, MyDLLNode<E> next) {
 		this.element = element;
 		this.prev = prev;
 		this.next = next;
 	}
-	
-    /**
-     * Returns the stored element at this position
-     *
-     * @return the stored element
-     */
+
+	/**
+	 * Gets the element
+	 * 
+	 * @return the element
+	 */
 	public E getElement() {
 		return element;
 	}
 
-    // Setter methods
+	/**
+	 * Sets the element
+	 * 
+	 * @param element the element to be stored
+	 */
 	public void setElement(E element) {
 		this.element = element;
 	}
 
+	/**
+	 * Gets the previous node
+	 * 
+	 * @return the previous node
+	 */
 	public MyDLLNode<E> getPrev() {
 		return prev;
 	}
 
+	/**
+	 * Sets the previous node
+	 * 
+	 * @param prev the previous node
+	 */
 	public void setPrev(MyDLLNode<E> prev) {
 		this.prev = prev;
 	}
 
+	/**
+	 * Gets the next node
+	 * 
+	 * @return the next node
+	 */
 	public MyDLLNode<E> getNext() {
 		return next;
 	}
 
+	/**
+	 * Sets the next node
+	 * 
+	 * @param next the next node
+	 */
 	public void setNext(MyDLLNode<E> next) {
 		this.next = next;
 	}

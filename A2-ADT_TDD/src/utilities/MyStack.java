@@ -160,7 +160,7 @@ public class MyStack<E> implements StackADT<E> {
 	 * Used to compare two Stack ADT's
 	 * To be equal two stacks must contain equal items appearing in the same order
 	 * 
-	 * @param that the Stack ADT to be compared to this stack
+	 * @param that - the Stack ADT to be compared to this stack
 	 * @return true if the stacks are equal
 	 */
 	@Override

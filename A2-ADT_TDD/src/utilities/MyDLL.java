@@ -55,8 +55,8 @@ public class MyDLL<E> implements ListADT<E> {
 	 * Shifts the element currently at that position (if any) and,
 	 * any subsequent elements to the right (adds one to their indices).
 	 * 
-	 * @param index
-	 * @param toAdd
+	 * @param index - The index at which the specified element is to be inserted
+	 * @param toAdd - The element to be inserted
 	 * @return true if the element is added successfully
 	 * @throws NullPointerException if the specified element is null
 	 * @throws IndexOutOfBoundsException if the index is out of range
@@ -107,7 +107,7 @@ public class MyDLL<E> implements ListADT<E> {
 	/**
 	 * Appends the specified element to the end of this list
 	 * 
-	 * @param toAdd
+	 * @param toAdd - Element to be appended to this list
 	 * @return true if element is appended successfully
 	 * @throws NullPointerException if the specified element is null
 	 */
@@ -135,7 +135,7 @@ public class MyDLL<E> implements ListADT<E> {
 	/**
 	 * Appends all of the elements to the end of the list
 	 * 
-	 * @param toAdd
+	 * @param toAdd - The new sub list to be added
 	 * @return true if the operation is successful
 	 * @throws NullPointerException if the specified element is null
 	 */
@@ -171,7 +171,7 @@ public class MyDLL<E> implements ListADT<E> {
 	/**
 	 * Returns the element at the specified position in this list
 	 * 
-	 * @param index
+	 * @param index - Index of element to return
 	 * @return The element at the specified position in this list
 	 * @throws IndexOutOfBoundsException if the index is out of range
 	 */
@@ -192,7 +192,7 @@ public class MyDLL<E> implements ListADT<E> {
 	/**
 	 * Removes the element at the specified position in this list
 	 * 
-	 * @param index
+	 * @param index - The index of the element to remove
 	 * @return The removed element
 	 * @throws IndexOutOfBoundsException if the index is out of range
 	 */
@@ -237,7 +237,8 @@ public class MyDLL<E> implements ListADT<E> {
 
 	/**
 	 * Removes the first occurrence in this list of the specified element
-	 * @param toRemove
+	 * 
+	 * @param toRemove - The element to be removed from this list
 	 * @return The element which is being removed or
 	 *         null if the list does not contain the element
 	 * @throws NullPointerException if the specified element is null
@@ -294,8 +295,8 @@ public class MyDLL<E> implements ListADT<E> {
 	 * Replaces the element at the specified position in the list
 	 * with the specified element
 	 * 
-	 * @param index
-	 * @param toChange
+	 * @param index - The index of the element to replace
+	 * @param toChange - Element to be stored at the specified position
 	 * @return The element previously at the specified position.
 	 * @throws NullPointerException if the specified element is null
 	 * @throws IndexOutOfBoundsException if the index is out of range
@@ -335,7 +336,7 @@ public class MyDLL<E> implements ListADT<E> {
 	/**
 	 * Returns true if this list contains the specified element
 	 * 
-	 * @param toFind
+	 * @param toFind - The element whose presence in this list is to be tested
 	 * @return true if this list contains the specified element
 	 * @throws NullPointerException if the specified element is null
 	 */
@@ -361,7 +362,10 @@ public class MyDLL<E> implements ListADT<E> {
 	
 	/**
 	 * Returns an array containing all of the elements in this list in proper sequence
-	 * @param toHold
+	 * 
+	 * @param toHold - The array into which the elements of this list are to be stored,
+	 * 				   if it is big enough; otherwise, a new array of the
+	 * 				   same runtime type is allocated for this purpose
 	 * @return An array containing the elements of this list.
 	 * @throws NullPointerException if the specified element is null
 	 */
