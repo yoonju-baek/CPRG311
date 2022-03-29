@@ -10,14 +10,22 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /**
- * @author mbibe
- *
+ * These are the JUnit tests for every method in the MyQueue class. 
+ * There are multiple tests for each method to ensure that the implementation is completed. 
+ * 
+ * @author Dongyeon Kim
+ * @author Seungjin Moon
+ * @author Yoonju Baek
+ * 
+ * @version Mar 28 2022
+ * 
  */
 class MyStackTests {
-	
+	//attributes
 	StackADT<String> stack;
 
 	/**
+     * @BeforeClass This will run the method once to instantiate, before starting tests.
 	 * @throws java.lang.Exception
 	 */
 	@BeforeEach
@@ -26,6 +34,7 @@ class MyStackTests {
 	}
 
 	/**
+	 * @AfterClass This will run the method once to clear instantiation, after finished all tests.
 	 * @throws java.lang.Exception
 	 */
 	@AfterEach
@@ -34,6 +43,8 @@ class MyStackTests {
 	}
 
 	/**
+	 * Check if an element is added successfully, and the size and the added element are correct
+	 * when adding an element to the empty stack.
 	 * Test method for {@link utilities.MyStack#push(java.lang.Object)}.
 	 */
 	@Test
@@ -45,6 +56,8 @@ class MyStackTests {
 	}
 	
 	/**
+	 * Check if an element is added at the top of the queue successfully, and the size and the added element are correct
+	 * when adding an element to the non-empty stack.
 	 * Test method for {@link utilities.MyStack#push(java.lang.Object)}.
 	 */
 	@Test
@@ -59,6 +72,7 @@ class MyStackTests {
 	}
 	
 	/**
+	 * Check if the "NullPointerException" is thrown when adding "null" to the stack
 	 * Test method for {@link utilities.MyStack#push(java.lang.Object)}.
 	 */
 	@Test
@@ -72,6 +86,8 @@ class MyStackTests {
 	}
 
 	/**
+	 * Check if the size and the removed element are correct, and the second element is changed the position to the top of the queue 
+	 * when removing an element from the top of the stack.
 	 * Test method for {@link utilities.MyStack#pop()}.
 	 */
 	@Test
@@ -88,6 +104,8 @@ class MyStackTests {
 	}
 	
 	/**
+	 * Check if the size is zero and the removed element is correct
+	 * when removing an element from the stack containing only one element.
 	 * Test method for {@link utilities.MyStack#pop()}.
 	 */
 	@Test
@@ -102,6 +120,7 @@ class MyStackTests {
 	
 	/**
 	 * Test method for {@link utilities.MyStack#pop()}.
+	 * Check if "EmptyQueueException" is thrown when removing an element from the empty stack
 	 */
 	@Test
 	void testPopEmptyStackException() {
@@ -115,6 +134,7 @@ class MyStackTests {
 
 	/**
 	 * Test method for {@link utilities.MyStack#peek()}.
+	 * Check if the size is correct and an element is retrieved successfully from the non-empty stack
 	 */
 	@Test
 	void testPeekNonEmpty() {
@@ -129,6 +149,8 @@ class MyStackTests {
 	}
 	
 	/**
+	 * Check if the size is correct and an element is retrieved successfully
+	 * when retrieving an element from the stack containing only one element.
 	 * Test method for {@link utilities.MyStack#peek()}.
 	 */
 	@Test
@@ -143,6 +165,7 @@ class MyStackTests {
 	
 	/**
 	 * Test method for {@link utilities.MyStack#peek()}.
+	 * Check if the "EmptyQueueException" is thrown when retrieving an element from the empty stack
 	 */
 	@Test
 	void testPeekEmptyStackException() {
@@ -156,6 +179,8 @@ class MyStackTests {
 
 	/**
 	 * Test method for {@link utilities.MyStack#clear()}.
+	 * Check if the size is zero and stack is empty
+	 * when removing all elements from the stack.
 	 */
 	@Test
 	void testClear() {
@@ -173,6 +198,7 @@ class MyStackTests {
 
 	/**
 	 * Test method for {@link utilities.MyStack#isEmpty()}.
+	 * Check if the size is zero when the stack is empty.
 	 */
 	@Test
 	void testIsEmpty() {
@@ -182,6 +208,7 @@ class MyStackTests {
 	
 	/**
 	 * Test method for {@link utilities.MyStack#isEmpty()}.
+	 * Check if the size is correct when the stack has the specific number of elements.
 	 */
 	@Test
 	void testIsEmptyNonEmpty() {
@@ -194,6 +221,8 @@ class MyStackTests {
 
 	/**
 	 * Test method for {@link utilities.MyStack#toArray()}.
+	 * Check if the size of the array is correct and the array is empty
+	 * when transferring the empty stack to the object type of the array
 	 */
 	@Test
 	void testToArrayEmpty() {
@@ -203,6 +232,8 @@ class MyStackTests {
 	
 	/**
 	 * Test method for {@link utilities.MyStack#toArray()}.
+	 * Check if the size of the array is correct and the array contains elements
+	 * when transferring the non-empty stack to the object type of the array
 	 */
 	@Test
 	void testToArrayNonEmpty() {
@@ -220,6 +251,8 @@ class MyStackTests {
 
 	/**
 	 * Test method for {@link utilities.MyStack#toArray(E[])}.
+	 * Check if the size of the array is correct and the array is empty
+	 * when transferring the empty stack to the generic type of the array
 	 */
 	@Test
 	void testToArrayEArrayEmpty() {
@@ -235,6 +268,8 @@ class MyStackTests {
 	
 	/**
 	 * Test method for {@link utilities.MyStack#toArray(E[])}.
+	 * Check if the size of the array is correct and the array contains elements
+	 * when transferring the non-empty stack to the generic type of the array
 	 */
 	@Test
 	void testToArrayEArrayNonEmptySufficient() {
@@ -254,6 +289,8 @@ class MyStackTests {
 	
 	/**
 	 * Test method for {@link utilities.MyStack#toArray(E[])}.
+	 * Check if the size of the array is expanded and the array contains elements
+	 * when transferring the non-empty stack to the generic type of the array having insufficient size.
 	 */
 	@Test
 	void testToArrayEArrayNonEmptyInSufficient() {
@@ -273,6 +310,7 @@ class MyStackTests {
 	
 	/**
 	 * Test method for {@link utilities.MyStack#toArray(E[])}.
+	 * Check if the "NullPointerException" is thrown when transferring "null" stack to the generic type of the array
 	 */
 	@Test
 	void testToArrayEArrayNullPointerException() {
@@ -283,6 +321,7 @@ class MyStackTests {
 
 	/**
 	 * Test method for {@link utilities.MyStack#contains(java.lang.Object)}.
+	 * Check if "false" is returned when comparing an element to the empty stack.
 	 */
 	@Test
 	void testContainsEmpty() {
@@ -293,6 +332,7 @@ class MyStackTests {
 	
 	/**
 	 * Test method for {@link utilities.MyStack#contains(java.lang.Object)}.
+	 * Check if "true" is returned when comparing an element to the stack containing it.
 	 */
 	@Test
 	void testContainsMatching() {
@@ -307,6 +347,7 @@ class MyStackTests {
 	
 	/**
 	 * Test method for {@link utilities.MyStack#contains(java.lang.Object)}.
+	 * Check if "false" is returned when comparing an element to the stack not containing it.
 	 */
 	@Test
 	void testContainsNoMatching() {
@@ -321,6 +362,7 @@ class MyStackTests {
 	
 	/**
 	 * Test method for {@link utilities.MyStack#contains(java.lang.Object)}.
+	 * Check if the "NullPointerException" is thrown when comparing "null" to the stack
 	 */
 	@Test
 	void testContainsNullPointerException() {
@@ -334,6 +376,7 @@ class MyStackTests {
 	
 	/**
 	 * Test method for {@link utilities.MyStack#search(java.lang.Object)}.
+	 * Check if the result returns "-1" when the specific element is not found in the empty stack
 	 */
 	@Test
 	void testSearchEmpty() {
@@ -342,6 +385,7 @@ class MyStackTests {
 
 	/**
 	 * Test method for {@link utilities.MyStack#search(java.lang.Object)}.
+	 * Check if the result returns "1" when searching element is only one in the stack
 	 */
 	@Test
 	void testSearchMatchingNoDuplicatedElements() {
@@ -356,6 +400,7 @@ class MyStackTests {
 	
 	/**
 	 * Test method for {@link utilities.MyStack#search(java.lang.Object)}.
+	 * Check if the result returns the number of count when searching element is more than one in the stack
 	 */
 	@Test
 	void testSearchMatchingWhenHasDuplicatedElements() {
@@ -372,6 +417,7 @@ class MyStackTests {
 	
 	/**
 	 * Test method for {@link utilities.MyStack#search(java.lang.Object)}.
+	 * Check if the result returns "-1" when searching element is not found in the non-empty stack
 	 */
 	@Test
 	void testSearchNoMatching() {
@@ -384,6 +430,8 @@ class MyStackTests {
 
 	/**
 	 * Test method for {@link utilities.MyStack#iterator()}.
+	 * Check if the "NoSuchElementException" is thrown and "false" returns 
+	 * when the iterator traverses in the empty stack
 	 */
 	@Test
 	void testIteratorEmpty() {
@@ -396,6 +444,9 @@ class MyStackTests {
 	
 	/**
 	 * Test method for {@link utilities.MyStack#iterator()}.
+	 * Check if "true" returns and the element is correctly retrieved 
+	 * when the iterator traverses from the top to the end in the non-empty stack 
+	 * And check if "NoSuchElementException" is thrown and "false" returns followed by the end of the stack 
 	 */
 	@Test
 	void testIteratorNonEmpty() {
@@ -417,6 +468,7 @@ class MyStackTests {
 
 	/**
 	 * Test method for {@link utilities.MyStack#equals(utilities.StackADT)}.
+	 * Check if "true" is returned when all elements in a stack equals the other stack
 	 */
 	@Test
 	void testEqualsStackADTOfEEquals() {
@@ -436,6 +488,7 @@ class MyStackTests {
 	
 	/**
 	 * Test method for {@link utilities.MyStack#equals(utilities.StackADT)}.
+	 * Check if "false" is returned when all elements in a stack do not equals the other stack
 	 */
 	@Test
 	void testEqualsStackADTOfENotEquals() {
@@ -455,6 +508,7 @@ class MyStackTests {
 
 	/**
 	 * Test method for {@link utilities.MyStack#size()}.
+	 * Check if the size of the empty stack is zero
 	 */
 	@Test
 	void testSizeEmpty() {
@@ -463,6 +517,7 @@ class MyStackTests {
 	
 	/**
 	 * Test method for {@link utilities.MyStack#size()}.
+	 * Check if the size of the non-empty stack is correct 
 	 */
 	@Test
 	void testSizeNonEmpty() {
