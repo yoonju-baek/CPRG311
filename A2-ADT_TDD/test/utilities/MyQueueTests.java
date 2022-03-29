@@ -26,7 +26,7 @@ class MyQueueTests {
 	QueueADT<String> queue;
 
 	/**
-     * @BeforeClass This will run the method once to instantiate, before starting tests.
+     * This will run the method once to instantiate, before starting tests.
 	 * @throws java.lang.Exception
 	 */
 	@BeforeEach
@@ -35,7 +35,7 @@ class MyQueueTests {
 	}
 
 	/**
-	 * @AfterClass This will run the method once to clear instantiation, after finished all tests.
+	 * This will run the method once to clear instantiation, after finished all tests.
 	 * @throws java.lang.Exception
 	 */
 	@AfterEach
@@ -266,7 +266,6 @@ class MyQueueTests {
 	/**
 	 * Test method for {@link utilities.MyQueue#equals(utilities.QueueADT)}.
 	 * Check if "true" is returned when all elements in a queue equals the other queue
-	 * @throws EmptyQueueException raised when the queue's length is zero (0).
 	 */
 	@Test
 	void testEqualsQueueADTOfEEquals() {
@@ -287,7 +286,6 @@ class MyQueueTests {
 	/**
 	 * Test method for {@link utilities.MyQueue#equals(utilities.QueueADT)}.
 	 * Check if "false" is returned when all elements in a queue do not equals the other queue
-	 * @throws EmptyQueueException raised when the queue's length is zero (0).
 	 */
 	@Test
 	void testEqualsQueueADTOfENotEquals() {
@@ -400,7 +398,7 @@ class MyQueueTests {
 	/**
 	 * Test method for {@link utilities.MyQueue#toArray(E[])}.
 	 * Check if the "NullPointerException" is thrown when transferring "null" queue to the generic type of the array
-	 * @throws EmptyQueueException raised when the queue's length is zero (0).
+	 * @throws NullPointerException
 	 */
 	@Test
 	void testToArrayEArrayNullPointerException() {
