@@ -9,14 +9,22 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /**
- * @author mbibe
- *
+ * These are the JUnit tests for every method in the MyDLL class. 
+ * There are multiple tests for each method to ensure that the implementation is completed. 
+ * 
+ * @author Dongyeon Kim
+ * @author Seungjin Moon
+ * @author Yoonju Baek
+ * 
+ * @version Mar 28 2022
+ * 
  */
 class MyDLLTests {
 	//attributes
 	ListADT<String> dllList;
 
 	/**
+	 * @BeforeClass This will run the method once to instantiate, before starting tests. 
 	 * @throws java.lang.Exception
 	 */
 	@BeforeEach
@@ -25,6 +33,7 @@ class MyDLLTests {
 	}
 
 	/**
+	 * @AfterClass This will run the method once to clear instantiation, after finished all tests.  
 	 * @throws java.lang.Exception
 	 */
 	@AfterEach
@@ -34,6 +43,7 @@ class MyDLLTests {
 
 	/**
 	 * Test method for {@link utilities.MyDLL#size()}.
+	 * Check if the size is zero when the DLL is empty.
 	 */
 	@Test
 	void testSizeEmpty() {
@@ -42,6 +52,7 @@ class MyDLLTests {
 	
 	/**
 	 * Test method for {@link utilities.MyDLL#size()}.
+	 * Check if the size is correct when the list has the specific number of elements.
 	 */
 	@Test
 	void testSizeNonEmpty() {
@@ -54,6 +65,7 @@ class MyDLLTests {
 
 	/**
 	 * Test method for {@link utilities.MyDLL#clear()}.
+	 * Check if the size is zero after executing the "clear" method when the DLL contains elements.
 	 */
 	@Test
 	void testClear() {
@@ -70,6 +82,8 @@ class MyDLLTests {
 
 	/**
 	 * Test method for {@link utilities.MyDLL#add(int, java.lang.Object)}.
+	 * Check if an element is added successfully, and the size and the added element are correct
+	 * when adding an element into the specific index of the empty DLL. 
 	 */
 	@Test
 	void testAddIntEEmpty() {
@@ -82,6 +96,8 @@ class MyDLLTests {
 	
 	/**
 	 * Test method for {@link utilities.MyDLL#add(int, java.lang.Object)}.
+	 * Check if an element is added at the end of the DLL successfully, and the size and the added element are correct
+	 * when adding an element into the specific index of the non-empty DLL. 
 	 */
 	@Test
 	void testAddIntENonEmptyAppend() {
@@ -95,6 +111,8 @@ class MyDLLTests {
 	
 	/**
 	 * Test method for {@link utilities.MyDLL#add(int, java.lang.Object)}.
+	 * Check if an element is added at the top of the DLL successfully, and the size and the added element are correct
+	 * when adding an element into the specific index of the non-empty DLL. 
 	 */
 	@Test
 	void testAddIntENonEmptyPrepend() {
@@ -108,6 +126,8 @@ class MyDLLTests {
 	
 	/**
 	 * Test method for {@link utilities.MyDLL#add(int, java.lang.Object)}.
+	 * Check if an element is added between existing elements successfully, and the size and the added element are correct
+	 * when inserting an element into the middle index of the non-empty DLL.
 	 */
 	@Test
 	void testAddIntENonEmptyInsert() {
@@ -123,6 +143,7 @@ class MyDLLTests {
 	
 	/**
 	 * Test method for {@link utilities.MyDLL#add(int, java.lang.Object)}.
+	 * Check if the "NullPointerException" is thrown when adding "null" into the specific index of the DLL
 	 */
 	@Test
 	void testAddIntENullPointerException() {
@@ -136,6 +157,7 @@ class MyDLLTests {
 	
 	/**
 	 * Test method for {@link utilities.MyDLL#add(int, java.lang.Object)}.
+	 * Check if the "IndexOutOfBoundsException" is thrown when adding an element into the negative index of the DLL
 	 */
 	@Test
 	void testAddIntELowestIndexOutOfBoundsException() {
@@ -149,6 +171,7 @@ class MyDLLTests {
 	
 	/**
 	 * Test method for {@link utilities.MyDLL#add(int, java.lang.Object)}.
+	 * Check if the "IndexOutOfBoundsException" is thrown when adding an element into the out of the index of the DLL
 	 */
 	@Test
 	void testAddIntEHighestIndexOutOfBoundsException() {
@@ -162,6 +185,8 @@ class MyDLLTests {
 
 	/**
 	 * Test method for {@link utilities.MyDLL#add(java.lang.Object)}.
+	 * Check if an element is added successfully, and the size and the added element are correct
+	 * when adding an element to the empty DLL.
 	 */
 	@Test
 	void testAddEEmpty() {
@@ -174,6 +199,8 @@ class MyDLLTests {
 	
 	/**
 	 * Test method for {@link utilities.MyDLL#add(java.lang.Object)}.
+	 * Check if an element is added at the end of the DLL successfully, and the size and the added element are correct
+	 * when adding an element to the non-empty DLL.
 	 */
 	@Test
 	void testAddENonEmpty() {
@@ -187,6 +214,7 @@ class MyDLLTests {
 	
 	/**
 	 * Test method for {@link utilities.MyDLL#add(java.lang.Object)}.
+	 * Check if the "NullPointerException" is thrown when adding "null" to the DLL
 	 */
 	@Test
 	void testAddENullPointerException() {
@@ -200,6 +228,8 @@ class MyDLLTests {
 
 	/**
 	 * Test method for {@link utilities.MyDLL#addAll(utilities.ListADT)}.
+	 * Check if all elements of a DLL are added successfully, and the size and all elements in the DLL are correct
+	 * when adding a DLL to another empty DLL.
 	 */
 	@Test
 	void testAddAllEmpty() {
@@ -211,14 +241,16 @@ class MyDLLTests {
 		boolean added = dllList.addAll(newList);
 		
 		assertTrue(added);
-		assertEquals(3, dllList.size());
 		assertEquals("D", dllList.get(0));
+		assertEquals(3, dllList.size());
 		assertEquals("E", dllList.get(1));
 		assertEquals("F", dllList.get(2));
 	}
 	
 	/**
 	 * Test method for {@link utilities.MyDLL#addAll(utilities.ListADT)}.
+	 * Check if all elements of a list are added successfully at the end of another DLL, and the size and all elements in the DLL are correct
+	 * when adding a list to another non-empty DLL.
 	 */
 	@Test
 	void testAddAllNonEmpty() {
@@ -245,6 +277,7 @@ class MyDLLTests {
 	
 	/**
 	 * Test method for {@link utilities.MyDLL#addAll(utilities.ListADT)}.
+	 * Check if the "NullPointerException" is thrown when adding a "null" DLL to another DLL
 	 */
 	@Test
 	void testAddAllNullPointerException() {
@@ -258,6 +291,7 @@ class MyDLLTests {
 
 	/**
 	 * Test method for {@link utilities.MyDLL#get(int)}.
+	 * Check if the "IndexOutOfBoundsException" is thrown when retrieving an element from the empty DLL
 	 */
 	@Test
 	void testGetEmpty() {
@@ -271,6 +305,7 @@ class MyDLLTests {
 	
 	/**
 	 * Test method for {@link utilities.MyDLL#get(int)}.
+	 * Check if an element is retrieved successfully from the non-empty DLL
 	 */
 	@Test
 	void testGetNonEmpty() {
@@ -285,6 +320,7 @@ class MyDLLTests {
 	
 	/**
 	 * Test method for {@link utilities.MyDLL#get(int)}.
+	 * Check if the "IndexOutOfBoundsException" is thrown when retrieving an element from the negative index of the empty DLL
 	 */
 	@Test
 	void testGetLowestIndexOutOfBoundsException() {
@@ -298,6 +334,7 @@ class MyDLLTests {
 	
 	/**
 	 * Test method for {@link utilities.MyDLL#get(int)}.
+	 * Check if the "IndexOutOfBoundsException" is thrown when retrieving an element from the out of index of the empty DLL 
 	 */
 	@Test
 	void testGetHighestIndexOutOfBoundsException() {
@@ -312,6 +349,7 @@ class MyDLLTests {
 	
 	/**
 	 * Test method for {@link utilities.MyDLL#remove(int)}.
+	 * Check if the "IndexOutOfBoundsException" is thrown when removing an element from the empty DLL
 	 */
 	@Test
 	void testRemoveIntEmpty() {
@@ -325,6 +363,8 @@ class MyDLLTests {
 	
 	/**
 	 * Test method for {@link utilities.MyDLL#remove(int)}.
+	 * Check if the size and the removed element are correct
+	 * when removing an element from the DLL containing only one element using index number.
 	 */
 	@Test
 	void testRemoveIntWhenOnlyOneNodeExists() {
@@ -338,6 +378,8 @@ class MyDLLTests {
 	
 	/**
 	 * Test method for {@link utilities.MyDLL#remove(int)}.
+	 * Check if the size and the removed element are correct, and the second element is changed the position to the top of the DLL 
+	 * when removing an element from the top of the DLL using index number.
 	 */
 	@Test
 	void testRemoveIntFirstNode() {
@@ -354,6 +396,8 @@ class MyDLLTests {
 	
 	/**
 	 * Test method for {@link utilities.MyDLL#remove(int)}.
+	 * Check if the size and the removed element are correct, and the element in front of removing one is not changed the position 
+	 * when removing an element at the end of the DLL using index number.
 	 */
 	@Test
 	void testRemoveIntLastNode() {
@@ -370,6 +414,8 @@ class MyDLLTests {
 	
 	/**
 	 * Test method for {@link utilities.MyDLL#remove(int)}.
+	 * Check if the size and the removed element are correct, and the element followed by removing one is changed the position 
+	 * when removing an element from the middle of the DLL using index number.
 	 */
 	@Test
 	void testRemoveIntMiddleNode() {
@@ -386,6 +432,7 @@ class MyDLLTests {
 	
 	/**
 	 * Test method for {@link utilities.MyDLL#remove(int)}.
+	 * Check if the "IndexOutOfBoundsException" is thrown when removing an element from the negative index of the DLL
 	 */
 	@Test
 	void testRemoveIntLowestIndexOutOfBoundsException() {
@@ -399,6 +446,7 @@ class MyDLLTests {
 	
 	/**
 	 * Test method for {@link utilities.MyDLL#remove(int)}.
+	 * Check if the "IndexOutOfBoundsException" is thrown when removing an element from the out of the index of the DLL
 	 */
 	@Test
 	void testRemoveIntHighestIndexOutOfBoundsException() {
@@ -413,6 +461,8 @@ class MyDLLTests {
 
 	/**
 	 * Test method for {@link utilities.MyDLL#remove(java.lang.Object)}.
+	 * Check if the size is correct and no element is removed
+	 * when removing an element from the empty DLL.
 	 */
 	@Test
 	void testRemoveEEmpty() {
@@ -424,6 +474,8 @@ class MyDLLTests {
 	
 	/**
 	 * Test method for {@link utilities.MyDLL#remove(java.lang.Object)}.
+	 * Check if the size and the removed element are correct
+	 * when removing an element from the list containing only one element. 
 	 */
 	@Test
 	void testRemoveEWhenOnlyOneNodeExists() {
@@ -437,6 +489,8 @@ class MyDLLTests {
 	
 	/**
 	 * Test method for {@link utilities.MyDLL#remove(java.lang.Object)}.
+	 * Check if the size and the removed element are correct, and the second element is changed the position to the top of the DLL 
+	 * when removing an element from the top of the DLL.
 	 */
 	@Test
 	void testRemoveEFirstNode() {
@@ -453,6 +507,8 @@ class MyDLLTests {
 	
 	/**
 	 * Test method for {@link utilities.MyDLL#remove(java.lang.Object)}.
+	 * Check if the size and the removed element are correct, and the element in front of removing one is not changed the position 
+	 * when removing an element at the end of the DLL.
 	 */
 	@Test
 	void testRemoveELastNode() {
@@ -469,6 +525,8 @@ class MyDLLTests {
 	
 	/**
 	 * Test method for {@link utilities.MyDLL#remove(java.lang.Object)}.
+	 * Check if the size and the removed element are correct, and the element followed by removing one is changed the position 
+	 * when removing an element from the middle of the DLL.
 	 */
 	@Test
 	void testRemoveEMiddleNode() {
@@ -485,6 +543,9 @@ class MyDLLTests {
 	
 	/**
 	 * Test method for {@link utilities.MyDLL#remove(java.lang.Object)}.
+	 * Check if the size is decreased, the removed element are firstly founded in the DLL, 
+	 * and the element followed by removing one is changed the position 
+	 * when removing one of elements having the same value from the DLL.
 	 */
 	@Test
 	void testRemoveEWhenHasDuplicatedNode() {
@@ -506,6 +567,8 @@ class MyDLLTests {
 	
 	/**
 	 * Test method for {@link utilities.MyDLL#remove(java.lang.Object)}.
+	 * Check if the size is correct and no element is removed
+	 * when removing an non-containing element from the DLL.
 	 */
 	@Test
 	void testRemoveENotContain() {
@@ -521,6 +584,7 @@ class MyDLLTests {
 	
 	/**
 	 * Test method for {@link utilities.MyDLL#remove(java.lang.Object)}.
+	 * Check if the "NullPointerException" is thrown when removing a "null" from the DLL
 	 */
 	@Test
 	void testRemoveENullPointerException() {
@@ -534,6 +598,7 @@ class MyDLLTests {
 
 	/**
 	 * Test method for {@link utilities.MyDLL#set(int, java.lang.Object)}.
+	 * Check if the "IndexOutOfBoundsException" is thrown when removing an element from the empty DLL
 	 */
 	@Test
 	void testSetEmpty() {
@@ -547,6 +612,8 @@ class MyDLLTests {
 	
 	/**
 	 * Test method for {@link utilities.MyDLL#set(int, java.lang.Object)}.
+	 * Check if the size and the changed element are correct, and the value before changed is correct  
+	 * when changing an element at the top of the DLL.
 	 */
 	@Test
 	void testSetFirstNode() {
@@ -563,6 +630,8 @@ class MyDLLTests {
 	
 	/**
 	 * Test method for {@link utilities.MyDLL#set(int, java.lang.Object)}.
+	 * Check if the size and the changed element are correct, and the value before changed is correct  
+	 * when changing an element at the end of the DLL.
 	 */
 	@Test
 	void testSetLastNode() {
@@ -579,6 +648,8 @@ class MyDLLTests {
 	
 	/**
 	 * Test method for {@link utilities.MyDLL#set(int, java.lang.Object)}.
+	 * Check if the size and the changed element are correct, and the value before changed is correct  
+	 * when changing an element at the middle of the DLL.
 	 */
 	@Test
 	void testSetMiddleNode() {
@@ -595,6 +666,7 @@ class MyDLLTests {
 	
 	/**
 	 * Test method for {@link utilities.MyDLL#set(int, java.lang.Object)}.
+	 * Check if the "NullPointerException" is thrown when changing an element of the DLL to "null"
 	 */
 	@Test
 	void testSetNullPointerException() {
@@ -609,6 +681,7 @@ class MyDLLTests {
 	
 	/**
 	 * Test method for {@link utilities.MyDLL#set(int, java.lang.Object)}.
+	 * Check if the "IndexOutOfBoundsException" is thrown when changing an element at the negative index of the DLL
 	 */
 	@Test
 	void testSetLowestIndexOutOfBoundsException() {
@@ -622,6 +695,7 @@ class MyDLLTests {
 	
 	/**
 	 * Test method for {@link utilities.MyDLL#set(int, java.lang.Object)}.
+	 * Check if the "IndexOutOfBoundsException" is thrown when changing an element at the out of the DLL
 	 */
 	@Test
 	void testSetHighestIndexOutOfBoundsException() {
@@ -636,6 +710,7 @@ class MyDLLTests {
 
 	/**
 	 * Test method for {@link utilities.MyDLL#isEmpty()}.
+	 * Check if the size is zero and "true" is returned when the DLL is empty.
 	 */
 	@Test
 	void testIsEmpty() {
@@ -645,6 +720,7 @@ class MyDLLTests {
 	
 	/**
 	 * Test method for {@link utilities.MyDLL#isEmpty()}.
+	 * Check if the size is correct and "false" is returned when the DLL is non-empty.
 	 */
 	@Test
 	void testIsEmptyNonEmpty() {
@@ -657,6 +733,7 @@ class MyDLLTests {
 
 	/**
 	 * Test method for {@link utilities.MyDLL#contains(java.lang.Object)}.
+	 * Check if "false" is returned when comparing an element to the empty DLL.
 	 */
 	@Test
 	void testContainsEmpty() {		
@@ -667,6 +744,7 @@ class MyDLLTests {
 	
 	/**
 	 * Test method for {@link utilities.MyDLL#contains(java.lang.Object)}.
+	 * Check if "true" is returned when comparing an element to the DLL containing it.
 	 */
 	@Test
 	void testContainsMatching() {
@@ -681,6 +759,7 @@ class MyDLLTests {
 	
 	/**
 	 * Test method for {@link utilities.MyDLL#contains(java.lang.Object)}.
+	 * Check if "false" is returned when comparing an element to the DLL not containing it.
 	 */
 	@Test
 	void testContainsNoMatching() {
@@ -695,6 +774,7 @@ class MyDLLTests {
 	
 	/**
 	 * Test method for {@link utilities.MyDLL#contains(java.lang.Object)}.
+	 * Check if the "NullPointerException" is thrown when comparing "null" to the DLL
 	 */
 	@Test
 	void testContainsNullPointerException() {
@@ -708,6 +788,8 @@ class MyDLLTests {
 
 	/**
 	 * Test method for {@link utilities.MyDLL#toArray(E[])}.
+	 * Check if the size of the array is correct and the array is empty
+	 * when transferring the empty DLL to the generic type of the array
 	 */
 	@Test
 	void testToArrayEArrayEmpty() {
@@ -723,6 +805,8 @@ class MyDLLTests {
 	
 	/**
 	 * Test method for {@link utilities.MyDLL#toArray(E[])}.
+	 * Check if the size of the array is correct and the array contains elements
+	 * when transferring the non-empty DLL to the generic type of the array
 	 */
 	@Test
 	void testToArrayEArrayNonEmptySufficient() {
@@ -742,6 +826,8 @@ class MyDLLTests {
 	
 	/**
 	 * Test method for {@link utilities.MyDLL#toArray(E[])}.
+	 * Check if the size of the array is expanded and the array contains elements
+	 * when transferring the non-empty DLL to the generic type of the array having insufficient size.
 	 */
 	@Test
 	void testToArrayEArrayNonEmptyInsufficient() {
@@ -761,6 +847,7 @@ class MyDLLTests {
 	
 	/**
 	 * Test method for {@link utilities.MyDLL#toArray(E[])}.
+	 * Check if the "NullPointerException" is thrown when transferring "null" DLL to the generic type of the array
 	 */
 	@Test
 	void testToArrayEArrayNullPointerException() {
@@ -771,6 +858,8 @@ class MyDLLTests {
 
 	/**
 	 * Test method for {@link utilities.MyDLL#toArray()}.
+	 * Check if the size of the array is correct and the array is empty
+	 * when transferring the empty DLL to the object type of the array
 	 */
 	@Test
 	void testToArrayEmpty() {
@@ -780,6 +869,8 @@ class MyDLLTests {
 	
 	/**
 	 * Test method for {@link utilities.MyDLL#toArray()}.
+	 * Check if the size of the array is correct and the array contains elements
+	 * when transferring the non-empty DLL to the object type of the array
 	 */
 	@Test
 	void testToArrayNonEmpty() {
@@ -797,6 +888,8 @@ class MyDLLTests {
 
 	/**
 	 * Test method for {@link utilities.MyDLL#iterator()}.
+	 * Check if the "NoSuchElementException" is thrown and "false" returns 
+	 * when the iterator traverses from the top to the end in the empty DLL
 	 */
 	@Test
 	void testIteratorEmpty() {
@@ -809,6 +902,9 @@ class MyDLLTests {
 	
 	/**
 	 * Test method for {@link utilities.MyDLL#iterator()}.
+	 * Check if "true" returns and the element is correctly retrieved 
+	 * when the iterator traverses from the top to the end in the non-empty DLL 
+	 * And check if "NoSuchElementException" is thrown and "false" returns followed by the end of the DLL 
 	 */
 	@Test
 	void testIteratorNonEmpty() {
