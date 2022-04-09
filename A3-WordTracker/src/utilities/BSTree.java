@@ -12,7 +12,7 @@ import exceptions.TreeException;
  * @author Seungjin Moon
  * @author Yoonju Baek
  * 
- * @version Apr 08 2022
+ * @version Apr 09 2022
  */
 public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E> {
 
