@@ -132,10 +132,9 @@ public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E> {
 		BSTreeNode<E> node = root;
 		
 		while(node != null) {
-//			System.out.println("node:" + node.getElement());
-			if(node.getElement().compareTo(entry) < 0) {
+			if(node.getElement().compareTo(entry) > 0) {
 				node = node.getLeft();
-			} else if(node.getElement().compareTo(entry) > 0){
+			} else if(node.getElement().compareTo(entry) < 0){
 				node = node.getRight();
 			} else {
 				break;
@@ -171,7 +170,7 @@ public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E> {
 			BSTreeNode<E> node = root;
 				
 			while(node != null) {
-				if(node.getElement().compareTo(newEntry) < 0) {
+				if(node.getElement().compareTo(newEntry) > 0) {
 					if(node.hasLeftChild()) {
 						node = node.getLeft();
 					}
@@ -180,7 +179,7 @@ public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E> {
 						addResult = true;
 					}
 				} 
-				else if(node.getElement().compareTo(newEntry) > 0) {
+				else if(node.getElement().compareTo(newEntry) < 0) {
 					if(node.hasRightChild()) {
 						node = node.getRight();
 					} else {
@@ -234,7 +233,7 @@ public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E> {
 	/***********************************IN-ORDER INNER CLASS*******************************************/
 	private class BSTInorderIterator implements Iterator<E> {
 		private Stack<BSTreeNode<E>> travStack;
-		private BSTreeNode<E> currNode = null;
+		private BSTreeNode<E> currNode;
 		
 		/**
 		 * Initialize BSTInorderIterator
@@ -244,6 +243,11 @@ public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E> {
 		public BSTInorderIterator() {
 			travStack = new Stack<>();
 			currNode = root;
+	
+			while(currNode != null) {
+				travStack.push(currNode);
+				currNode = currNode.getLeft();
+			}
 		}
 		
 		/**
@@ -262,31 +266,28 @@ public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E> {
 		 * Returns the next element in the iteration in the in-order sequence.
 		 * 
 		 * @return The next element in the iteration.
-		 * @throws NoSuchElementException
-		 * 			If the iteration has no more elements.
+		 * @throws NoSuchElementException If the iteration has no more elements.
 		 */
 		@Override
 		public E next() throws NoSuchElementException {
-			BSTreeNode<E> node = null;
-			while(!travStack.isEmpty()) {
-				if(currNode != null) {
-					travStack.push(currNode);
-					currNode = currNode.getLeft();
-				}
-				else {
-					node = travStack.pop();
-					currNode = node.getRight();
-						
-				}
+			if (!hasNext()) throw new NoSuchElementException();
+			
+			currNode = travStack.pop();
+			
+			BSTreeNode<E> node = currNode.getRight();
+			while(node != null) {
+				travStack.push(node);
+				node = node.getLeft();
 			}
-			return node.getElement();
+			
+			return currNode.getElement();
 		}
 	}
 	
 	/***********************************PRE-ORDER INNER CLASS*******************************************/
 	private class BSTPreorderIterator implements Iterator<E> {
 		private Stack<BSTreeNode<E>> travStack;
-		private BSTreeNode<E> currNode = null;
+		private BSTreeNode<E> currNode;
 		
 		/**
 		 * Initialize BSTPreorderIterator
@@ -295,6 +296,10 @@ public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E> {
 		public BSTPreorderIterator() {
 			travStack = new Stack<>();
 			currNode = root;
+			
+			if(root != null) {
+				travStack.push(currNode);
+			}
 		}
 		
 		/**
@@ -318,19 +323,17 @@ public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E> {
 		 */
 		@Override
 		public E next() throws NoSuchElementException {
-			if(currNode != null) {
-				travStack.push(currNode);
-				while(!travStack.isEmpty()) {
-					currNode = travStack.pop();
-					
-					if(currNode.getRight() != null) {
-						travStack.push(currNode.getRight());
-					}
-					if(currNode.getLeft() != null) {
-						travStack.push(currNode.getLeft());
-					}
-				}
+			if (!hasNext()) throw new NoSuchElementException();
 			
+			if(!travStack.isEmpty()) {
+				currNode = travStack.pop();
+				
+				if(currNode.getRight() != null) {
+					travStack.push(currNode.getRight());
+				}
+				if(currNode.getLeft() != null) {
+					travStack.push(currNode.getLeft());
+				}
 			}
 			
 			return currNode.getElement();
@@ -340,7 +343,7 @@ public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E> {
 	/***********************************POST-ORDER INNER CLASS*******************************************/
 	private class BSTPostorderIterator implements Iterator<E> {
 		private Stack<BSTreeNode<E>> travStack;
-		private BSTreeNode<E> currNode = null;
+		private BSTreeNode<E> currNode;
 			
 		/**
 		 * Initialize BSTInorderIterator
@@ -349,6 +352,10 @@ public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E> {
 		public BSTPostorderIterator() {
 			travStack = new Stack<>();
 			currNode = root;
+			
+			if(root != null) {
+				travStack.push(currNode);
+			}
 		}
 			
 		/**
@@ -372,13 +379,11 @@ public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E> {
 		 */
 		@Override
 		public E next() throws NoSuchElementException {
-			if(currNode != null) {
-				travStack.push(currNode);
-			}
+			if (!hasNext()) throw new NoSuchElementException();
 			
 			while(!travStack.isEmpty()) {
 				currNode = travStack.pop();
-
+				
 				if(currNode.getLeft() != null) {
 					travStack.push(currNode.getLeft());
 				}

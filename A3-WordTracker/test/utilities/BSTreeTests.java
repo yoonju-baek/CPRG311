@@ -282,7 +282,10 @@ class BSTreeTests {
 		boolean added = tree.add("D");
 		
 		assertTrue(added);
-		assertEquals("D", tree.search("D").getElement());
+		assertEquals("B", tree.getRoot().getElement());
+		assertEquals("C", tree.getRoot().getRight().getElement());
+		assertEquals("A", tree.getRoot().getLeft().getElement());
+		assertEquals("D", tree.getRoot().getRight().getRight().getElement());
 		assertEquals(4, tree.size());
 		assertEquals(3, tree.getHeight());
 	}
@@ -324,6 +327,18 @@ class BSTreeTests {
 		tree.add("H");
 		tree.add("D");
 		tree.add("G");
+		
+		try {
+		assertEquals("F", tree.getRoot().getElement());
+		assertEquals("C", tree.getRoot().getLeft().getElement());
+		assertEquals("H", tree.getRoot().getRight().getElement());
+		assertEquals("B", tree.getRoot().getLeft().getLeft().getElement());
+		assertEquals("D", tree.getRoot().getLeft().getRight().getElement());
+		assertEquals("G", tree.getRoot().getRight().getLeft().getElement());
+	} catch (TreeException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
 		
 		// In-order = {B, C, D, F, G, H}
 		String[] inOrder = {"B", "C", "D", "F", "G", "H"};
