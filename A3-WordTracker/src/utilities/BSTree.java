@@ -44,6 +44,10 @@ public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E> {
 	 */
 	@Override
 	public BSTreeNode<E> getRoot() throws TreeException {
+		if(root == null) {
+			throw new TreeException();
+		}
+		
 		return this.root;
 	}
 
@@ -54,32 +58,15 @@ public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E> {
 	 */
 	@Override
 	public int getHeight() {
-		return calcHeight(root);
-	}
-	
-	/**
-	 * Recursive method that calculates the height of the binary search tree.
-	 * 
-	 * @param node the link to the current element
-	 * @return the height of the tree.
-	 */
-	private int calcHeight(BSTreeNode<E> node) {
-		if(node == null) {
-			return -1;
-		} else {
-			int leftHeight = calcHeight(node.getLeft());
-			int rightHeight = calcHeight(node.getRight());
-			
-			if(leftHeight > rightHeight) {
-				return (leftHeight + 1);
-			}
-			else {
-				return (rightHeight + 1);
-			}
+		if(root == null) {
+			return 0;
+		}
+		else {
+			return root.getHeight();
 		}
 	}
 	
-
+	
 	/**
 	 * The number of elements currently stored in the tree is counted and the value is returned.
 	 * 
@@ -87,22 +74,14 @@ public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E> {
 	 */
 	@Override
 	public int size() {
-		return calcSize(root);
-	}
-	
-	/**
-	 * Recursive method that calculates the size of the binary search tree.
-	 * 
-	 * @param node the link to the current element
-	 * @return number of elements currently stored in tree.
-	 */
-	private int calcSize(BSTreeNode<E> node) {
-		if(node == null) {
-			return 0;	
-		} else {
-			return (calcSize(node.getLeft()) + calcSize(node.getRight()) + 1);
+		if(root == null) {
+			return 0;
+		}
+		else {
+			return root.getNumberNodes();
 		}
 	}
+	
 
 	/**
 	 * Checks if the tree is currently empty.
@@ -146,12 +125,16 @@ public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E> {
 	 */
 	@Override
 	public BSTreeNode<E> search(E entry) throws TreeException {
+		if(root == null) {
+			throw new TreeException();
+		}
+		
 		BSTreeNode<E> node = root;
 		
 		while(node != null) {
-			if(node.getElement().compareTo(entry) < 0) {
+			if(node.getElement().compareTo(entry) > 0) {
 				node = node.getLeft();
-			} else if(node.getElement().compareTo(entry) > 0){
+			} else if(node.getElement().compareTo(entry) < 0){
 				node = node.getRight();
 			} else {
 				break;
@@ -171,15 +154,44 @@ public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E> {
 	 */
 	@Override
 	public boolean add(E newEntry) throws NullPointerException {
+		if(newEntry == null) {
+			throw new NullPointerException();
+		}
+		
 		boolean addResult = false;
 		
-		try {
-			if(search(newEntry) != null) {
-				search(newEntry).setElement(newEntry);
-				addResult = true;
+		BSTreeNode<E> newNode = new BSTreeNode<E>(newEntry, null, null);
+		
+		if(root == null) {
+			root = newNode;
+			addResult = true;
+		}
+		else {
+			BSTreeNode<E> node = root;
+				
+			while(node != null) {
+				if(node.getElement().compareTo(newEntry) > 0) {
+					if(node.hasLeftChild()) {
+						node = node.getLeft();
+					}
+					else {
+						node.setLeft(newNode);
+						addResult = true;
+					}
+				} 
+				else if(node.getElement().compareTo(newEntry) < 0) {
+					if(node.hasRightChild()) {
+						node = node.getRight();
+					} else {
+						node.setRight(newNode);
+						addResult = true;
+					}
+				}
+				else {
+					// if equal????
+					break;
+				}
 			}
-		} catch (TreeException e) {
-			e.printStackTrace();
 		}
 		
 		return addResult;
@@ -193,11 +205,7 @@ public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E> {
 	 */
 	@Override
 	public Iterator<E> inorderIterator() {
-		BSTInorderIterator inorder = new BSTInorderIterator(root);
-		while(inorder.hasNext()) {
-			inorder.next();
-		}
-		return inorder;		
+		return new BSTInorderIterator();
 	}
 
 	/**
@@ -208,8 +216,7 @@ public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E> {
 	 */
 	@Override
 	public Iterator<E> preorderIterator() {
-
-		return null;
+		return new BSTPreorderIterator();
 	}
 
 	/**
@@ -220,22 +227,27 @@ public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E> {
 	 */
 	@Override
 	public Iterator<E> postorderIterator() {
-		
-		return null;
+		return new BSTPostorderIterator();
 	}
 
 	/***********************************IN-ORDER INNER CLASS*******************************************/
 	private class BSTInorderIterator implements Iterator<E> {
-		
-		Stack<BSTreeNode<E>> stack = new Stack<BSTreeNode<E>>();
+		private Stack<BSTreeNode<E>> travStack;
+		private BSTreeNode<E> currNode;
 		
 		/**
 		 * Initialize BSTInorderIterator
 		 * 
 		 * @param root root node of the tree
 		 */
-		public BSTInorderIterator(BSTreeNode<E> root) {
-			pushInorderBSTNode(root);
+		public BSTInorderIterator() {
+			travStack = new Stack<>();
+			currNode = root;
+	
+			while(currNode != null) {
+				travStack.push(currNode);
+				currNode = currNode.getLeft();
+			}
 		}
 		
 		/**
@@ -247,51 +259,46 @@ public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E> {
 		 */
 		@Override
 		public boolean hasNext() {
-			return (!stack.empty());
+			return (!travStack.isEmpty());
 		}
 
 		/**
 		 * Returns the next element in the iteration in the in-order sequence.
 		 * 
 		 * @return The next element in the iteration.
-		 * @throws NoSuchElementException
-		 * 			If the iteration has no more elements.
+		 * @throws NoSuchElementException If the iteration has no more elements.
 		 */
 		@Override
 		public E next() throws NoSuchElementException {
-			BSTreeNode<E> newNode = stack.pop();
-			pushInorderBSTNode(newNode.getRight());
-
-			return newNode.getElement(); 
-		}
-		
-		/**
-		 * All nodes are stored into the stack in the the in-order sequence
-		 * 
-		 * @param node the link to the current element
-		 */
-		private void pushInorderBSTNode(BSTreeNode<E> node) {
+			if (!hasNext()) throw new NoSuchElementException();
+			
+			currNode = travStack.pop();
+			
+			BSTreeNode<E> node = currNode.getRight();
 			while(node != null) {
-				stack.push(node);
+				travStack.push(node);
 				node = node.getLeft();
 			}
+			
+			return currNode.getElement();
 		}
-
 	}
 	
 	/***********************************PRE-ORDER INNER CLASS*******************************************/
 	private class BSTPreorderIterator implements Iterator<E> {
-		
-		Stack<BSTreeNode<E>> stack = new Stack<BSTreeNode<E>>();
+		private Stack<BSTreeNode<E>> travStack;
+		private BSTreeNode<E> currNode;
 		
 		/**
 		 * Initialize BSTPreorderIterator
-		 * 
-		 * @param root root node of the tree
+		 * iterate Root Left Right
 		 */
-		public BSTPreorderIterator(BSTreeNode<E> root) {
+		public BSTPreorderIterator() {
+			travStack = new Stack<>();
+			currNode = root;
+			
 			if(root != null) {
-				stack.push(root);
+				travStack.push(currNode);
 			}
 		}
 		
@@ -304,7 +311,7 @@ public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E> {
 		 */
 		@Override
 		public boolean hasNext() {
-			return (!stack.empty());
+			return (!travStack.isEmpty());
 		}
 
 		/**
@@ -316,80 +323,79 @@ public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E> {
 		 */
 		@Override
 		public E next() throws NoSuchElementException {
-			BSTreeNode<E> newNode = stack.pop();
+			if (!hasNext()) throw new NoSuchElementException();
 			
-			if(newNode.getRight() != null) {
-				stack.push(newNode.getRight());
+			if(!travStack.isEmpty()) {
+				currNode = travStack.pop();
+				
+				if(currNode.getRight() != null) {
+					travStack.push(currNode.getRight());
+				}
+				if(currNode.getLeft() != null) {
+					travStack.push(currNode.getLeft());
+				}
 			}
-			if(newNode.getLeft() != null) {
-				stack.push(newNode.getLeft());
-			}
-
-			return newNode.getElement(); 
+			
+			return currNode.getElement();
 		}
 	}
 
-		/***********************************POST-ORDER INNER CLASS*******************************************/
-		private class BSTPostorderIterator implements Iterator<E> {
+	/***********************************POST-ORDER INNER CLASS*******************************************/
+	private class BSTPostorderIterator implements Iterator<E> {
+		private Stack<BSTreeNode<E>> travStack;
+		private BSTreeNode<E> currNode;
 			
-			Stack<BSTreeNode<E>> stack = new Stack<BSTreeNode<E>>();
+		/**
+		 * Initialize BSTInorderIterator
+		 * 
+		 */
+		public BSTPostorderIterator() {
+			travStack = new Stack<>();
+			currNode = root;
 			
-			/**
-			 * Initialize BSTInorderIterator
-			 * 
-			 * @param root root node of the tree
-			 */
-			public BSTPostorderIterator(BSTreeNode<E> root) {
-				pushPostorderBSTNode(root);
-			}
-			
-			/**
-			 * Returns true if the iteration has more elements. 
-			 * (In other words, returns true if next() 
-			 * would return an element rather than throwing an exception.)
-			 * 
-			 * @return true if the iterator has more elements.
-			 */
-			@Override
-			public boolean hasNext() {
-				return (!stack.empty());
-			}
-
-			/**
-			 * Returns the next element in the iteration in the post-order sequence.
-			 * 
-			 * @return The next element in the iteration.
-			 * @throws NoSuchElementException
-			 * 			If the iteration has no more elements.
-			 */
-			@Override
-			public E next() throws NoSuchElementException {
-				BSTreeNode<E> newNode = stack.pop();
-				if(!stack.empty()) {
-					if(newNode == stack.peek().getLeft()) {
-						pushPostorderBSTNode(stack.peek().getRight());
-					}
-				}
-
-				return newNode.getElement(); 
-			}
-			
-			/**
-			 * All nodes are stored into the stack in the post-order sequence
-			 * 
-			 * @param node the link to the current element
-			 */
-			private void pushPostorderBSTNode(BSTreeNode<E> node) {
-				while(node != null) {
-					stack.push(node);
-					
-					if(node.getLeft() != null) {
-						node = node.getLeft();	
-					} else {
-						node = node.getRight();
-					}
-				}
+			if(root != null) {
+				travStack.push(currNode);
 			}
 		}
-	
+			
+		/**
+		 * Returns true if the iteration has more elements. 
+		 * (In other words, returns true if next() 
+		 * would return an element rather than throwing an exception.)
+		 * 
+		 * @return true if the iterator has more elements.
+		 */
+		@Override
+		public boolean hasNext() {
+			return (!travStack.isEmpty());
+		}
+
+		/**
+		 * Returns the next element in the iteration in the post-order sequence.
+		 * 
+		 * @return The next element in the iteration.
+		 * @throws NoSuchElementException
+		 * 			If the iteration has no more elements.
+		 */
+		@Override
+		public E next() throws NoSuchElementException {
+			if (!hasNext()) throw new NoSuchElementException();
+			
+			while(!travStack.isEmpty()) {
+				currNode = travStack.pop();
+				
+				if(currNode.getLeft() != null) {
+					travStack.push(currNode.getLeft());
+				}
+				
+				if(currNode.getRight() != null) {
+					travStack.push(currNode.getRight());
+				}
+			}
+			
+			return currNode.getElement();
+		}
+
+	}
 }
+
