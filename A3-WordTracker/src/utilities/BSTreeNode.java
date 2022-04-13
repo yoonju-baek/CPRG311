@@ -118,5 +118,39 @@ public class BSTreeNode<E> implements Serializable {
 	public boolean isLeaf() {
 		return (!hasLeftChild() && !hasRightChild());
 	}
+	
+	public int getNumberNodes() {
+		return (1 + ((hasLeftChild()) ? left.getNumberNodes() : 0)
+			 + ((hasRightChild()) ? right.getNumberNodes() : 0));
+	}
+	
+	public int getHeight() {
+		int leftH = getHeight(left);
+		int rightH = getHeight(right);
+		
+		if(leftH > rightH) {
+			return leftH + 1;
+		}
+		else {
+			return rightH + 1;
+		}
+	}
+	
+	
+	private int getHeight(BSTreeNode<E> node) {
+		if(node == null) {
+			return 0;
+		} else {
+			int leftHeight = getHeight(node.getLeft());
+			int rightHeight = getHeight(node.getRight());
+			
+			if(leftHeight > rightHeight) {
+				return (leftHeight + 1);
+			}
+			else {
+				return (rightHeight + 1);
+			}
+		}
+	}
 
 }
