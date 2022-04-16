@@ -18,7 +18,7 @@ import exceptions.TreeException;
  * @author Seungjin Moon
  * @author Yoonju Baek
  * 
- * @version Apr 09 2022
+ * @version Apr 13 2022
  * 
  */
 class BSTreeTests {
@@ -43,11 +43,30 @@ class BSTreeTests {
 	 */
 	@Test
 	void testGetRootNonEmpty() throws TreeException {
-		tree.add("B");
-		tree.add("A");
-		tree.add("C");
+		tree.add("fiction");
+		tree.add("cherries");
+		tree.add("voyage");
+		tree.add("lettuce");
+		tree.add("honey");
+		tree.add("bedroom");
+		tree.add("cemetery");
+		tree.add("pencil");
+		tree.add("reaction");
+		tree.add("tree");
+		tree.add("glove");
+		tree.add("cord");
+		tree.add("icicle");
+		tree.add("tub");
+		tree.add("houses");
+		tree.add("boy");
+		tree.add("kite");
+		tree.add("tax");
+		tree.add("war");
+		tree.add("bird");
 		
-		assertEquals("B", tree.getRoot().getElement());
+		
+		
+		assertEquals("fiction", tree.getRoot().getElement());
 	}
 
 	/**
@@ -70,14 +89,28 @@ class BSTreeTests {
 	 */
 	@Test
 	void testGetHeightNonEmpty() {
-		tree.add("F");
-		tree.add("C");
-		tree.add("B");
-		tree.add("H");
-		tree.add("D");
-		tree.add("G");
-
-		assertEquals(3, tree.getHeight());
+		tree.add("fiction");
+		tree.add("cherries");
+		tree.add("voyage");
+		tree.add("lettuce");
+		tree.add("honey");
+		tree.add("bedroom");
+		tree.add("cemetery");
+		tree.add("pencil");
+		tree.add("reaction");
+		tree.add("tree");
+		tree.add("glove");
+		tree.add("cord");
+		tree.add("icicle");
+		tree.add("tub");
+		tree.add("houses");
+		tree.add("boy");
+		tree.add("kite");
+		tree.add("tax");
+		tree.add("war");
+		tree.add("bird");
+		
+		assertEquals(7, tree.getHeight());
 	}
 
 	/**
@@ -95,14 +128,28 @@ class BSTreeTests {
 	 */
 	@Test
 	void testGetSizeNonEmpty() {
-		tree.add("F");
-		tree.add("C");
-		tree.add("B");
-		tree.add("H");
-		tree.add("D");
-		tree.add("G");
+		tree.add("fiction");
+		tree.add("cherries");
+		tree.add("voyage");
+		tree.add("lettuce");
+		tree.add("honey");
+		tree.add("bedroom");
+		tree.add("cemetery");
+		tree.add("pencil");
+		tree.add("reaction");
+		tree.add("tree");
+		tree.add("glove");
+		tree.add("cord");
+		tree.add("icicle");
+		tree.add("tub");
+		tree.add("houses");
+		tree.add("boy");
+		tree.add("kite");
+		tree.add("tax");
+		tree.add("war");
+		tree.add("bird");
 		
-		assertEquals(6, tree.size());
+		assertEquals(20, tree.size());
 	}	
 	
 	/**
@@ -129,9 +176,9 @@ class BSTreeTests {
 	 */
 	@Test
 	void testIsEmptyNonEmpty() {
-		tree.add("B");
-		tree.add("A");
-		tree.add("C");
+		tree.add("fiction");
+		tree.add("cherries");
+		tree.add("voyage");
 		
 		assertFalse(tree.isEmpty());
 	}
@@ -142,11 +189,28 @@ class BSTreeTests {
 	 */
 	@Test
 	void testClear() {
-		tree.add("B");
-		tree.add("A");
-		tree.add("C");
+		tree.add("fiction");
+		tree.add("cherries");
+		tree.add("voyage");
+		tree.add("lettuce");
+		tree.add("honey");
+		tree.add("bedroom");
+		tree.add("cemetery");
+		tree.add("pencil");
+		tree.add("reaction");
+		tree.add("tree");
+		tree.add("glove");
+		tree.add("cord");
+		tree.add("icicle");
+		tree.add("tub");
+		tree.add("houses");
+		tree.add("boy");
+		tree.add("kite");
+		tree.add("tax");
+		tree.add("war");
+		tree.add("bird");
 		
-		assertEquals(3, tree.size());
+		assertEquals(20, tree.size());
 		
 		tree.clear();
 
@@ -162,14 +226,28 @@ class BSTreeTests {
 	 */
 	@Test
 	void testContainsNonEmptyMatching() throws TreeException {	
-		tree.add("F");
-		tree.add("C");
-		tree.add("B");
-		tree.add("H");
-		tree.add("D");
-		tree.add("G");
+		tree.add("fiction");
+		tree.add("cherries");
+		tree.add("voyage");
+		tree.add("lettuce");
+		tree.add("honey");
+		tree.add("bedroom");
+		tree.add("cemetery");
+		tree.add("pencil");
+		tree.add("reaction");
+		tree.add("tree");
+		tree.add("glove");
+		tree.add("cord");
+		tree.add("icicle");
+		tree.add("tub");
+		tree.add("houses");
+		tree.add("boy");
+		tree.add("kite");
+		tree.add("tax");
+		tree.add("war");
+		tree.add("bird");
 		
-		assertTrue(tree.contains("D"));
+		assertTrue(tree.contains("houses"));
 	}
 	
 	/**
@@ -179,14 +257,28 @@ class BSTreeTests {
 	 */
 	@Test
 	void testContainsNonEmptyNotMatching() throws TreeException {		
-		tree.add("F");
-		tree.add("C");
-		tree.add("B");
-		tree.add("H");
-		tree.add("D");
-		tree.add("G");
+		tree.add("fiction");
+		tree.add("cherries");
+		tree.add("voyage");
+		tree.add("lettuce");
+		tree.add("honey");
+		tree.add("bedroom");
+		tree.add("cemetery");
+		tree.add("pencil");
+		tree.add("reaction");
+		tree.add("tree");
+		tree.add("glove");
+		tree.add("cord");
+		tree.add("icicle");
+		tree.add("tub");
+		tree.add("houses");
+		tree.add("boy");
+		tree.add("kite");
+		tree.add("tax");
+		tree.add("war");
+		tree.add("bird");
 		
-		assertFalse(tree.contains("A"));
+		assertFalse(tree.contains("file"));
 	}
 	
 	/**
@@ -196,7 +288,7 @@ class BSTreeTests {
 	@Test
 	void testContainsEmpty() {	
 		try {
-			tree.contains("D");
+			tree.contains("tree");
 			fail("TreeException wasn't thrown!");
 		} catch (TreeException e) {
 			assertTrue(true);
@@ -211,7 +303,7 @@ class BSTreeTests {
 	@Test
 	void testSearchEmpty() {
 		try {
-			tree.search("D");
+			tree.search("tree");
 			fail("TreeException wasn't thrown!");
 		} catch (TreeException e) {
 			assertTrue(true);
@@ -225,14 +317,28 @@ class BSTreeTests {
 	 */
 	@Test
 	void testSearchNonEmptyMatching() throws TreeException {
-		tree.add("F");
-		tree.add("C");
-		tree.add("B");
-		tree.add("H");
-		tree.add("D");
-		tree.add("G");
+		tree.add("fiction");
+		tree.add("cherries");
+		tree.add("voyage");
+		tree.add("lettuce");
+		tree.add("honey");
+		tree.add("bedroom");
+		tree.add("cemetery");
+		tree.add("pencil");
+		tree.add("reaction");
+		tree.add("tree");
+		tree.add("glove");
+		tree.add("cord");
+		tree.add("icicle");
+		tree.add("tub");
+		tree.add("houses");
+		tree.add("boy");
+		tree.add("kite");
+		tree.add("tax");
+		tree.add("war");
+		tree.add("bird");
 		
-		assertEquals("D", tree.search("D").getElement());
+		assertEquals("kite", tree.search("kite").getElement());
 	}
 	
 	/**
@@ -242,14 +348,28 @@ class BSTreeTests {
 	 */
 	@Test
 	void testSearchNonEmptyNotMatching() throws TreeException {
-		tree.add("F");
-		tree.add("C");
-		tree.add("B");
-		tree.add("H");
-		tree.add("D");
-		tree.add("G");
+		tree.add("fiction");
+		tree.add("cherries");
+		tree.add("voyage");
+		tree.add("lettuce");
+		tree.add("honey");
+		tree.add("bedroom");
+		tree.add("cemetery");
+		tree.add("pencil");
+		tree.add("reaction");
+		tree.add("tree");
+		tree.add("glove");
+		tree.add("cord");
+		tree.add("icicle");
+		tree.add("tub");
+		tree.add("houses");
+		tree.add("boy");
+		tree.add("kite");
+		tree.add("tax");
+		tree.add("war");
+		tree.add("bird");
 		
-		assertNull(tree.search("A"));
+		assertNull(tree.search("file"));
 	}
 
 	/**
@@ -260,10 +380,10 @@ class BSTreeTests {
 	 */
 	@Test
 	void testAddEEmpty() throws TreeException {
-		boolean added = tree.add("A");
+		boolean added = tree.add("fiction");
 		
 		assertTrue(added);
-		assertEquals("A", tree.getRoot().getElement());
+		assertEquals("fiction", tree.getRoot().getElement());
 		assertEquals(1, tree.size());
 	}
 	
@@ -275,19 +395,37 @@ class BSTreeTests {
 	 */
 	@Test
 	void testAddENonEmpty() throws TreeException {
-		tree.add("B");
-		tree.add("A");
-		tree.add("C");
+		tree.add("fiction");
+		tree.add("cherries");
+		tree.add("voyage");
+		tree.add("lettuce");
+		tree.add("honey");
+		tree.add("bedroom");
+		tree.add("cemetery");
+		tree.add("pencil");
+		tree.add("reaction");
+		tree.add("tree");
+		tree.add("glove");
+		tree.add("cord");
+		tree.add("icicle");
+		tree.add("tub");
+		tree.add("houses");
+		tree.add("boy");
+		tree.add("kite");
+		tree.add("tax");
+		tree.add("war");
 		
-		boolean added = tree.add("D");
+		boolean added = tree.add("bird");
 		
 		assertTrue(added);
-		assertEquals("B", tree.getRoot().getElement());
-		assertEquals("C", tree.getRoot().getRight().getElement());
-		assertEquals("A", tree.getRoot().getLeft().getElement());
-		assertEquals("D", tree.getRoot().getRight().getRight().getElement());
-		assertEquals(4, tree.size());
-		assertEquals(3, tree.getHeight());
+		assertEquals("fiction", tree.getRoot().getElement());
+		assertEquals("cherries", tree.getRoot().getLeft().getElement());
+		assertEquals("bedroom", tree.getRoot().getLeft().getLeft().getElement());
+		assertEquals("cemetery", tree.getRoot().getLeft().getLeft().getRight().getElement());
+		assertEquals("boy", tree.getRoot().getLeft().getLeft().getRight().getLeft().getElement());
+		assertEquals("bird", tree.getRoot().getLeft().getLeft().getRight().getLeft().getLeft().getElement());
+		assertEquals(20, tree.size());
+		assertEquals(7, tree.getHeight());
 	}
 	
 	/**
@@ -321,27 +459,57 @@ class BSTreeTests {
 	 */
 	@Test
 	void testInorderIteratorNonEmpty() {
-		tree.add("F");
-		tree.add("C");
-		tree.add("B");
-		tree.add("H");
-		tree.add("D");
-		tree.add("G");
+		tree.add("fiction");
+		tree.add("cherries");
+		tree.add("voyage");
+		tree.add("lettuce");
+		tree.add("honey");
+		tree.add("bedroom");
+		tree.add("cemetery");
+		tree.add("pencil");
+		tree.add("reaction");
+		tree.add("tree");
+		tree.add("glove");
+		tree.add("cord");
+		tree.add("icicle");
+		tree.add("tub");
+		tree.add("houses");
+		tree.add("boy");
+		tree.add("kite");
+		tree.add("tax");
+		tree.add("war");
+		tree.add("bird");
 		
 		try {
-		assertEquals("F", tree.getRoot().getElement());
-		assertEquals("C", tree.getRoot().getLeft().getElement());
-		assertEquals("H", tree.getRoot().getRight().getElement());
-		assertEquals("B", tree.getRoot().getLeft().getLeft().getElement());
-		assertEquals("D", tree.getRoot().getLeft().getRight().getElement());
-		assertEquals("G", tree.getRoot().getRight().getLeft().getElement());
+			// left tree of the root
+			assertEquals("fiction", tree.getRoot().getElement());
+			assertEquals("cherries", tree.getRoot().getLeft().getElement());
+			assertEquals("bedroom", tree.getRoot().getLeft().getLeft().getElement());
+			assertEquals("cemetery", tree.getRoot().getLeft().getLeft().getRight().getElement());
+			assertEquals("boy", tree.getRoot().getLeft().getLeft().getRight().getLeft().getElement());
+			assertEquals("bird", tree.getRoot().getLeft().getLeft().getRight().getLeft().getLeft().getElement());
+			assertEquals("cord", tree.getRoot().getLeft().getRight().getElement());
+			// right tree of the root
+			assertEquals("voyage", tree.getRoot().getRight().getElement());
+			assertEquals("lettuce", tree.getRoot().getRight().getLeft().getElement());
+			assertEquals("honey", tree.getRoot().getRight().getLeft().getLeft().getElement());
+			assertEquals("glove", tree.getRoot().getRight().getLeft().getLeft().getLeft().getElement());
+			assertEquals("icicle", tree.getRoot().getRight().getLeft().getLeft().getRight().getElement());
+			assertEquals("houses", tree.getRoot().getRight().getLeft().getLeft().getRight().getLeft().getElement());
+			assertEquals("kite", tree.getRoot().getRight().getLeft().getLeft().getRight().getRight().getElement());
+			assertEquals("pencil", tree.getRoot().getRight().getLeft().getRight().getElement());			
+			assertEquals("reaction", tree.getRoot().getRight().getLeft().getRight().getRight().getElement());
+			assertEquals("tree", tree.getRoot().getRight().getLeft().getRight().getRight().getRight().getElement());
+			assertEquals("tax", tree.getRoot().getRight().getLeft().getRight().getRight().getRight().getLeft().getElement());
+			assertEquals("tub", tree.getRoot().getRight().getLeft().getRight().getRight().getRight().getRight().getElement());
+			assertEquals("war", tree.getRoot().getRight().getRight().getElement());
+
 	} catch (TreeException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
 		
-		// In-order = {B, C, D, F, G, H}
-		String[] inOrder = {"B", "C", "D", "F", "G", "H"};
+		String[] inOrder = {"bedroom", "bird", "boy", "cemetery", "cherries", "cord", "fiction", "glove", "honey", "houses", "icicle", "kite", "lettuce", "pencil", "reaction", "tax", "tree", "tub", "voyage", "war"}; 
 		
 		Iterator<String> iterator = tree.inorderIterator();
 		assertTrue(iterator.hasNext());
@@ -373,15 +541,28 @@ class BSTreeTests {
 	 */
 	@Test
 	void testPreorderIteratorNonEmpty() {
-		tree.add("F");
-		tree.add("C");
-		tree.add("B");
-		tree.add("H");
-		tree.add("D");
-		tree.add("G");
+		tree.add("fiction");
+		tree.add("cherries");
+		tree.add("voyage");
+		tree.add("lettuce");
+		tree.add("honey");
+		tree.add("bedroom");
+		tree.add("cemetery");
+		tree.add("pencil");
+		tree.add("reaction");
+		tree.add("tree");
+		tree.add("glove");
+		tree.add("cord");
+		tree.add("icicle");
+		tree.add("tub");
+		tree.add("houses");
+		tree.add("boy");
+		tree.add("kite");
+		tree.add("tax");
+		tree.add("war");
+		tree.add("bird");
 		
-		// Pre-order = {F, C, B, D, H, G}
-		String[] preOrder = {"F", "C", "B", "D", "H", "G"};
+		String[] preOrder = {"fiction", "cherries", "bedroom", "cemetery", "boy", "bird", "cord", "voyage", "lettuce", "honey", "glove", "icicle", "houses", "kite", "pencil", "reaction", "tree", "tax", "tub", "war"};
 		
 		Iterator<String> iterator = tree.preorderIterator();
 		assertTrue(iterator.hasNext());
@@ -413,15 +594,28 @@ class BSTreeTests {
 	 */
 	@Test
 	void testPostorderIteratorNonEmpty() {
-		tree.add("F");
-		tree.add("C");
-		tree.add("B");
-		tree.add("H");
-		tree.add("D");
-		tree.add("G");
+		tree.add("fiction");
+		tree.add("cherries");
+		tree.add("voyage");
+		tree.add("lettuce");
+		tree.add("honey");
+		tree.add("bedroom");
+		tree.add("cemetery");
+		tree.add("pencil");
+		tree.add("reaction");
+		tree.add("tree");
+		tree.add("glove");
+		tree.add("cord");
+		tree.add("icicle");
+		tree.add("tub");
+		tree.add("houses");
+		tree.add("boy");
+		tree.add("kite");
+		tree.add("tax");
+		tree.add("war");
+		tree.add("bird");
 		
-		// Post-order = {B, D, C, G, H, F}
-		String[] postOrder = {"B", "D", "C", "G", "H", "F"};
+		String[] postOrder = {"bird", "boy", "cemetery", "bedroom", "cord", "cherries", "glove", "houses", "kite", "icicle", "honey", "tax", "tub", "tree", "reaction", "pencil", "lettuce", "war", "voyage", "fiction"};
 		
 		Iterator<String> iterator = tree.postorderIterator();
 		assertTrue(iterator.hasNext());
