@@ -480,35 +480,6 @@ class BSTreeTests {
 		tree.add("war");
 		tree.add("bird");
 		
-		try {
-			// left tree of the root
-			assertEquals("fiction", tree.getRoot().getElement());
-			assertEquals("cherries", tree.getRoot().getLeft().getElement());
-			assertEquals("bedroom", tree.getRoot().getLeft().getLeft().getElement());
-			assertEquals("cemetery", tree.getRoot().getLeft().getLeft().getRight().getElement());
-			assertEquals("boy", tree.getRoot().getLeft().getLeft().getRight().getLeft().getElement());
-			assertEquals("bird", tree.getRoot().getLeft().getLeft().getRight().getLeft().getLeft().getElement());
-			assertEquals("cord", tree.getRoot().getLeft().getRight().getElement());
-			// right tree of the root
-			assertEquals("voyage", tree.getRoot().getRight().getElement());
-			assertEquals("lettuce", tree.getRoot().getRight().getLeft().getElement());
-			assertEquals("honey", tree.getRoot().getRight().getLeft().getLeft().getElement());
-			assertEquals("glove", tree.getRoot().getRight().getLeft().getLeft().getLeft().getElement());
-			assertEquals("icicle", tree.getRoot().getRight().getLeft().getLeft().getRight().getElement());
-			assertEquals("houses", tree.getRoot().getRight().getLeft().getLeft().getRight().getLeft().getElement());
-			assertEquals("kite", tree.getRoot().getRight().getLeft().getLeft().getRight().getRight().getElement());
-			assertEquals("pencil", tree.getRoot().getRight().getLeft().getRight().getElement());			
-			assertEquals("reaction", tree.getRoot().getRight().getLeft().getRight().getRight().getElement());
-			assertEquals("tree", tree.getRoot().getRight().getLeft().getRight().getRight().getRight().getElement());
-			assertEquals("tax", tree.getRoot().getRight().getLeft().getRight().getRight().getRight().getLeft().getElement());
-			assertEquals("tub", tree.getRoot().getRight().getLeft().getRight().getRight().getRight().getRight().getElement());
-			assertEquals("war", tree.getRoot().getRight().getRight().getElement());
-
-	} catch (TreeException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-		
 		String[] inOrder = {"bedroom", "bird", "boy", "cemetery", "cherries", "cord", "fiction", "glove", "honey", "houses", "icicle", "kite", "lettuce", "pencil", "reaction", "tax", "tree", "tub", "voyage", "war"}; 
 		
 		Iterator<String> iterator = tree.inorderIterator();
