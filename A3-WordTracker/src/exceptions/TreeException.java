@@ -13,6 +13,9 @@ public class TreeException extends Exception{
 
 	private static final long serialVersionUID = 1L;
 	
+	/**
+	 * Constructors of TreeException
+	 */
 	public TreeException() {
 		super("[TreeException] The Tree is empty.");
 	}

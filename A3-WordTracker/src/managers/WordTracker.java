@@ -1,11 +1,16 @@
 package managers;
 
 import java.io.*;
+
+import exceptions.TreeException;
+import problemdomain.Location;
 import problemdomain.Word;
 import utilities.BSTree;
+import utilities.Iterator;
 
 /**
  *  This class reads text files and collects and stores all words it finds in those files.
+ *  Stores each occurrence of a word in a file and the line on which it was found in that file.
  * 
  * @author Dongyeon Kim
  * @author Seungjin Moon
@@ -16,84 +21,192 @@ import utilities.BSTree;
 public class WordTracker {
 	
 	private BSTree<Word> wordsTree;
+	private String inFilename;
+	private String outFilename;
+	private String printOpt;
 	
-	private String filename;
-	private String recordOption;
-	
+	/**
+	 * Create WordTracker object.
+	 * 
+	 * @param args options that include the input text file, the method of prints and the output file
+	 */
 	public WordTracker(String[] args) {
 		wordsTree = new BSTree<>();
 		
-		if(checkOption(args)) {
+		if((args.length >= 2) && checkOption(args)) {
 			loadWordsFromFile();
+			reportWordInfo();
 		}
 		else {
 			printOptionGuidance();
 		}
 	}
 	
+	/**
+	 * Determines the options for tracking words from the text file.
+	 * 
+	 * @param options options include the input text file, the method of prints and the output file(optional)
+	 */
 	private boolean checkOption(String[] options) {
 		boolean isValid = false;
+		
+		if(options.length < 2) {
+			return false;
+		}
 		
 		// check if the first option is the file or not
 		File textFile = new File(options[0]);
 		if(!textFile.isFile()) {
 			System.out.println("First argument should be a file name.");
-		}
-		else if(!textFile.exists()) {
-			System.out.println("The file '"+ textFile.getAbsolutePath() + "' is not exist.");
-		}
-		else {
-			filename = options[0];
-			
-			// check word recording option
-			String recordOpt = options[1];
-			if(!recordOpt.isBlank() && 
-				(recordOpt.equals("-pf") || recordOpt.equals("-pl") || recordOpt.equals("-po"))) {
-				recordOption = recordOpt;
-				isValid = true;
-			}
-			else {
-				System.out.println("Second argument is required and only options are '-pf', '-pl' or '-po'.");
-			}
+			return false;
 		}
 		
+		if(!textFile.exists()) {
+			System.out.println("The file '"+ textFile.getAbsolutePath() + "' is not exist.");
+			return false;
+		}
+		
+		inFilename = options[0];
+			
+		// Check word recording option
+		String record = options[1];
+		if(!record.isBlank() && 
+		  (record.equals("-pf") || record.equals("-pl") || record.equals("-po"))) {
+			printOpt = record;
+			isValid = true;
+		}
+		else {
+			System.out.println("Second argument is required and only options are '-pf', '-pl' or '-po'.");
+			isValid = false;
+		}
+
 		// Check optional argument to the report file
-		if(!options[2].isBlank() && options[2].equals("-f")) {
-			if(!options[3].isBlank() && options[3].endsWith(".txt")) {
-				// record the informtaion
-			}
+		if(options.length >= 4 && 
+		   options[2].equals("-f") && 
+		   options[3].endsWith(".txt")) {
+				outFilename = options[3];
+				isValid = true;
+		}
+		else {
+				isValid = false;
 		}
 		
 		return isValid;
 		
 	}
 	
+	/**
+	 * Method to load words from the text file and fill to BS Tree
+	 */
 	private void loadWordsFromFile() {
 		BufferedReader fin;
-		
+		String line;
 		int currLineNumber = 0;
 		
 		try {
-			fin = new BufferedReader(new FileReader(filename));
+			fin = new BufferedReader(new FileReader(inFilename));
 			
-			String line = fin.readLine();
-			// remove punctuations
-			line =  line.replaceAll("[.,';-!\"?:()<>\\[\\]{}#$%&*+/=@^_`|~]", " ");
-			
-			while(line != null) {
+			while((line = fin.readLine()) != null) {
+				// remove punctuations
+				line =  line.replaceAll("[!\"#$%&'()*+,-./:;<=>?@\\[\\]^_`{|}~]", " ");
+				
 				currLineNumber++;
 				
 				String[] words = line.split(" ");
 				
 				for(String word:words) {
-
+					if(word.isBlank()) {
+						continue;
+					}
+					
+					Word nWord = new Word(word, new Location(inFilename, currLineNumber));
+					
+					if(wordsTree.isEmpty() || !wordsTree.contains(nWord)) {
+						wordsTree.add(nWord);
+					}
+					else {
+						Word oWord = wordsTree.search(nWord).getElement();
+						
+						// increase occurrence in the list 
+						oWord.increaseOccurrence();
+						
+						// Add new line number
+						for(Location location:oWord.getLocations()) {
+							if(location.getFileName().equals(inFilename) 
+									&& !location.getLineNumbers().contains(currLineNumber)) {
+								location.addLineNumbers(currLineNumber);
+								break;
+							}
+						}
+					}
 				}
-				
 			}
+			
+			fin.close();
 		} catch (IOException e) {
 			e.printStackTrace();
+		} catch (TreeException e) {
+			e.printStackTrace();
 		}
-		
+	}
+	
+	/**
+	 * Method to report in alphabetic order all words along with the corresponding list of files,
+	 * numbers of the lines in which the word occur and the frequency of occurrence of the words.
+	 */
+	private void reportWordInfo() {
+		PrintStream output = null;
+		try {
+			if(outFilename != null) {
+				String path = inFilename.substring(0, inFilename.lastIndexOf("\\")+1);
+					output = new PrintStream(path+outFilename);
+			}
+			else {
+				output = System.out;
+			}
+			
+			Iterator<Word> iterator = (Iterator<Word>) wordsTree.inorderIterator();
+			while(iterator.hasNext()) {
+				Word word = iterator.next();
+				
+				switch (printOpt) {
+					case "-pf":
+						output.println(word.getWord());
+						for(Location location:word.getLocations()) {
+							output.println("\t"+location.getFileName());
+						}
+							
+						break;
+					case "-pl":
+						output.println(word.getWord());
+						output.println("\t"+"Occurrence: " + word.getOccurrence() +  " time(s).");
+						for(Location location:word.getLocations()) {
+							output.println("\t"+location.getFileName());
+						}
+							
+						break;
+					case "-po":
+						output.println(word.getWord());
+						output.println("\t"+"Occurrence: " + word.getOccurrence() +  " time(s).");		
+						for(Location location:word.getLocations()) {
+							output.println("\t"+location.getFileName());
+
+							output.println("\tLine Numbers:");
+							for(int lineNumber:location.getLineNumbers()) {
+								output.println("\t\t"+lineNumber);
+							}
+						}
+							
+						break;
+					}
+						
+				}
+			
+			output.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+
 	}
 	
 	
