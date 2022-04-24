@@ -1,5 +1,6 @@
 package problemdomain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -11,7 +12,10 @@ import java.util.ArrayList;
  * 
  * @version Apr 16 2022
  */
-public class Location {
+public class Location implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+	
 	private String fileName;
 	private ArrayList<Integer> lineNumbers = new ArrayList<>();
 
@@ -57,7 +61,7 @@ public class Location {
 	/**
 	 * Sets the line number in the list
 	 * 
-	 * @param lineNumber the list of the line number
+	 * @param lineNumbers the list of the line number
 	 */
 	public void setLineNumber(ArrayList<Integer> lineNumbers) {
 		this.lineNumbers = lineNumbers;

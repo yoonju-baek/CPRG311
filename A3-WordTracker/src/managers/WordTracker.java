@@ -27,6 +27,8 @@ public class WordTracker implements Serializable {
 	private String outFilename;
 	private String printOpt;
 	
+	private final String WORDTREE_BINARY = "res/repository.ser";
+	
 	/**
 	 * Initializes a BSTree object.
 	 * 
@@ -120,8 +122,12 @@ public class WordTracker implements Serializable {
 		wordsTree = new BSTree<>();
 		
 		if((args.length >= 2) && checkOption(args)) {
+			System.out.println("[Word Tracker]Start proccessing]");
+			deserializeWordsFromFile();
 			loadWordsFromFile();
+			serializeWordsToFile();
 			reportWordInfo();
+			System.out.println("[Word Tracker]End proccess]");
 		}
 		else {
 			printOptionGuidance();
@@ -142,10 +148,6 @@ public class WordTracker implements Serializable {
 		
 		// check if the first option is the file or not
 		File textFile = new File(options[0]);
-		if(!textFile.isFile()) {
-			System.out.println("First argument should be a file name.");
-			return false;
-		}
 		
 		if(!textFile.exists()) {
 			System.out.println("The file '"+ textFile.getAbsolutePath() + "' is not exist.");
@@ -194,7 +196,7 @@ public class WordTracker implements Serializable {
 			
 			while((line = fin.readLine()) != null) {
 				// remove punctuations
-				line =  line.replaceAll("[!\"#$%&'()*+,-./:;<=>?@\\[\\]^_`{|}~]", " ");
+				line =  line.replaceAll("[!\"#$%&()*+,-./:';<=>?@\\[\\]^_`{|}~]", " ");
 				
 				currLineNumber++;
 				
@@ -204,8 +206,8 @@ public class WordTracker implements Serializable {
 					if(word.isBlank()) {
 						continue;
 					}
-					
-					Word nWord = new Word(word, new Location(inFilename, currLineNumber));
+					Location nLocation = new Location(inFilename, currLineNumber);
+					Word nWord = new Word(word, nLocation);
 					
 					if(wordsTree.isEmpty() || !wordsTree.contains(nWord)) {
 						wordsTree.add(nWord);
@@ -213,17 +215,25 @@ public class WordTracker implements Serializable {
 					else {
 						Word oWord = wordsTree.search(nWord).getElement();
 						
-						// increase occurrence in the list 
-						oWord.increaseOccurrence();
 						
-						// Add new line number
+						// Add new location
+						boolean isListed = false;
 						for(Location location:oWord.getLocations()) {
-							if(location.getFileName().equals(inFilename) 
-									&& !location.getLineNumbers().contains(currLineNumber)) {
-								location.addLineNumbers(currLineNumber);
+							if(location.getFileName().equals(inFilename)) {
+								if(!location.getLineNumbers().contains(currLineNumber)) {
+									location.addLineNumbers(currLineNumber);
+								}
+								// increase occurrence in the list 
+								oWord.increaseOccurrence();
+								isListed = true;
 								break;
 							}
 						}
+						
+						if(!isListed) {
+							oWord.addLocation(nLocation);
+						}
+						
 					}
 				}
 			}
@@ -265,7 +275,7 @@ public class WordTracker implements Serializable {
 						break;
 					case "-pl":
 						output.println(word.getWord());
-						output.println("\t"+"Occurrence: " + word.getOccurrence() +  " time(s).");
+						output.println("\t"+"Total Occurrence: " + word.getOccurrence() +  " time(s).");
 						for(Location location:word.getLocations()) {
 							output.println("\t"+location.getFileName());
 						}
@@ -273,7 +283,7 @@ public class WordTracker implements Serializable {
 						break;
 					case "-po":
 						output.println(word.getWord());
-						output.println("\t"+"Occurrence: " + word.getOccurrence() +  " time(s).");		
+						output.println("\t"+"Total Occurrence: " + word.getOccurrence() +  " time(s).");		
 						for(Location location:word.getLocations()) {
 							output.println("\t"+location.getFileName());
 
@@ -293,6 +303,54 @@ public class WordTracker implements Serializable {
 			e.printStackTrace();
 		}
 
+	}
+	
+	/**
+	 * Store the words tree in a binary file
+	 */
+	private void serializeWordsToFile() {
+		try
+		{
+			ObjectOutputStream oos = new ObjectOutputStream(
+					new FileOutputStream(WORDTREE_BINARY));
+
+			oos.writeObject(wordsTree);
+			oos.close();
+		}
+		catch (FileNotFoundException e)
+		{
+			e.printStackTrace();
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Restores the words tree from the binary file
+	 */
+	private void deserializeWordsFromFile() {
+		try
+		{
+			ObjectInputStream ois = new ObjectInputStream(
+						new FileInputStream(WORDTREE_BINARY));
+
+			wordsTree = (BSTree<Word>) ois.readObject();
+			ois.close();
+		}
+		catch (FileNotFoundException e)
+		{
+			return;
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+		catch (ClassNotFoundException e)
+		{
+			e.printStackTrace();
+		}
 	}
 	
 	

@@ -1,5 +1,6 @@
 package problemdomain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -11,7 +12,10 @@ import java.util.ArrayList;
  * 
  * @version Apr 16 2022
  */
-public class Word implements Comparable<Word>{
+public class Word implements Comparable<Word>, Serializable {
+
+	private static final long serialVersionUID = 1L;
+	
 	private String word;
 	private int occurrence;
 	private ArrayList<Location> locations = new ArrayList<>();
@@ -98,6 +102,7 @@ public class Word implements Comparable<Word>{
 	 */
 	public void addLocation(Location locations) {
 		this.locations.add(locations);
+		occurrence++;
 	}
 	
 
