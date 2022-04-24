@@ -238,7 +238,6 @@ public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E> {
 		/**
 		 * Initialize BSTInorderIterator
 		 * 
-		 * @param root root node of the tree
 		 */
 		public BSTInorderIterator() {
 			travStack = new Stack<>();

@@ -68,7 +68,7 @@ public class BSTreeNode<E> implements Serializable {
 	/**
 	 * Sets the left child.
 	 * 
-	 * @param the link to the left child.
+	 * @param left the link to the left child.
 	 */
 	public void setLeft(BSTreeNode<E> left) {
 		this.left = left;
@@ -86,7 +86,7 @@ public class BSTreeNode<E> implements Serializable {
 	/**
 	 * Sets the right child.
 	 * 
-	 * @param the link to the right child.
+	 * @param right the link to the right child.
 	 */
 	public void setRight(BSTreeNode<E> right) {
 		this.right = right;

@@ -37,7 +37,7 @@ class BSTreeTests {
 
 	
 	/**
-	 * Test method for {@link utilities.BSTreeT#getRoot}.
+	 * Test method for {utilities.BSTreeT#getRoot}.
 	 * Check if an root element is retrieved successfully from the non-empty tree
 	 * @throws TreeException if the tree is empty.
 	 */
@@ -70,7 +70,7 @@ class BSTreeTests {
 	}
 
 	/**
-	 * Test method for {@link utilities.BSTreeT#getRoot}.
+	 * Test method for {utilities.BSTreeT#getRoot}.
 	 * Check if the "TreeException" is thrown when retrieving an root element from the empty tree
 	 */
 	@Test
@@ -84,7 +84,7 @@ class BSTreeTests {
 	}
 	
 	/**
-	 * Test method for {@link utilities.BSTreeT#getHeight}.
+	 * Test method for {utilities.BSTreeT#getHeight}.
 	 * Check if the height is retrieved successfully from the Non Empty tree
 	 */
 	@Test
@@ -114,7 +114,7 @@ class BSTreeTests {
 	}
 
 	/**
-	 * Test method for {@link utilities.BSTreeT#getHeight}.
+	 * Test method for {utilities.BSTreeT#getHeight}.
 	 * Check if the height returns -1 from the empty tree
 	 */
 	@Test
@@ -123,7 +123,7 @@ class BSTreeTests {
 	}
 
 	/**
-	 * Test method for {@link utilities.BSTreeT#getSize}.
+	 * Test method for {utilities.BSTreeT#getSize}.
 	 * Check if the size is retrieved successfully from the Non Empty tree
 	 */
 	@Test
@@ -153,7 +153,7 @@ class BSTreeTests {
 	}	
 	
 	/**
-	 * Test method for {@link utilities.BSTreeT#getSize}.
+	 * Test method for {utilities.BSTreeT#getSize}.
 	 * Check if the size returns 0 from the empty tree
 	 */
 	@Test
@@ -162,7 +162,7 @@ class BSTreeTests {
 	}
 	
 	/**
-	 * Test method for {@link utilities.BSTreeT#isEmpty}.
+	 * Test method for {utilities.BSTreeT#isEmpty}.
 	 * Check if the tree is empty 
 	 */
 	@Test
@@ -171,7 +171,7 @@ class BSTreeTests {
 	}
 
 	/**
-	 * Test method for {@link utilities.BSTreeT#isEmpty}.
+	 * Test method for {utilities.BSTreeT#isEmpty}.
 	 * Check if the tree is not empty
 	 */
 	@Test
@@ -184,7 +184,7 @@ class BSTreeTests {
 	}
 	
 	/**
-	 * Test method for {@link utilities.BSTreeT#clear}.
+	 * Test method for {utilities.BSTreeT#clear}.
 	 * Check if the tree will be clear
 	 */
 	@Test
@@ -220,7 +220,7 @@ class BSTreeTests {
 	}	
 	
 	/**
-	 * Test method for {@link utilities.BSTree##contains(java.lang.Object)}.
+	 * Test method for {utilities.BSTree##contains(java.lang.Object)}.
 	 * Check if an element exists in the Non Empty tree
 	 * @throws TreeException if the tree is empty.
 	 */
@@ -251,7 +251,7 @@ class BSTreeTests {
 	}
 	
 	/**
-	 * Test method for {@link utilities.BSTree##contains(java.lang.Object)}.
+	 * Test method for {utilities.BSTree##contains(java.lang.Object)}.
 	 * Check if the "TreeException" is thrown when checking an element exists in the empty tree
 	 * @throws TreeException if the tree is empty.
 	 */
@@ -282,7 +282,7 @@ class BSTreeTests {
 	}
 	
 	/**
-	 * Test method for {@link utilities.BSTree##contains(java.lang.Object)}.
+	 * Test method for {utilities.BSTree##contains(java.lang.Object)}.
 	 * Check if the "TreeException" is thrown when checking an element exists in the empty tree
 	 */
 	@Test
@@ -297,7 +297,7 @@ class BSTreeTests {
 	}
 	
 	/**
-	 * Test method for {@link utilities.BSTree##search(java.lang.Object)}.
+	 * Test method for {utilities.BSTree##search(java.lang.Object)}.
 	 * Returns a node which an element is located in the empty tree
 	 */
 	@Test
@@ -311,7 +311,7 @@ class BSTreeTests {
 	}
 	
 	/**
-	 * Test method for {@link utilities.BSTree##search(java.lang.Object)}.
+	 * Test method for {utilities.BSTree##search(java.lang.Object)}.
 	 * Returns a node which an element is located in the empty tree
 	 * @throws TreeException if the tree is empty.
 	 */
@@ -342,7 +342,7 @@ class BSTreeTests {
 	}
 	
 	/**
-	 * Test method for {@link utilities.BSTree##search(java.lang.Object)}.
+	 * Test method for {utilities.BSTree##search(java.lang.Object)}.
 	 * Returns a node which an element is located in the empty tree
 	 * @throws TreeException if the tree is empty.
 	 */
@@ -373,7 +373,7 @@ class BSTreeTests {
 	}
 
 	/**
-	 * Test method for {@link utilities.BSTree#add(java.lang.Comparable)}.
+	 * Test method for { utilities.BSTree#add(java.lang.Comparable)}.
 	 * Check if an element is added successfully, and the size and the added element are correct
 	 * when adding an element to the empty list.
 	 * @throws TreeException if the tree is empty.
@@ -388,7 +388,7 @@ class BSTreeTests {
 	}
 	
 	/**
-	 * Test method for {@link utilities.BSTree#add(java.lang.Comparable)}.
+	 * Test method for { utilities.BSTree#add(java.lang.Comparable)}.
 	 * Check if an element is added successfully, and the size and the added element are correct
 	 * when adding an element to the non-empty list.
 	 * @throws TreeException if the tree is empty.
@@ -429,7 +429,7 @@ class BSTreeTests {
 	}
 	
 	/**
-	 * Test method for {@link utilities.BSTree#add(java.lang.Comparable)}.
+	 * Test method for { utilities.BSTree#add(java.lang.Comparable)}.
 	 * Check if the "NullPointerException" is thrown when adding "null" to the tree
 	 */
 	@Test
@@ -443,7 +443,7 @@ class BSTreeTests {
 	}
 
 	/**
-	 * Test method for {@link utilities.BSTree#inorderIterator()}.
+	 * Test method for {utilities.BSTree#inorderIterator()}.
 	 */
 	@Test
 	void testInorderIteratorEmpty() {
@@ -455,7 +455,7 @@ class BSTreeTests {
 	}
 	
 	/**
-	 * Test method for {@link utilities.BSTree#inorderIterator()}.
+	 * Test method for {utilities.BSTree#inorderIterator()}.
 	 */
 	@Test
 	void testInorderIteratorNonEmpty() {
@@ -496,7 +496,7 @@ class BSTreeTests {
 	}
 
 	/**
-	 * Test method for {@link utilities.BSTree#preorderIterator()}.
+	 * Test method for {utilities.BSTree#preorderIterator()}.
 	 */
 	@Test
 	void testPreorderIteratorEmpty() {
@@ -508,7 +508,7 @@ class BSTreeTests {
 	}
 	
 	/**
-	 * Test method for {@link utilities.BSTree#preorderIterator()}.
+	 * Test method for {utilities.BSTree#preorderIterator()}.
 	 */
 	@Test
 	void testPreorderIteratorNonEmpty() {
@@ -549,7 +549,7 @@ class BSTreeTests {
 	}
 
 	/**
-	 * Test method for {@link utilities.BSTree#postorderIterator()}.
+	 * Test method for {utilities.BSTree#postorderIterator()}.
 	 */
 	@Test
 	void testPostorderIteratorEmpty() {
@@ -561,7 +561,7 @@ class BSTreeTests {
 	}
 	
 	/**
-	 * Test method for {@link utilities.BSTree#postorderIterator()}.
+	 * Test method for {utilities.BSTree#postorderIterator()}.
 	 */
 	@Test
 	void testPostorderIteratorNonEmpty() {
