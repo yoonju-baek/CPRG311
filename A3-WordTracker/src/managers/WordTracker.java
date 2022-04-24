@@ -56,10 +56,6 @@ public class WordTracker {
 	private boolean checkOption(String[] options) {
 		boolean isValid = false;
 		
-		if(options.length < 2) {
-			return false;
-		}
-		
 		// check if the first option is the file or not
 		File textFile = new File(options[0]);
 		
@@ -83,16 +79,19 @@ public class WordTracker {
 		}
 
 		// Check optional argument to the report file
-		if(options.length >= 4 && 
-		   options[2].equals("-f") && 
+		if(options.length == 3)  {
+			isValid = false;
+		}
+		else if(options.length >= 4) {
+			if(options[2].equals("-f") && 
 		   options[3].endsWith(".txt")) {
-				outFilename = options[3];
-				isValid = true;
-		}
-		else {
+			outFilename = options[3];
+			isValid = true;
+			}
+			else {
 				isValid = false;
+			}				
 		}
-		
 		return isValid;
 		
 	}
