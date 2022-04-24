@@ -18,12 +18,98 @@ import utilities.Iterator;
  * 
  * @version Apr 16 2022
  */
-public class WordTracker {
+public class WordTracker implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	
 	private BSTree<Word> wordsTree;
 	private String inFilename;
 	private String outFilename;
 	private String printOpt;
+	
+	/**
+	 * Initializes a BSTree object.
+	 * 
+	 * @param wordsTree 
+	 * @param inFilename 
+	 * @param outFilename 
+	 * @param printOpt  
+	 */
+	public WordTracker(BSTree<Word> wordsTree, String inFilename, String outFilename, String printOpt) {
+		super();
+		this.wordsTree = wordsTree;
+		this.inFilename = inFilename;
+		this.outFilename = outFilename;
+		this.printOpt = printOpt;
+	}
+	
+	public WordTracker() {
+		super();
+	}
+	
+	  private void readObject(ObjectInputStream InputStream) throws ClassNotFoundException, IOException 
+	  {   
+		wordsTree = InputStream.readUTF();
+	    inFilename = InputStream.readUTF();
+	    outFilename = InputStream.readUTF();
+	    printOpt = InputStream.readUTF();
+	  }
+	 
+	  private void writeObject(ObjectOutputStream OutputStream) throws IOException 
+	  {
+	    OutputStream.writeUTF(wordsTree);
+	    OutputStream.writeUTF(inFilename);
+	    OutputStream.writeUTF(outFilename);
+	    OutputStream.writeUTF(printOpt);
+	  }
+	
+	  public class Serialization 
+	  {
+		  public void main(String[] args) 
+	    {
+	    	// Create new User object
+	    	WordTracker myDetails = new WordTracker("Lokesh", "Gupta", 102825, new Date(Calendar.getInstance().getTimeInMillis()));
+	   
+	    	// Serialization code
+	    	try
+	      {
+	    	  FileOutputStream fileOut = new FileOutputStream("repository.ser");
+	    	  ObjectOutputStream out = new ObjectOutputStream(fileOut);
+	    	  out.writeObject(myDetails);
+	    	  out.close();
+	        fileOut.close();
+	      } 
+	      catch (IOException i) 
+	      {
+	        i.printStackTrace();
+	      }
+	   
+	      // DeSerialization code
+	      WordTracker deserialized = null;
+	      try
+	      {
+	        FileInputStream FIS = new FileInputStream("repository.ser");
+	        ObjectInputStream OIS = new ObjectInputStream(FIS);
+	        deserialized = (WordTracker) OIS.readObject();
+	        OIS.close();
+	        FIS.close();
+	   
+	        // verify the object state
+	        System.out.println(deserialized.getWord());
+	        System.out.println(deserialized.getElement());
+	        System.out.println(deserialized.getLocations());
+	        System.out.println(deserialized.getLineNumbers());
+	      } 
+	      catch (IOException IOE) 
+	      {
+    	  	IOE.printStackTrace();
+	      } 
+	      catch (ClassNotFoundException NFE) 
+	      {
+	    	NFE.printStackTrace();
+	      }
+	    }
+	  }
 	
 	/**
 	 * Create WordTracker object.
