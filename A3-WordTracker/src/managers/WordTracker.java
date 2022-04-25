@@ -133,11 +133,12 @@ public class WordTracker {
 						boolean isListed = false;
 						for(Location location:oWord.getLocations()) {
 							if(location.getFileName().equals(inFilename)) {
+								// increase occurrence in the list 
+								location.increaseOccurrence();
+								
 								if(!location.getLineNumbers().contains(currLineNumber)) {
 									location.addLineNumbers(currLineNumber);
 								}
-								// increase occurrence in the list 
-								oWord.increaseOccurrence();
 								isListed = true;
 								break;
 							}
@@ -168,6 +169,9 @@ public class WordTracker {
 		try {
 			if(outFilename != null) {
 				String path = inFilename.substring(0, inFilename.lastIndexOf("\\")+1);
+				if(path.isBlank()) {
+					path = inFilename.substring(0, inFilename.lastIndexOf("/")+1);
+				}
 					output = new PrintStream(path+outFilename);
 			}
 			else {
@@ -188,17 +192,17 @@ public class WordTracker {
 						break;
 					case "-pl":
 						output.println(word.getWord());
-						output.println("\t"+"Total Occurrence: " + word.getOccurrence() +  " time(s).");
 						for(Location location:word.getLocations()) {
 							output.println("\t"+location.getFileName());
+							output.println("\t"+"Occurrence: " + location.getOccurrence() +  " time(s).");
 						}
 							
 						break;
 					case "-po":
 						output.println(word.getWord());
-						output.println("\t"+"Total Occurrence: " + word.getOccurrence() +  " time(s).");		
 						for(Location location:word.getLocations()) {
 							output.println("\t"+location.getFileName());
+							output.println("\t"+"Occurrence: " + location.getOccurrence() +  " time(s).");
 
 							output.println("\tLine Numbers:");
 							for(int lineNumber:location.getLineNumbers()) {
