@@ -17,6 +17,7 @@ public class Location implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private String fileName;
+	private int occurrence;
 	private ArrayList<Integer> lineNumbers = new ArrayList<>();
 
 	/**
@@ -28,6 +29,7 @@ public class Location implements Serializable {
 	public Location(String fileName, int lineNumber) {
 		super();
 		this.fileName = fileName;
+		this.occurrence =  1;
 		this.lineNumbers.add(lineNumber);
 	}
 
@@ -49,6 +51,22 @@ public class Location implements Serializable {
 		this.fileName = fileName;
 	}
 
+	/**
+	 * Gets the occurrence
+	 * 
+	 * @return the occurrence
+	 */
+	public int getOccurrence() {
+		return occurrence;
+	}
+
+	/**
+	 * Increase the occurrence
+	 */
+	public void increaseOccurrence() {
+		occurrence++;
+	}
+	
 	/**
 	 * Gets the line number list
 	 * 

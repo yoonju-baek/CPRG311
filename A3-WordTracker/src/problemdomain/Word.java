@@ -17,7 +17,7 @@ public class Word implements Comparable<Word>, Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private String word;
-	private int occurrence;
+
 	private ArrayList<Location> locations = new ArrayList<>();
 	
 	/**
@@ -29,7 +29,6 @@ public class Word implements Comparable<Word>, Serializable {
 	public Word(String word, Location locations) {
 		super();
 		this.word = word;
-		this.occurrence =  1;
 		this.locations.add(locations);
 	}
 
@@ -40,7 +39,6 @@ public class Word implements Comparable<Word>, Serializable {
 	 */
 	public Word(String word) {
 		this.word = word;
-		this.occurrence = 1;
 	}
 
 	/**
@@ -59,22 +57,6 @@ public class Word implements Comparable<Word>, Serializable {
 	 */
 	public void setWord(String word) {
 		this.word = word;
-	}
-
-	/**
-	 * Gets the occurrence
-	 * 
-	 * @return the occurrence
-	 */
-	public int getOccurrence() {
-		return occurrence;
-	}
-
-	/**
-	 * Increase the occurrence
-	 */
-	public void increaseOccurrence() {
-		occurrence++;
 	}
 
 	/**
@@ -102,7 +84,6 @@ public class Word implements Comparable<Word>, Serializable {
 	 */
 	public void addLocation(Location locations) {
 		this.locations.add(locations);
-		occurrence++;
 	}
 	
 
